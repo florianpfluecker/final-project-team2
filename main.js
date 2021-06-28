@@ -38,6 +38,10 @@ let astronaut = new Astronaut(125, 430, images);
 let statusBar = new StatusBar(50, 30);
 
 //variables
+let i = 0;
+statusBar.i = i;
+statusBar.i = 2;
+console.log(statusBar.i);
 
 //functions
 
@@ -54,5 +58,6 @@ function draw() {
 
   astronaut.display();
   console1.display();
+
   statusBar.display();
 }
