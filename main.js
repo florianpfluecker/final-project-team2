@@ -11,6 +11,8 @@ let images = {
   screen2: loadImage("./assets/screen2.png"),
   screen3: loadImage("./assets/screen3.png"),
 
+  //sloganOdyssee
+  sloganOdyssee: loadImage("./assets/sloganOdyssee.png"),
   //astronaut
   astronaut: loadImage("./assets/astronaut.png"),
   //buttons
@@ -109,6 +111,7 @@ function screenOrder() {
     if (gameState === 0) {
       image(images.startButton, 810, 790, 327, 163.5);
       buttonStart.display();
+      image(images.sloganOdyssee, 590, 60, 751, 450);
     }
     if (gameState === 1) {
       console1.display();
@@ -127,7 +130,7 @@ function screenOrder() {
   //SCREEN 2
   if (gameState >= 4 && gameState <= 6) {
     //POV cockpit! GIF
-
+    fill(2, 25, 35);
     rect(0, 0, 1920, 1080);
     if (gameState === 4) {
       console4.display();
