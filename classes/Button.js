@@ -5,20 +5,24 @@ export default class Button {
     this.width = width;
     this.height = height;
     this.text = text;
-    this.hoverTest = false;
   }
 
   drawButton(x, y, width, height) {
     noStroke();
-    //fill();
+    noFill();
     rect(this.x, this.y, this.width, this.height, 15);
-    //fill();
+    if (this.hoverTest() === true) {
+      fill(177, 108, 170);
+    } else {
+      fill(255);
+    }
     textSize(18);
     textAlign(CENTER);
     text(this.text, this.x + this.width / 2, this.y + this.height / 1.7);
+    noFill();
   }
 
-  hitTest(x, y) {
+  hitTest(x, y, width, height) {
     if (
       mouseX < this.x + this.width &&
       mouseX >= this.x &&
@@ -31,7 +35,7 @@ export default class Button {
     }
   }
 
-  hoverTest(x, y) {
+  hoverTest(x, y, width, height) {
     if (
       mouseX < this.x + this.width &&
       mouseX >= this.x &&
@@ -46,5 +50,7 @@ export default class Button {
 
   display() {
     this.drawButton();
+    this.hitTest();
+    this.hoverTest();
   }
 }
