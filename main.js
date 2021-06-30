@@ -6,7 +6,7 @@ angleMode(DEGREES);
 //IMAGES
 
 let images = {
-  //screens
+  //layers
   screen1: loadImage("./assets/screen1.png"),
   screen2: loadImage("./assets/screen2.png"),
   screen3: loadImage("./assets/screen3.png"),
@@ -120,12 +120,14 @@ function screenOrder() {
     }
     if (gameState === 3) {
       console3.display();
-      button2.display();
+      button3.display();
     }
   }
 
   //SCREEN 2
   if (gameState >= 4 && gameState <= 6) {
+    //POV cockpit! GIF
+
     rect(0, 0, 1920, 1080);
     if (gameState === 4) {
       console4.display();
