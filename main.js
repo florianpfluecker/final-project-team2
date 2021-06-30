@@ -31,7 +31,7 @@ import StatusBar from "./classes/statusBar.js";
 //INSTANTIATE OBJECTS----------------------------------------------------------------
 
 //buttons
-let buttonStart = new Button(964.5 - 50, 845, 100, 60, "start game");
+let buttonStart = new Button(964.5 - 50, 900, 100, 60, "start game");
 let button1 = new Button(1500, 990, 100, 30, "< weiter >");
 let button2 = new Button(1500, 990, 100, 30, "< weiter >");
 let button3 = new Button(1500, 990, 100, 30, "< weiter >");
@@ -106,10 +106,10 @@ function screenOrder() {
 
     if (buttonStart.hoverTest() && gameState === 0) {
       //startButtonImage
-      image(images.startButtonHover, 810 - 70, 790, 468, 163.5);
+      image(images.startButtonHover, 810 - 70, 845, 468, 163.5);
     }
     if (gameState === 0) {
-      image(images.startButton, 810, 790, 327, 163.5);
+      image(images.startButton, 810, 845, 327, 163.5);
       buttonStart.display();
       image(images.sloganOdyssee, 590, 60, 751, 450);
     }
