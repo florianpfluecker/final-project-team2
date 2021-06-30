@@ -16,6 +16,7 @@ let images = {
   //buttons
   startButton: loadImage("./assets/startButton.png"),
   startButtonHover: loadImage("./assets/startButtonHover.png"),
+  gif: loadImage("./gifs/startScreen.gif"),
 };
 
 //IMPORTS
@@ -99,8 +100,7 @@ function screenOrder() {
   //SCREEN 1
   if (gameState >= 0 && gameState <= 4) {
     //screen1 animated GIF!
-    fill(2, 25, 35);
-    rect(0, 0, 1920, 1080);
+    image(images.gif, 0, 0, 1920, 1080);
 
     if (buttonStart.hoverTest() && gameState === 0) {
       //startButtonImage
