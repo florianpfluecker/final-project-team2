@@ -70,7 +70,7 @@ let console4 = new Console(
   1320,
   200,
   "ASTORNAUT",
-  "Es gab beim Verlassen der Erdatmosphäre Probleme mit den Triebwerken.   mehr text folgt"
+  "Es gab beim Verlassen der Erdatmosphäre Probleme mit den Triebwerken.\nmehr text folgt"
 );
 let console5 = new Console(
   300,
@@ -129,9 +129,10 @@ function screenOrder() {
 
   //SCREEN 2
   if (gameState >= 4 && gameState <= 6) {
-    //POV cockpit! GIF
+    //POV cockpit!
     fill(2, 25, 35);
     rect(0, 0, 1920, 1080);
+
     if (gameState === 4) {
       console4.display();
       button4.display();
