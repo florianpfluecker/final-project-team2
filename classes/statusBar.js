@@ -18,17 +18,18 @@ export default class StatusBar {
     rect(this.x, this.y + 40, 120, 40, 30);
 
     //oxygenCounter
-    fill(0);
+    fill(104, 138, 149);
     for (this.i = 0; this.i <= this.oxygenCounter; this.i++) {
       rect(this.x + 1 + 61 * this.i, this.y + 1, 60, 28, 30);
     }
   }
 
   textField() {
+    fill(0);
     textSize(30);
     this.sampleCounter = 4;
     text(this.sampleCounter, this.x + 45, this.y + 70);
-    text("/ 8", 120, 100);
+    text("  / 8", 120, 100);
   }
 
   display() {
