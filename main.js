@@ -1,15 +1,22 @@
-// Smesterprojekt P2 Odyssee
+// Semesterprojekt P2 Odyssee
 window.draw = draw;
 window.mouseClicked = mouseClicked;
 angleMode(DEGREES);
+
+//SOUNDS
+let morseCode;
+
+function preload() {
+  morseCode = loadSound("morseCode.mp3");
+}
 
 //IMAGES
 
 let images = {
   //layers
-  screen1: loadImage("./assets/screen1.png"),
-  screen2: loadImage("./assets/screen2.png"),
-  screen3: loadImage("./assets/screen3.png"),
+  layer1: loadImage("./assets/layer1.png"),
+  layer2: loadImage("./assets/layer2.png"),
+  layer3: loadImage("./assets/layer3.png"),
 
   //sloganOdyssee
   sloganOdyssee: loadImage("./assets/sloganOdyssee.png"),
@@ -18,7 +25,9 @@ let images = {
   //buttons
   startButton: loadImage("./assets/startButton.png"),
   startButtonHover: loadImage("./assets/startButtonHover.png"),
-  gif: loadImage("./gifs/startScreen.gif"),
+  //GIFs
+  startScreenSpaceship: loadImage("./gifs/startScreenSpaceship.gif"),
+  startScreenBackground: loadImage("./gifs/startScreenBackground.gif"),
 };
 
 //IMPORTS
@@ -38,6 +47,10 @@ let button3 = new Button(1500, 990, 100, 30, "< weiter >");
 let button4 = new Button(1500, 990, 100, 30, "< weiter >");
 let button5 = new Button(1500, 990, 100, 30, "< weiter >");
 let button6 = new Button(1500, 990, 100, 30, "< weiter >");
+let button7 = new Button(1500, 990, 100, 30, "< weiter >");
+let button8 = new Button(1500, 990, 100, 30, "< weiter >");
+let button9 = new Button(1450, 990, 100, 30, "< Notsignal senden >");
+let button10 = new Button(1450, 990, 100, 30, "< weiter >");
 
 //consoles
 let console1 = new Console(
@@ -46,7 +59,8 @@ let console1 = new Console(
   1320,
   200,
   "ZENTRALE",
-  "XR988 haben wir Kontakt...?"
+  "XR988 haben wir Kontakt...?",
+  1.7
 );
 let console2 = new Console(
   300,
@@ -54,7 +68,8 @@ let console2 = new Console(
   1320,
   200,
   "ASTRONAUT (DU)",
-  "Positiv, es besteht Funkkontakt, ich kann sie hören."
+  "Positiv, es besteht Funkkontakt, ich kann sie hören.",
+  1.7
 );
 let console3 = new Console(
   300,
@@ -62,7 +77,8 @@ let console3 = new Console(
   1320,
   200,
   "ZENTRALE",
-  "Wir bitten um Statusbericht, XR988 ist vom Kurs abgekommen! "
+  "Wir bitten um Statusbericht, XR988 ist vom Kurs abgekommen! ",
+  1.7
 );
 let console4 = new Console(
   300,
@@ -70,7 +86,8 @@ let console4 = new Console(
   1320,
   200,
   "ASTORNAUT",
-  "Es gab beim Verlassen der Erdatmosphäre Probleme mit den Triebwerken.\nmehr text folgt"
+  "Es gab beim Verlassen der Erdatmosphäre Probleme mit den Triebwerken.\nDie KI EInheit 5566 (Microscity) konnte alle Probleme weitesgehend beheben.\nWir sind wieder auf Kurs. Ankunft auf Planet B voraussichtlich in 3t 25h 06m.",
+  2.1
 );
 let console5 = new Console(
   300,
@@ -78,7 +95,8 @@ let console5 = new Console(
   1320,
   200,
   "ZENTRALE",
-  "Die Mission ... und die Bergung des Heilmittels haben weiterhin höchste Priorität.  mehr text folgt"
+  "Die Mission ... und die Bergung des Heilmittels haben weiterhin höchste Priorität.\nAuf der Erde herrscht Chaos, über die Hälfte der Weltbevölkerung ist bereits infiziert.\nWir zählen auf sie!",
+  2.1
 );
 let console6 = new Console(
   300,
@@ -86,7 +104,44 @@ let console6 = new Console(
   1320,
   200,
   "ASTRONAUT",
-  "Verstanden. Ich melde mich bei de - ..."
+  "Verstanden. Ich melde mich bei de - ...",
+  1.7
+);
+let console7 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "5566MICROSITY",
+  "Triebwerke erneut ausgefallen. Autopilot wird deaktiviert...",
+  1.7
+);
+let console8 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "ZENTRALE",
+  "XR988 — Kein signal —",
+  1.7
+);
+let console9 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "5566MICROSITY",
+  "Funktkontakt abgebrochen!",
+  1.7
+);
+let console10 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "5566MICROSITY",
+  "–	Letzten Standort erfolgreich übermttielt\n–	Koordinaten berechenen fehlgechlagen.",
+  2
 );
 
 //otherStuff
@@ -102,7 +157,8 @@ function screenOrder() {
   //SCREEN 1
   if (gameState >= 0 && gameState <= 4) {
     //screen1 animated GIF!
-    image(images.gif, 0, 0, 1920, 1080);
+    image(images.startScreenBackground, 0, 0, 1920, 1080);
+    image(images.startScreenSpaceship, 0, 0, 1920, 1080);
 
     if (buttonStart.hoverTest() && gameState === 0) {
       //startButtonImage
@@ -128,7 +184,7 @@ function screenOrder() {
   }
 
   //SCREEN 2
-  if (gameState >= 4 && gameState <= 6) {
+  if (gameState >= 4 && gameState <= 7) {
     //POV cockpit!
     fill(2, 25, 35);
     rect(0, 0, 1920, 1080);
@@ -145,11 +201,28 @@ function screenOrder() {
       console6.display();
       button6.display();
     }
+    if (gameState === 7) {
+      console7.display();
+      button7.display();
+    }
   }
 
   //SCREEN 3
-  if (gameState >= 7 && gameState <= 7) {
-    rect(0, 0, 1920, 1080);
+  if (gameState >= 8 && gameState <= 11) {
+    //BLACKSCREEN ALARM GIF
+    if (gameState === 8) {
+      console8.display();
+      button8.display();
+    }
+    if (gameState === 9) {
+      console9.display();
+      button9.display();
+    }
+    if (gameState === 10) {
+      image(images.layer1, 0, 0, 1920, 1080);
+      console10.display();
+      button10.display();
+    }
   }
 }
 
@@ -171,6 +244,12 @@ function mouseClicked() {
     gameState = 6;
   } else if (button6.hitTest() && gameState === 6) {
     gameState = 7;
+  } else if (button7.hitTest() && gameState === 7) {
+    gameState = 8;
+  } else if (button8.hitTest() && gameState === 8) {
+    gameState = 9;
+  } else if (button9.hitTest() && gameState === 9) {
+    gameState = 10;
   }
 }
 
@@ -181,5 +260,5 @@ function draw() {
   //console1.display();
   //statusBar.display();
   //button1.display();
-  // console.log(gameState);
+  console.log(gameState);
 }

@@ -1,11 +1,12 @@
 export default class Console {
-  constructor(x, y, width, height, person, text) {
+  constructor(x, y, width, height, person, text, textMargin) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.person = person;
     this.text = text;
+    this.textMargin = textMargin;
   }
 
   drawBox() {
@@ -30,7 +31,7 @@ export default class Console {
 
     //content
     fill(255);
-    text(this.text, this.x + 20, this.y + this.height / 1.7);
+    text(this.text, this.x + 20, this.y + this.height / this.textMargin);
   }
 
   display() {
