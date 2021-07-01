@@ -4,11 +4,11 @@ window.mouseClicked = mouseClicked;
 angleMode(DEGREES);
 
 //SOUNDS
-let morseCode;
+// let morseCode;
 
-function preload() {
-  morseCode = loadSound("morseCode.mp3");
-}
+// function preload() {
+//   morseCode = loadSound("morseCode.mp3");
+// }
 
 //IMAGES
 
@@ -50,7 +50,10 @@ let button6 = new Button(1500, 990, 100, 30, "< weiter >");
 let button7 = new Button(1500, 990, 100, 30, "< weiter >");
 let button8 = new Button(1500, 990, 100, 30, "< weiter >");
 let button9 = new Button(1450, 990, 100, 30, "< Notsignal senden >");
-let button10 = new Button(1450, 990, 100, 30, "< weiter >");
+let button10 = new Button(1500, 990, 100, 30, "< weiter >");
+let button11 = new Button(1500, 990, 100, 30, "< weiter >");
+let button12 = new Button(1500, 990, 100, 30, "< weiter >");
+let buttonStartMission = new Button(1450, 990, 100, 30, "< Mission beginnen >");
 
 //consoles
 let console1 = new Console(
@@ -143,6 +146,33 @@ let console10 = new Console(
   "–	Letzten Standort erfolgreich übermttielt\n–	Koordinaten berechenen fehlgechlagen.",
   2
 );
+let console11 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "5566MICROSITY",
+  "Analyse zeigt:\nSauerstoffsättigung der Umgebung: <0,1%\nFremde Lebensformen: bestätigt\nSauerstoffvorrat: 36.7%\nWeiterhin kein Funkkontakt möglich",
+  2.8
+);
+let console12 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "5566MICROSITY",
+  "Ich scanne nun die Umgebung nach Sauerstoffquellen!",
+  1.7
+);
+let console13 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "HINWEIS",
+  "Hovere über den Bildschirm um klickbare Objekte zu finden.",
+  1.7
+);
 
 //otherStuff
 let astronaut = new Astronaut(125, 430, images);
@@ -151,6 +181,7 @@ let statusBar = new StatusBar(50, 30, 4, 4);
 //VARIABLES
 statusBar.oxygenCounter = 2;
 let gameState = 0;
+let runGame = false;
 
 //FUNCTIONS
 function screenOrder() {
@@ -208,7 +239,7 @@ function screenOrder() {
   }
 
   //SCREEN 3
-  if (gameState >= 8 && gameState <= 11) {
+  if (gameState >= 8 && gameState <= 13) {
     //BLACKSCREEN ALARM GIF
     if (gameState === 8) {
       console8.display();
@@ -223,10 +254,30 @@ function screenOrder() {
       console10.display();
       button10.display();
     }
+    if (gameState === 11) {
+      image(images.layer1, 0, 0, 1920, 1080);
+      console11.display();
+      button11.display();
+    }
+    if (gameState === 12) {
+      image(images.layer1, 0, 0, 1920, 1080);
+      console12.display();
+      button12.display();
+    }
+    if (gameState === 13) {
+      image(images.layer1, 0, 0, 1920, 1080);
+      console13.display();
+      buttonStartMission.display();
+    }
   }
 }
 
-function gameScreens() {}
+function gameScreens() {
+  if (runGame === true) {
+    image(images.layer1, 0, 0, 1920, 1080);
+    statusBar.display();
+  }
+}
 
 function mouseClicked() {
   //BUTTONS
@@ -250,11 +301,20 @@ function mouseClicked() {
     gameState = 9;
   } else if (button9.hitTest() && gameState === 9) {
     gameState = 10;
+  } else if (button10.hitTest() && gameState === 10) {
+    gameState = 11;
+  } else if (button11.hitTest() && gameState === 11) {
+    gameState = 12;
+  } else if (button12.hitTest() && gameState === 12) {
+    gameState = 13;
+  } else if (buttonStartMission.hitTest() && gameState === 13) {
+    runGame = true;
   }
 }
 
 function draw() {
   screenOrder();
+  gameScreens();
 
   //astronaut.display();
   //console1.display();
