@@ -20,14 +20,22 @@ let images = {
 
   //sloganOdyssee
   sloganOdyssee: loadImage("./assets/sloganOdyssee.png"),
+
   //astronaut
   astronaut: loadImage("./assets/astronaut.png"),
+
   //buttons
   startButton: loadImage("./assets/startButton.png"),
   startButtonHover: loadImage("./assets/startButtonHover.png"),
+
   //GIFs
   startScreenSpaceship: loadImage("./gifs/startScreenSpaceship.gif"),
   startScreenBackground: loadImage("./gifs/startScreenBackground.gif"),
+
+  //Layer 1 dead Corals
+  coral1: loadImage("./assets/layer1/coral1.png"),
+  coral2: loadImage("./assets/layer1/coral2.png"),
+  switchLayer: loadImage("./assets/layer1/switchLayer.png"),
 };
 
 //IMPORTS
@@ -174,7 +182,7 @@ let console13 = new Console(
   1000,
   200,
   "HINWEIS",
-  "Hovere über den Bildschirm um klickbare Objekte zu finden.",
+  "Hovere über den Bildschirm um potenzielle Sauetstoffquellen zu finden.",
   1.7
 );
 
@@ -185,7 +193,7 @@ let statusBar = new StatusBar(50, 30, 4, 4);
 //VARIABLES
 statusBar.oxygenCounter = 1;
 let gameState = 0;
-let layerState = 0;
+let layerState = 1;
 let posState = 0;
 let runGame = false;
 
@@ -280,6 +288,7 @@ function screenOrder() {
 
 function gameScreens() {
   //LAYER 1 SCREEN
+
   if (runGame === true && layerState === 1) {
     image(images.layer1, 0, 0, 1920, 1080);
     statusBar.display();
@@ -296,7 +305,34 @@ function gameScreens() {
     if (switchLayer.hoverTest() && posState === 2) {
       fill(255, 255, 255, 30);
       ellipse(1830, 130, 180, 160);
+      image(images.switchLayer, 1740, 10, 102 * 1.8, 101 * 1.8);
     }
+  }
+
+  //LAYER 2 SCREEN
+  if (runGame === true && layerState === 2) {
+    image(images.layer2, 0, 0, 1920, 1080);
+    statusBar.display();
+    astronaut.display();
+    //posAstronaut
+    astronaut.x = -40;
+    astronaut.y = 140;
+  }
+
+  //END SCREEN DEATH
+  if (statusBar.oxygenCounter <= -1) {
+    //endScreenPNG
+    // fill(255);
+    // rect(0, 0, 1920.108);
+  }
+
+  //DEAD CORALS
+
+  if (posState >= 2 && layerState === 1) {
+    image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
+  }
+  if (posState >= 3 && layerState === 1) {
+    image(images.coral2, 1668, 595, 142.5, 150);
   }
 }
 
@@ -367,9 +403,10 @@ function mouseClicked() {
     //changePos
     astronaut.x = 1500;
     astronaut.y = 20;
-    posState = 2;
+    posState = 3;
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    layerState = 2;
   }
 }
 
@@ -381,5 +418,6 @@ function draw() {
   //console1.display();
   //statusBar.display();
   //button1.display();
-  // console.log(gameState);
+  //console.log(gameState);
+  console.log(posState);
 }

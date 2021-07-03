@@ -13,7 +13,7 @@ export default class Console {
     textAlign(LEFT);
 
     //body console
-    fill(10);
+    fill(10, 10, 10, 215);
     stroke(255);
     strokeWeight(1.5);
     rect(this.x, this.y, this.width, this.height, 30);

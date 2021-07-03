@@ -1,20 +1,28 @@
-var data2 = "This is a second sentence";
+let images = {
+  //layers
+  layer1: loadImage("./assets/layer1.png"),
+  layer2: loadImage("./assets/layer2.png"),
+  layer3: loadImage("./assets/layer3.png"),
 
-function setup() {
-  fill(255);
-  createCanvas(400, 400);
-  typeWriter(data, 0, 20, 30, 100);
-  typeWriter(data2, 0, 20, 50, 500);
-}
+  //sloganOdyssee
+  sloganOdyssee: loadImage("./assets/sloganOdyssee.png"),
+  //astronaut
+  astronaut: loadImage("./assets/astronaut.png"),
+  //buttons
+  startButton: loadImage("./assets/startButton.png"),
+  startButtonHover: loadImage("./assets/startButtonHover.png"),
+  //GIFs
+  startScreenSpaceship: loadImage("./gifs/startScreenSpaceship.gif"),
+  startScreenBackground: loadImage("./gifs/startScreenBackground.gif"),
+  //Layer 1 dead Corals
+  coral1: loadImage("./assets/layer1/coral1.png"),
+  coral2: loadImage("./assets/layer1/coral2.png"),
+  switchLayer: loadImage("./assets/layer1/switchLayer.png"),
+};
 
-function draw() {}
-
-function typeWriter(sentence, n, x, y, speed) {
-  if (n < sentence.length) {
-    text(sentence.substring(0, n + 1), x, y);
-    n++;
-    setTimeout(function () {
-      typeWriter(sentence, n, x, y, speed);
-    }, speed);
-  }
+function draw() {
+  image(images.layer1, 0, 0, 1920, 1080);
+  image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
+  image(images.coral2, 1668, 595, 142.5, 150);
+  image(images.switchLayer, 1740, 10, 102 * 1.8, 101 * 1.8);
 }
