@@ -30,6 +30,7 @@ export default class Console {
     noFill();
 
     //content
+
     fill(255);
     text(this.text, this.x + 20, this.y + this.height / this.textMargin);
   }

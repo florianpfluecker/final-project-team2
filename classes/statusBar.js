@@ -27,7 +27,7 @@ export default class StatusBar {
   textField() {
     fill(0);
     textSize(30);
-    this.sampleCounter = 4;
+    this.sampleCounter = 0;
     text(this.sampleCounter, this.x + 45, this.y + 70);
     text("  / 8", 120, 100);
   }

@@ -52,8 +52,12 @@ let button8 = new Button(1500, 990, 100, 30, "< weiter >");
 let button9 = new Button(1450, 990, 100, 30, "< Notsignal senden >");
 let button10 = new Button(1500, 990, 100, 30, "< weiter >");
 let button11 = new Button(1500, 990, 100, 30, "< weiter >");
-let button12 = new Button(1500, 990, 100, 30, "< weiter >");
-let buttonStartMission = new Button(1450, 990, 100, 30, "< Mission beginnen >");
+let button12 = new Button(1150, 990, 100, 30, "< weiter >");
+let buttonStartMission = new Button(1100, 990, 100, 30, "< Mission beginnen >");
+//layer 1 hoverObejcts
+let coral1 = new Button(1330, 900, 200, 180);
+let coral2 = new Button(1650, 600, 200, 180);
+let switchLayer = new Button(1750, 30, 200, 180);
 
 //consoles
 let console1 = new Console(
@@ -158,7 +162,7 @@ let console11 = new Console(
 let console12 = new Console(
   300,
   830,
-  1320,
+  1000,
   200,
   "5566MICROSITY",
   "Ich scanne nun die Umgebung nach Sauerstoffquellen!",
@@ -167,7 +171,7 @@ let console12 = new Console(
 let console13 = new Console(
   300,
   830,
-  1320,
+  1000,
   200,
   "HINWEIS",
   "Hovere über den Bildschirm um klickbare Objekte zu finden.",
@@ -175,12 +179,14 @@ let console13 = new Console(
 );
 
 //otherStuff
-let astronaut = new Astronaut(125, 430, images);
+let astronaut = new Astronaut(125, 550, images);
 let statusBar = new StatusBar(50, 30, 4, 4);
 
 //VARIABLES
-statusBar.oxygenCounter = 2;
+statusBar.oxygenCounter = 1;
 let gameState = 0;
+let layerState = 0;
+let posState = 0;
 let runGame = false;
 
 //FUNCTIONS
@@ -273,9 +279,24 @@ function screenOrder() {
 }
 
 function gameScreens() {
-  if (runGame === true) {
+  //LAYER 1 SCREEN
+  if (runGame === true && layerState === 1) {
     image(images.layer1, 0, 0, 1920, 1080);
     statusBar.display();
+    astronaut.display();
+
+    if (coral1.hoverTest() && posState === 0) {
+      fill(255, 255, 255, 30);
+      ellipse(1420, 980, 200, 180);
+    }
+    if (coral2.hoverTest() && posState === 1) {
+      fill(255, 255, 255, 30);
+      ellipse(1740, 660, 200, 180);
+    }
+    if (switchLayer.hoverTest() && posState === 2) {
+      fill(255, 255, 255, 30);
+      ellipse(1830, 130, 180, 160);
+    }
   }
 }
 
@@ -309,6 +330,46 @@ function mouseClicked() {
     gameState = 13;
   } else if (buttonStartMission.hitTest() && gameState === 13) {
     runGame = true;
+    layerState = 1;
+  }
+
+  //CORAL BUTTONS
+  if (
+    coral1.hitTest() &&
+    runGame === true &&
+    layerState === 1 &&
+    posState === 0
+  ) {
+    //changePos
+    astronaut.x = 1150;
+    astronaut.y = 700;
+    posState = 1;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+  } else if (
+    coral2.hitTest() &&
+    runGame === true &&
+    layerState === 1 &&
+    posState === 1
+  ) {
+    //changePos
+    astronaut.x = 1500;
+    astronaut.y = 400;
+    posState = 2;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+  } else if (
+    switchLayer.hitTest() &&
+    runGame === true &&
+    layerState === 1 &&
+    posState === 2
+  ) {
+    //changePos
+    astronaut.x = 1500;
+    astronaut.y = 20;
+    posState = 2;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
   }
 }
 
@@ -320,5 +381,5 @@ function draw() {
   //console1.display();
   //statusBar.display();
   //button1.display();
-  console.log(gameState);
+  // console.log(gameState);
 }
