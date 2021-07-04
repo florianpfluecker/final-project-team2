@@ -31,6 +31,9 @@ let images = {
   //GIFs
   startScreenSpaceship: loadImage("./gifs/startScreenSpaceship.gif"),
   startScreenBackground: loadImage("./gifs/startScreenBackground.gif"),
+  cockpitScreen: loadImage("./assets/cockpitScreen.jpg"),
+  cockpitBackground: loadImage("./gifs/cockpitBackground.gif"),
+  cockpit: loadImage("./gifs/cockpit.gif"),
 
   //Layer 1 dead Corals
   coral1: loadImage("./assets/layer1/coral1.png"),
@@ -231,8 +234,8 @@ function screenOrder() {
   //SCREEN 2
   if (gameState >= 4 && gameState <= 7) {
     //POV cockpit!
-    fill(2, 25, 35);
-    rect(0, 0, 1920, 1080);
+    image(images.cockpitBackground, 0, 0, 1920, 1080);
+    image(images.cockpit, 0, 0, 1920, 1080);
 
     if (gameState === 4) {
       console4.display();
