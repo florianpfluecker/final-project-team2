@@ -14,7 +14,7 @@ export default class StatusBar {
     rect(this.x, this.y, 306, 30, 30);
 
     //bar2
-    fill(255, 255, 255);
+    fill(177, 108, 170);
     rect(this.x, this.y + 40, 120, 40, 30);
 
     //oxygenCounter
@@ -25,11 +25,10 @@ export default class StatusBar {
   }
 
   textField() {
-    fill(0);
+    fill(20);
     textSize(30);
-    this.sampleCounter = 0;
-    text(this.sampleCounter, this.x + 45, this.y + 70);
-    text("  / 8", 120, 100);
+    text(this.sampleCounter, this.x + 35, this.y + 76);
+    text("  /8", 97, 106);
   }
 
   display() {

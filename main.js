@@ -83,10 +83,10 @@ let button9 = new Button(1230, 990, 295, 40, "< Notsignal senden >");
 let button10 = new Button(1440, 990, 100, 30, "< weiter >");
 let button11 = new Button(1440, 990, 100, 30, "< weiter >");
 let button12 = new Button(1070, 990, 100, 30, "< weiter >");
-let buttonStartMission = new Button(1100, 990, 100, 30, "< Mission beginnen >");
+let buttonStartMission = new Button(1000, 990, 100, 30, "< Mission beginnen >");
 
 //decisions
-let decison1 = new Decision(1100, 650, 60, 60, "decision");
+let decision = new Decision(1100, 650, 60, 60, "decision");
 
 //layer 1 hoverObejcts
 let coral1 = new Button(1330, 900, 200, 180);
@@ -127,7 +127,7 @@ let console4 = new Console(
   1320,
   200,
   "ASTORNAUT",
-  "Es gab beim Verlassen der Erdatmosphäre Probleme mit\nden Triebwerken.Die KI EInheit 5566 (Microscity) konnte alle\nProbleme weitesgehend beheben.\nWir sind wieder auf Kurs.\nAnkunft auf Planet B voraussichtlich in 3t 25h 06m...",
+  "Es gab beim Verlassen der Erdatmosphäre Probleme mit\nden Triebwerken.Die KI Einheit 5566 (Microscity) konnte alle\nProbleme weitesgehend beheben.\nWir sind wieder auf Kurs.\nAnkunft auf Planet B voraussichtlich in 3t 25h 06m...",
   2.6
 );
 let console5 = new Console(
@@ -208,8 +208,8 @@ let console13 = new Console(
   1000,
   200,
   "HINWEIS",
-  "Hovere über den Bildschirm um potenzielle Sauetstoffquellen zu finden.",
-  1.7
+  "Hovere über den Bildschirm um potenzielle\nSauetstoffquellen zu finden.",
+  2.0
 );
 
 //otherStuff
@@ -218,16 +218,17 @@ let statusBar = new StatusBar(50, 30, 4, 4);
 
 //VARIABLES
 statusBar.oxygenCounter = 1;
+statusBar.sampleCounter = 0;
 let gameState = 0;
 let layerState = 1;
 let posState = 0;
-let runGame = false;
+let runGame = true;
 let op = 255;
 
 //FUNCTIONS
 
 function transition() {
-  op = op - 2.5;
+  op = op - 1.5;
   fill(0, 0, 0, op);
   rect(0, 0, 1920, 1080);
 }
@@ -246,7 +247,7 @@ function screenOrder() {
     if (gameState === 0) {
       image(images.startButton, 796.5, 845, 327, 163.5);
       buttonStart.display();
-      image(images.sloganOdyssee, 548.5, 60, 751, 450);
+      image(images.sloganOdyssee, 570, 60, 751, 450);
     }
     if (gameState === 1) {
       console1.display();
@@ -382,11 +383,17 @@ function gameScreens() {
   }
 }
 
-function decisionFields() {
-  //DRAWS DECISIONS
-
-  if (posState === 1) {
-    decison1.display();
+function decisions() {
+  if (posState >= 1 && posState <= 2) {
+    decision.display();
+    if (posState === 1) {
+      decision.x = 1100;
+      decision.y = 650;
+    }
+    if (posState === 2) {
+      decision.x = 1390;
+      decision.y = 400;
+    }
   }
 }
 
@@ -484,8 +491,19 @@ function mouseClicked() {
     posState = 3;
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //changeLayer
+    layerState = 2;
     //sound
     clickSound.play();
+  }
+
+  //DECISIONS
+
+  if (decision.hitTestRight()) {
+    statusBar.oxygenCounter = 4;
+  }
+  if (decision.hitTestLeft()) {
+    statusBar.sampleCounter = statusBar.sampleCounter + 1;
   }
 }
 
@@ -493,7 +511,7 @@ function draw() {
   textFont(defaultFont);
   screenOrder();
   gameScreens();
-  decisionFields();
+  decisions();
 
   //astronaut.display();
   //console1.display();
