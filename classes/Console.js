@@ -25,8 +25,8 @@ export default class Console {
 
   textField() {
     //person speaking
-    textSize(22);
-    text(this.person, this.x + 20, this.y + 28);
+    textSize(20);
+    text(this.person, this.x + 20, this.y + 30);
     noFill();
 
     //content

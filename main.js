@@ -10,10 +10,18 @@ let morseCode;
 let backgroundMusic;
 let clickSound;
 
+//FONT(s)
+let defaultFont;
+
 function preload() {
+  //SOUNDS
+
   morseCode = loadSound("./sounds/morseCode.mp3");
   backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
   clickSound = loadSound("./sounds/hoverCoral.mp3");
+
+  //FONT(s)
+  defaultFont = loadFont("./fonts/defaultFont.ttf");
 }
 
 //IMAGES
@@ -62,19 +70,19 @@ import Decision from "./classes/Decision.js";
 //INSTANTIATE OBJECTS----------------------------------------------------------------
 
 //buttons
-let buttonStart = new Button(964.5 - 50, 900, 100, 60, "START");
-let button1 = new Button(1500, 990, 100, 30, "< weiter >");
-let button2 = new Button(1500, 990, 100, 30, "< weiter >");
-let button3 = new Button(1500, 990, 100, 30, "< weiter >");
-let button4 = new Button(1500, 990, 100, 30, "< weiter >");
-let button5 = new Button(1500, 990, 100, 30, "< weiter >");
-let button6 = new Button(1500, 990, 100, 30, "< weiter >");
-let button7 = new Button(1500, 990, 100, 30, "< weiter >");
-let button8 = new Button(1500, 990, 100, 30, "< weiter >");
-let button9 = new Button(1450, 990, 100, 30, "< Notsignal senden >");
-let button10 = new Button(1500, 990, 100, 30, "< weiter >");
-let button11 = new Button(1500, 990, 100, 30, "< weiter >");
-let button12 = new Button(1150, 990, 100, 30, "< weiter >");
+let buttonStart = new Button(858, 905, 200, 60, "START");
+let button1 = new Button(1440, 990, 100, 30, "< weiter >");
+let button2 = new Button(1440, 990, 100, 30, "< weiter >");
+let button3 = new Button(1440, 990, 100, 30, "< weiter >");
+let button4 = new Button(1440, 990, 100, 30, "< weiter >");
+let button5 = new Button(1440, 990, 100, 30, "< weiter >");
+let button6 = new Button(1440, 990, 100, 30, "< weiter >");
+let button7 = new Button(1440, 990, 100, 30, "< weiter >");
+let button8 = new Button(1440, 990, 100, 30, "< weiter >");
+let button9 = new Button(1230, 990, 295, 40, "< Notsignal senden >");
+let button10 = new Button(1440, 990, 100, 30, "< weiter >");
+let button11 = new Button(1440, 990, 100, 30, "< weiter >");
+let button12 = new Button(1070, 990, 100, 30, "< weiter >");
 let buttonStartMission = new Button(1100, 990, 100, 30, "< Mission beginnen >");
 
 //decisions
@@ -119,8 +127,8 @@ let console4 = new Console(
   1320,
   200,
   "ASTORNAUT",
-  "Es gab beim Verlassen der Erdatmosphäre Probleme mit den Triebwerken.\nDie KI EInheit 5566 (Microscity) konnte alle Probleme weitesgehend beheben.\nWir sind wieder auf Kurs. Ankunft auf Planet B voraussichtlich in 3t 25h 06m.",
-  2.1
+  "Es gab beim Verlassen der Erdatmosphäre Probleme mit\nden Triebwerken.Die KI EInheit 5566 (Microscity) konnte alle\nProbleme weitesgehend beheben.\nWir sind wieder auf Kurs.\nAnkunft auf Planet B voraussichtlich in 3t 25h 06m...",
+  2.6
 );
 let console5 = new Console(
   300,
@@ -128,8 +136,8 @@ let console5 = new Console(
   1320,
   200,
   "ZENTRALE",
-  "Die Mission ... und die Bergung des Heilmittels haben weiterhin höchste Priorität.\nAuf der Erde herrscht Chaos, über die Hälfte der Weltbevölkerung ist bereits infiziert.\nWir zählen auf sie!",
-  2.1
+  "Die Mission ... und die Bergung des Heilmittels haben weiterhin\nhöchste Priorität.\nAuf der Erde herrscht Chaos, über die Hälfte der Weltbevölkerung\nist bereits infiziert...\nWir zählen auf sie!",
+  2.6
 );
 let console6 = new Console(
   300,
@@ -173,8 +181,8 @@ let console10 = new Console(
   1320,
   200,
   "5566MICROSITY",
-  "–	Letzten Standort erfolgreich übermttielt\n–	Koordinaten berechenen fehlgechlagen.",
-  2
+  "<	Letzten Standort erfolgreich übermittelt >\n\n<	Koordinaten berechenen fehlgechlagen. >",
+  2.3
 );
 let console11 = new Console(
   300,
@@ -182,13 +190,13 @@ let console11 = new Console(
   1320,
   200,
   "5566MICROSITY",
-  "Analyse zeigt:\nSauerstoffsättigung der Umgebung: <0,1%\nFremde Lebensformen: bestätigt\nSauerstoffvorrat: 36.7%\nWeiterhin kein Funkkontakt möglich",
+  "Analyse zeigt:\nSauerstoffsättigung der Umgebung: < 0,1%\nFremde Lebensformen: bestätigt\nSauerstoffvorrat: 36.7 %\nWeiterhin kein Funkkontakt möglich..!",
   2.8
 );
 let console12 = new Console(
   300,
   830,
-  1000,
+  1100,
   200,
   "5566MICROSITY",
   "Ich scanne nun die Umgebung nach Sauerstoffquellen!",
@@ -233,12 +241,12 @@ function screenOrder() {
 
     if (buttonStart.hoverTest() && gameState === 0) {
       //startButtonImage
-      image(images.startButtonHover, 810 - 70, 845, 468, 163.5);
+      image(images.startButtonHover, 726, 845, 468, 163.5);
     }
     if (gameState === 0) {
-      image(images.startButton, 810, 845, 327, 163.5);
+      image(images.startButton, 796.5, 845, 327, 163.5);
       buttonStart.display();
-      image(images.sloganOdyssee, 590, 60, 751, 450);
+      image(images.sloganOdyssee, 548.5, 60, 751, 450);
     }
     if (gameState === 1) {
       console1.display();
@@ -482,6 +490,7 @@ function mouseClicked() {
 }
 
 function draw() {
+  textFont(defaultFont);
   screenOrder();
   gameScreens();
   decisionFields();

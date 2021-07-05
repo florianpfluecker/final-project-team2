@@ -16,7 +16,7 @@ export default class Button {
     } else {
       fill(255);
     }
-    textSize(18);
+    textSize(22);
     textAlign(CENTER);
     text(this.text, this.x + this.width / 2, this.y + this.height / 1.7);
     noFill();
