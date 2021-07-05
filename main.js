@@ -232,7 +232,7 @@ statusBar.sampleCounter = 0;
 let gameState = 0;
 let layerState = 1;
 let posState = 0;
-let runGame = true;
+let runGame = false;
 let op = 255;
 
 //FUNCTIONS
@@ -528,5 +528,5 @@ function draw() {
   //statusBar.display();
   //button1.display();
   //console.log(gameState);
-  console.log(posState);
+  // console.log(posState);
 }

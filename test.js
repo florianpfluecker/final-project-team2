@@ -50,6 +50,7 @@ function draw() {
   //LAYER 2 ASSETS
   image(images.layer2, 0, 0, 1920, 1080);
   image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
+  s;
   image(images.coral4, 110, 635, 297 * 1.4, 189 * 1.4);
   image(images.coral5, 670, 470, 84 * 1.4, 75 * 1.4);
   image(images.coral6, 902, 335, 92 * 1.4, 70 * 1.4);
