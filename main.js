@@ -1,14 +1,16 @@
 // Semesterprojekt P2 Odyssee
 window.draw = draw;
 window.mouseClicked = mouseClicked;
+window.preload = preload;
 angleMode(DEGREES);
 
-//SOUNDS
-// let morseCode;
+let morseCode;
+let backgroundMusic;
 
-// function preload() {
-//   morseCode = loadSound("morseCode.mp3");
-// }
+function preload() {
+  morseCode = loadSound("./sounds/morseCode.mp3");
+  backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
+}
 
 //IMAGES
 
@@ -34,6 +36,7 @@ let images = {
   cockpitScreen: loadImage("./assets/cockpitScreen.jpg"),
   cockpitBackground: loadImage("./gifs/cockpitBackground.gif"),
   cockpit: loadImage("./gifs/cockpit.gif"),
+  cockpitAlarm: loadImage("./gifs/cockpitAlarm.gif"),
 
   //Layer 1 dead Corals
   coral1: loadImage("./assets/layer1/coral1.png"),
@@ -51,7 +54,7 @@ import StatusBar from "./classes/statusBar.js";
 //INSTANTIATE OBJECTS----------------------------------------------------------------
 
 //buttons
-let buttonStart = new Button(964.5 - 50, 900, 100, 60, "start game");
+let buttonStart = new Button(964.5 - 50, 900, 100, 60, "START");
 let button1 = new Button(1500, 990, 100, 30, "< weiter >");
 let button2 = new Button(1500, 990, 100, 30, "< weiter >");
 let button3 = new Button(1500, 990, 100, 30, "< weiter >");
@@ -257,6 +260,9 @@ function screenOrder() {
 
   //SCREEN 3
   if (gameState >= 8 && gameState <= 13) {
+    image(images.cockpitBackground, 0, 0, 1920, 1080);
+    image(images.cockpitAlarm, 0, 0, 1920, 1080);
+
     //BLACKSCREEN ALARM GIF
     if (gameState === 8) {
       console8.display();
@@ -343,8 +349,11 @@ function mouseClicked() {
   //BUTTONS
   if (buttonStart.hitTest() && gameState === 0) {
     gameState = 1;
+    morseCode.play();
+    backgroundMusic.play();
   } else if (button1.hitTest() && gameState === 1) {
     gameState = 2;
+    morseCode.pause();
   } else if (button2.hitTest() && gameState === 2) {
     gameState = 3;
   } else if (button3.hitTest() && gameState === 3) {
