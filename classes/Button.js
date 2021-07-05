@@ -19,7 +19,6 @@ export default class Button {
     textSize(22);
     textAlign(CENTER);
     text(this.text, this.x + this.width / 2, this.y + this.height / 1.7);
-    noFill();
   }
 
   hitTest(x, y, width, height) {

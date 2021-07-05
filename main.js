@@ -5,7 +5,6 @@ window.preload = preload;
 angleMode(DEGREES);
 
 //SOUNDS
-
 let morseCode;
 let backgroundMusic;
 let clickSound;
@@ -52,6 +51,7 @@ let images = {
   cockpitBackground: loadImage("./gifs/cockpitBackground.gif"),
   cockpit: loadImage("./gifs/cockpit.gif"),
   cockpitAlarm: loadImage("./gifs/cockpitAlarm.gif"),
+  cockpitFade: loadImage("./gifs/cockpitFade.gif"),
 
   //Layer 1 dead Corals
   coral1: loadImage("./assets/layer1/coral1.png"),
@@ -92,7 +92,7 @@ let button8 = new Button(1440, 990, 100, 30, "< weiter >");
 let button9 = new Button(1230, 990, 295, 40, "< Notsignal senden >");
 let button10 = new Button(1440, 990, 100, 30, "< weiter >");
 let button11 = new Button(1440, 990, 100, 30, "< weiter >");
-let button12 = new Button(1070, 990, 100, 30, "< weiter >");
+let button12 = new Button(1440, 990, 100, 30, "< weiter >");
 let buttonStartMission = new Button(1000, 990, 100, 30, "< Mission beginnen >");
 
 //decisions
@@ -136,7 +136,7 @@ let console4 = new Console(
   830,
   1320,
   200,
-  "ASTORNAUT",
+  "ASTRONAUT (DU)",
   "Es gab beim Verlassen der Erdatmosphäre Probleme mit\nden Triebwerken.Die KI Einheit 5566 (Microscity) konnte alle\nProbleme weitesgehend beheben.\nWir sind wieder auf Kurs.\nAnkunft auf Planet B voraussichtlich in 3t 25h 06m...",
   2.6
 );
@@ -154,7 +154,7 @@ let console6 = new Console(
   830,
   1320,
   200,
-  "ASTRONAUT",
+  "ASTRONAUT (DU)",
   "Verstanden. Ich melde mich bei de - ...",
   1.7
 );
@@ -206,7 +206,7 @@ let console11 = new Console(
 let console12 = new Console(
   300,
   830,
-  1100,
+  1320,
   200,
   "5566MICROSITY",
   "Ich scanne nun die Umgebung nach Sauerstoffquellen!",
@@ -215,7 +215,7 @@ let console12 = new Console(
 let console13 = new Console(
   300,
   830,
-  1000,
+  1320,
   200,
   "HINWEIS",
   "Hovere über den Bildschirm um potenzielle\nSauetstoffquellen zu finden.",
@@ -234,12 +234,24 @@ let layerState = 1;
 let posState = 0;
 let runGame = false;
 let op = 255;
+let op2 = 0;
 
 //FUNCTIONS
 
+function cursor() {
+  fill(255, 255, 255, 100);
+  ellipse(mouseX, mouseY, 40, 40);
+}
+
 function transition() {
-  op = op - 1.5;
+  op = op - 0.5;
   fill(0, 0, 0, op);
+  rect(0, 0, 1920, 1080);
+}
+
+function transitionOut() {
+  op2 = op2 + 1.5;
+  fill(0, 0, 0, op2);
   rect(0, 0, 1920, 1080);
 }
 
@@ -308,6 +320,10 @@ function screenOrder() {
       button8.display();
     }
     if (gameState === 9) {
+      image(images.cockpitFade, 0, 0, 1920, 1080);
+
+      transitionOut();
+
       console9.display();
       button9.display();
     }
@@ -522,6 +538,7 @@ function draw() {
   screenOrder();
   gameScreens();
   decisions();
+  cursor();
 
   //astronaut.display();
   //console1.display();
