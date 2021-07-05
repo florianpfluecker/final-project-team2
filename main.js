@@ -8,12 +8,12 @@ angleMode(DEGREES);
 
 let morseCode;
 let backgroundMusic;
-let hoverCoral;
+let clickSound;
 
 function preload() {
   morseCode = loadSound("./sounds/morseCode.mp3");
   backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
-  hoverCoral = loadSound("./sounds/hoverCoral.mp3");
+  clickSound = loadSound("./sounds/hoverCoral.mp3");
 }
 
 //IMAGES
@@ -214,8 +214,16 @@ let gameState = 0;
 let layerState = 1;
 let posState = 0;
 let runGame = false;
+let op = 255;
 
 //FUNCTIONS
+
+function transition() {
+  op = op - 2.5;
+  fill(0, 0, 0, op);
+  rect(0, 0, 1920, 1080);
+}
+
 function screenOrder() {
   //SCREEN 1
   if (gameState >= 0 && gameState <= 4) {
@@ -286,21 +294,27 @@ function screenOrder() {
     }
     if (gameState === 10) {
       image(images.layer1, 0, 0, 1920, 1080);
+      astronaut.display();
       console10.display();
       button10.display();
+      transition();
     }
+
     if (gameState === 11) {
       image(images.layer1, 0, 0, 1920, 1080);
+      astronaut.display();
       console11.display();
       button11.display();
     }
     if (gameState === 12) {
       image(images.layer1, 0, 0, 1920, 1080);
+      astronaut.display();
       console12.display();
       button12.display();
     }
     if (gameState === 13) {
       image(images.layer1, 0, 0, 1920, 1080);
+      astronaut.display();
       console13.display();
       buttonStartMission.display();
     }
@@ -373,29 +387,28 @@ function mouseClicked() {
 
   if (buttonStart.hitTest() && gameState === 0) {
     gameState = 1;
-    //sound
-    hoverCoral.play();
+    clickSound.play();
     morseCode.play();
     backgroundMusic.loop();
   } else if (button1.hitTest() && gameState === 1) {
     gameState = 2;
     //sound
-    hoverCoral.play();
+    clickSound.play();
     morseCode.pause();
   } else if (button2.hitTest() && gameState === 2) {
     gameState = 3;
     //sound
-    hoverCoral.play();
+    clickSound.play();
     morseCode.play();
   } else if (button3.hitTest() && gameState === 3) {
     gameState = 4;
     //sound
-    hoverCoral.play();
+    clickSound.play();
     morseCode.pause();
   } else if (button4.hitTest() && gameState === 4) {
     gameState = 5;
     //sound
-    hoverCoral.play();
+    clickSound.play();
     morseCode.play();
   } else if (button5.hitTest() && gameState === 5) {
     gameState = 6;
@@ -436,7 +449,7 @@ function mouseClicked() {
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
     //sound
-    hoverCoral.play();
+    clickSound.play();
   } else if (
     coral2.hitTest() &&
     runGame === true &&
@@ -450,7 +463,7 @@ function mouseClicked() {
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
     //sound
-    hoverCoral.play();
+    clickSound.play();
   } else if (
     switchLayer.hitTest() &&
     runGame === true &&
@@ -463,7 +476,8 @@ function mouseClicked() {
     posState = 3;
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    layerState = 2;
+    //sound
+    clickSound.play();
   }
 }
 
