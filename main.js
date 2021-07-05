@@ -193,7 +193,7 @@ let console13 = new Console(
 );
 
 //otherStuff
-let astronaut = new Astronaut(125, 550, images);
+let astronaut = new Astronaut(425, 550, images);
 let statusBar = new StatusBar(50, 30, 4, 4);
 
 //VARIABLES
@@ -347,25 +347,32 @@ function gameScreens() {
 
 function mouseClicked() {
   //BUTTONS
+
   if (buttonStart.hitTest() && gameState === 0) {
     gameState = 1;
     morseCode.play();
-    backgroundMusic.play();
+    backgroundMusic.loop();
   } else if (button1.hitTest() && gameState === 1) {
     gameState = 2;
     morseCode.pause();
   } else if (button2.hitTest() && gameState === 2) {
     gameState = 3;
+    morseCode.play();
   } else if (button3.hitTest() && gameState === 3) {
     gameState = 4;
+    morseCode.pause();
   } else if (button4.hitTest() && gameState === 4) {
     gameState = 5;
+    morseCode.play();
   } else if (button5.hitTest() && gameState === 5) {
     gameState = 6;
+    morseCode.pause();
   } else if (button6.hitTest() && gameState === 6) {
     gameState = 7;
+    morseCode.play();
   } else if (button7.hitTest() && gameState === 7) {
     gameState = 8;
+    morseCode.pause();
   } else if (button8.hitTest() && gameState === 8) {
     gameState = 9;
   } else if (button9.hitTest() && gameState === 9) {
@@ -382,6 +389,7 @@ function mouseClicked() {
   }
 
   //CORAL BUTTONS
+
   if (
     coral1.hitTest() &&
     runGame === true &&
