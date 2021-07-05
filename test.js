@@ -46,6 +46,8 @@ let images = {
 
 function draw() {
   // image(images.layer1, 0, 0, 1920, 1080);
+
+  //LAYER 2 ASSETS
   image(images.layer2, 0, 0, 1920, 1080);
   image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
   image(images.coral4, 110, 635, 297 * 1.4, 189 * 1.4);

@@ -57,6 +57,16 @@ let images = {
   coral1: loadImage("./assets/layer1/coral1.png"),
   coral2: loadImage("./assets/layer1/coral2.png"),
   switchLayer: loadImage("./assets/layer1/switchLayer.png"),
+
+  //Layer 2 dead Corals
+  coral3: loadImage("./assets/layer2/coral3.png"),
+  coral4: loadImage("./assets/layer2/coral4.png"),
+  coral5: loadImage("./assets/layer2/coral5.png"),
+  coral6: loadImage("./assets/layer2/coral6.png"),
+  coral7: loadImage("./assets/layer2/coral7.png"),
+  coral8: loadImage("./assets/layer2/coral8.png"),
+  coral9: loadImage("./assets/layer2/coral9.png"),
+  switchLayer2: loadImage("./assets/layer2/switchLayer2.png"),
 };
 
 //IMPORTS
