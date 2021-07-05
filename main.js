@@ -30,6 +30,9 @@ let images = {
   startButton: loadImage("./assets/startButton.png"),
   startButtonHover: loadImage("./assets/startButtonHover.png"),
 
+  //symbols
+  samples: loadImage("./assets/samples.png"),
+
   //GIFs
   startScreenSpaceship: loadImage("./gifs/startScreenSpaceship.gif"),
   startScreenBackground: loadImage("./gifs/startScreenBackground.gif"),
@@ -50,6 +53,7 @@ import Button from "./classes/Button.js";
 import Console from "./classes/Console.js";
 import Astronaut from "./classes/Astronaut.js";
 import StatusBar from "./classes/statusBar.js";
+import Decision from "./classes/Decision.js";
 
 //INSTANTIATE OBJECTS----------------------------------------------------------------
 
@@ -68,6 +72,10 @@ let button10 = new Button(1500, 990, 100, 30, "< weiter >");
 let button11 = new Button(1500, 990, 100, 30, "< weiter >");
 let button12 = new Button(1150, 990, 100, 30, "< weiter >");
 let buttonStartMission = new Button(1100, 990, 100, 30, "< Mission beginnen >");
+
+//decisions
+let decison1 = new Decision(1100, 650, 60, 60, "decision");
+
 //layer 1 hoverObejcts
 let coral1 = new Button(1330, 900, 200, 180);
 let coral2 = new Button(1650, 600, 200, 180);
@@ -201,7 +209,7 @@ statusBar.oxygenCounter = 1;
 let gameState = 0;
 let layerState = 1;
 let posState = 0;
-let runGame = false;
+let runGame = true;
 
 //FUNCTIONS
 function screenOrder() {
@@ -303,6 +311,7 @@ function gameScreens() {
     statusBar.display();
     astronaut.display();
 
+    //CORAL HOVERS
     if (coral1.hoverTest() && posState === 0) {
       fill(255, 255, 255, 30);
       ellipse(1420, 980, 200, 180);
@@ -316,6 +325,8 @@ function gameScreens() {
       ellipse(1830, 130, 180, 160);
       image(images.switchLayer, 1740, 10, 102 * 1.8, 101 * 1.8);
     }
+
+    //DECISION FIELDS
   }
 
   //LAYER 2 SCREEN
@@ -342,6 +353,14 @@ function gameScreens() {
   }
   if (posState >= 3 && layerState === 1) {
     image(images.coral2, 1668, 595, 142.5, 150);
+  }
+}
+
+function decisionFields() {
+  //DRAWS DECISIONS
+
+  if (posState === 1) {
+    decison1.display();
   }
 }
 
@@ -433,6 +452,7 @@ function mouseClicked() {
 function draw() {
   screenOrder();
   gameScreens();
+  decisionFields();
 
   //astronaut.display();
   //console1.display();

@@ -23,7 +23,7 @@ let images = {
 import Decision from "./classes/Decision";
 import Button from "./classes/Button.js";
 
-decision = new Decision(300, 500, 60, 60, "decision");
+decision = new Decision(300, 500, 60, 60, "decision", images);
 
 function mouseClicked() {
   if (decision.hitTestLeft()) {
@@ -43,6 +43,6 @@ function draw() {
 
   decision.display();
 
-  console.log(decision.hoverTestLeft());
+  // console.log(decision.hoverTestLeft());
   //console.log(decision.hoverTestRight());
 }
