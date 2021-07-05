@@ -14,18 +14,18 @@ export default class Decision {
 
   drawButtonLeft(x, y, width, height) {
     noStroke();
-    fill(50, 50, 50, 200);
+    fill(50, 50, 50, 170);
     rect(this.x, this.y, this.width, this.height, 15);
   }
 
   drawButtonRight(x, y, width, height) {
     noStroke();
-    fill(50, 50, 50, 200);
+    fill(50, 50, 50, 170);
     rect(this.x + 80, this.y, this.width, this.height, 15);
   }
 
   drawRect() {
-    fill(10, 10, 10, 200);
+    fill(10, 10, 10, 170);
 
     if (this.hoverTestLeft() === true) {
       stroke(177, 108, 170);

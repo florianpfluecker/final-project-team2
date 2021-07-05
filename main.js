@@ -4,12 +4,16 @@ window.mouseClicked = mouseClicked;
 window.preload = preload;
 angleMode(DEGREES);
 
+//SOUNDS
+
 let morseCode;
 let backgroundMusic;
+let hoverCoral;
 
 function preload() {
   morseCode = loadSound("./sounds/morseCode.mp3");
   backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
+  hoverCoral = loadSound("./sounds/hoverCoral.mp3");
 }
 
 //IMAGES
@@ -209,7 +213,7 @@ statusBar.oxygenCounter = 1;
 let gameState = 0;
 let layerState = 1;
 let posState = 0;
-let runGame = true;
+let runGame = false;
 
 //FUNCTIONS
 function screenOrder() {
@@ -369,19 +373,29 @@ function mouseClicked() {
 
   if (buttonStart.hitTest() && gameState === 0) {
     gameState = 1;
+    //sound
+    hoverCoral.play();
     morseCode.play();
     backgroundMusic.loop();
   } else if (button1.hitTest() && gameState === 1) {
     gameState = 2;
+    //sound
+    hoverCoral.play();
     morseCode.pause();
   } else if (button2.hitTest() && gameState === 2) {
     gameState = 3;
+    //sound
+    hoverCoral.play();
     morseCode.play();
   } else if (button3.hitTest() && gameState === 3) {
     gameState = 4;
+    //sound
+    hoverCoral.play();
     morseCode.pause();
   } else if (button4.hitTest() && gameState === 4) {
     gameState = 5;
+    //sound
+    hoverCoral.play();
     morseCode.play();
   } else if (button5.hitTest() && gameState === 5) {
     gameState = 6;
@@ -421,6 +435,8 @@ function mouseClicked() {
     posState = 1;
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //sound
+    hoverCoral.play();
   } else if (
     coral2.hitTest() &&
     runGame === true &&
@@ -433,6 +449,8 @@ function mouseClicked() {
     posState = 2;
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //sound
+    hoverCoral.play();
   } else if (
     switchLayer.hitTest() &&
     runGame === true &&
