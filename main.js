@@ -233,25 +233,27 @@ let gameState = 0;
 let layerState = 1;
 let posState = 0;
 let runGame = false;
-let op = 255;
-let op2 = 0;
+let opac = 255;
+let opac2 = 0;
 
 //FUNCTIONS
 
 function cursor() {
-  fill(255, 255, 255, 100);
-  ellipse(mouseX, mouseY, 40, 40);
+  fill(255, 255, 255, 160);
+  //image
+  ellipse(mouseX, mouseY, 50, 50);
+  noCursor();
 }
 
 function transition() {
-  op = op - 0.5;
-  fill(0, 0, 0, op);
+  opac = opac - 1;
+  fill(0, 0, 0, opac);
   rect(0, 0, 1920, 1080);
 }
 
 function transitionOut() {
-  op2 = op2 + 1.5;
-  fill(0, 0, 0, op2);
+  opac2 = opac2 + 1.6;
+  fill(0, 0, 0, opac2);
   rect(0, 0, 1920, 1080);
 }
 
