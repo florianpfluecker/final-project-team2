@@ -405,18 +405,20 @@ function gameScreens() {
     astronaut.display();
 
     //CORAL HOVERS
-    if (coral1.hoverTest() && posState === 0 && decisionState === false) {
-      fill(255, 255, 255, 20);
-      ellipse(1420, 980, 200, 180);
-    }
-    if (coral2.hoverTest() && posState === 1 && decisionState === false) {
-      fill(255, 255, 255, 20);
-      ellipse(1740, 660, 200, 180);
-    }
-    if (switchLayer.hoverTest() && posState === 2 && decisionState === false) {
-      fill(255, 255, 255, 20);
-      ellipse(1830, 130, 180, 160);
-      image(images.switchLayer, 1740, 10, 102 * 1.8, 101 * 1.8);
+    if (decisionState === false) {
+      if (coral1.hoverTest() && posState === 0) {
+        fill(255, 255, 255, 20);
+        ellipse(1420, 980, 200, 180);
+      }
+      if (coral2.hoverTest() && posState === 1) {
+        fill(255, 255, 255, 20);
+        ellipse(1740, 660, 200, 180);
+      }
+      if (switchLayer.hoverTest() && posState === 2) {
+        fill(255, 255, 255, 20);
+        ellipse(1830, 130, 180, 160);
+        image(images.switchLayer, 1740, 10, 102 * 1.8, 101 * 1.8);
+      }
     }
 
     //DECISION FIELDS
@@ -428,34 +430,38 @@ function gameScreens() {
     image(images.layer2, 0, 0, 1920, 1080);
 
     //DEAD CORALS LAYER 1
-    if (posState >= 2 && layerState === 1) {
-      image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
-    }
-    if (posState >= 3 && layerState === 1) {
-      image(images.coral2, 1668, 595, 142.5, 150);
+    if (layerState === 1) {
+      if (posState >= 2) {
+        image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
+      }
+      if (posState >= 3) {
+        image(images.coral2, 1668, 595, 142.5, 150);
+      }
     }
 
     //DEAD CORALS LAYER 2
-    if (choiceCoral3 === true && layerState === 2) {
-      image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
-    }
-    if (choiceCoral4 === true && layerState === 2) {
-      image(images.coral4, 110, 635, 297 * 1.4, 189 * 1.4);
-    }
-    if (choiceCoral5 === true && layerState === 2) {
-      image(images.coral5, 670, 470, 84 * 1.4, 75 * 1.4);
-    }
-    if (choiceCoral6 === true && layerState === 2) {
-      image(images.coral6, 902, 335, 92 * 1.4, 70 * 1.4);
-    }
-    if (choiceCoral7 === true && layerState === 2) {
-      image(images.coral7, 1203, 514, 224 * 1.4, 100 * 1.4);
-    }
-    if (choiceCoral8 === true && layerState === 2) {
-      image(images.coral8, 1210, 0, 222 * 1.4, 173 * 1.4);
-    }
-    if (choiceCoral9 === true && layerState === 2) {
-      image(images.coral9, 782, 94, 36 * 1.4, 28 * 1.4);
+    if (layerState === 2) {
+      if (choiceCoral3 === true) {
+        image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
+      }
+      if (choiceCoral4 === true) {
+        image(images.coral4, 110, 635, 297 * 1.4, 189 * 1.4);
+      }
+      if (choiceCoral5 === true) {
+        image(images.coral5, 670, 470, 84 * 1.4, 75 * 1.4);
+      }
+      if (choiceCoral6 === true) {
+        image(images.coral6, 902, 335, 92 * 1.4, 70 * 1.4);
+      }
+      if (choiceCoral7 === true) {
+        image(images.coral7, 1203, 514, 224 * 1.4, 100 * 1.4);
+      }
+      if (choiceCoral8 === true) {
+        image(images.coral8, 1210, 0, 222 * 1.4, 173 * 1.4);
+      }
+      if (choiceCoral9 === true) {
+        image(images.coral9, 782, 94, 36 * 1.4, 28 * 1.4);
+      }
     }
 
     //ASTRONAUT + STATUSBAR
@@ -464,72 +470,39 @@ function gameScreens() {
   }
 
   //CORAL HOVERS
-  if (
-    coral3.hoverTest() &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral3 === false
-  ) {
-    fill(255, 255, 255, 20);
-    ellipse(340, 260, 200, 140);
-  }
-  if (
-    coral4.hoverTest() &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral4 === false
-  ) {
-    fill(255, 255, 255, 20);
-    circle(320, 750, 350);
-  }
-  if (
-    coral5.hoverTest() &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral5 === false
-  ) {
-    fill(255, 255, 255, 20);
-    ellipse(740, 530, 159, 150);
-  }
-  if (
-    coral6.hoverTest() &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral6 === false
-  ) {
-    fill(255, 255, 255, 20);
-    ellipse(970, 390, 140, 140);
-  }
-  if (
-    coral7.hoverTest() &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral7 === false
-  ) {
-    fill(255, 255, 255, 20);
-    ellipse(1350, 600, 300, 200);
-  }
-  if (
-    coral8.hoverTest() &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral8 === false
-  ) {
-    fill(255, 255, 255, 20);
-    ellipse(1350, 130, 280, 280);
-  }
-  if (
-    coral9.hoverTest() &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral9 === false
-  ) {
-    fill(255, 255, 255, 20);
-    ellipse(800, 120, 150, 100);
-  }
-  if (switchLayer2.hoverTest() && layerState === 2 && decisionState === false) {
-    fill(255, 255, 255, 20);
-    ellipse(1170, 40, 80, 80);
+  if (layerState === 2 && decisionState === false) {
+    if (coral3.hoverTest() && choiceCoral3 === false) {
+      fill(255, 255, 255, 20);
+      ellipse(340, 260, 200, 140);
+    }
+    if (coral4.hoverTest() && choiceCoral4 === false) {
+      fill(255, 255, 255, 20);
+      circle(320, 750, 350);
+    }
+    if (coral5.hoverTest() && choiceCoral5 === false) {
+      fill(255, 255, 255, 20);
+      ellipse(740, 530, 159, 150);
+    }
+    if (coral6.hoverTest() && choiceCoral6 === false) {
+      fill(255, 255, 255, 20);
+      ellipse(970, 390, 140, 140);
+    }
+    if (coral7.hoverTest() && choiceCoral7 === false) {
+      fill(255, 255, 255, 20);
+      ellipse(1350, 600, 300, 200);
+    }
+    if (coral8.hoverTest() && choiceCoral8 === false) {
+      fill(255, 255, 255, 20);
+      ellipse(1350, 130, 280, 280);
+    }
+    if (coral9.hoverTest() && choiceCoral9 === false) {
+      fill(255, 255, 255, 20);
+      ellipse(800, 120, 150, 100);
+    }
+    if (switchLayer2.hoverTest()) {
+      fill(255, 255, 255, 20);
+      ellipse(1170, 40, 80, 80);
+    }
   }
 
   //END SCREEN DEATH
@@ -664,55 +637,39 @@ function mouseClicked() {
   }
 
   //CORAL BUTTONS LAYER 1
-  if (
-    coral1.hitTest() &&
-    runGame === true &&
-    layerState === 1 &&
-    posState === 0 &&
-    decisionState === false
-  ) {
-    //changePos
-    astronaut.x = 1150;
-    astronaut.y = 700;
-    posState = 1;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //sound
-    clickSound.play();
-    //changeDecisionState
-    decisionState = true;
-  } else if (
-    coral2.hitTest() &&
-    runGame === true &&
-    layerState === 1 &&
-    posState === 1 &&
-    decisionState === false
-  ) {
-    //changePos
-    astronaut.x = 1500;
-    astronaut.y = 400;
-    posState = 2;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //sound
-    clickSound.play();
-    //changeDecisionState
-    decisionState = true;
-  } else if (
-    switchLayer.hitTest() &&
-    runGame === true &&
-    layerState === 1 &&
-    posState === 2 &&
-    decisionState === false
-  ) {
-    //changePos
-    astronaut.x = 1600;
-    astronaut.y = 20;
-    posState = 3;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //sound
-    clickSound.play();
+  if (runGame === true && layerState === 1 && decisionState === false) {
+    if (coral1.hitTest() && posState === 0) {
+      //changePos
+      astronaut.x = 1150;
+      astronaut.y = 700;
+      posState = 1;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //sound
+      clickSound.play();
+      //changeDecisionState
+      decisionState = true;
+    } else if (coral2.hitTest() && posState === 1) {
+      //changePos
+      astronaut.x = 1500;
+      astronaut.y = 400;
+      posState = 2;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //sound
+      clickSound.play();
+      //changeDecisionState
+      decisionState = true;
+    } else if (switchLayer.hitTest() && posState === 2) {
+      //changePos
+      astronaut.x = 1600;
+      astronaut.y = 20;
+      posState = 3;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //sound
+      clickSound.play();
+    }
   }
 
   //SWITCH BUTTON LAYER 1
@@ -727,112 +684,73 @@ function mouseClicked() {
   }
 
   //CORAL BUTTONS LAYER 2 !
-  if (
-    coral3.hitTest() &&
-    runGame === true &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral3 === false
-  ) {
-    //changePos
-    astronaut.x = 200;
-    astronaut.y = 10;
-    posState = 4;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //changeDecisionState
-    decisionState = true;
-  } else if (
-    coral4.hitTest() &&
-    runGame === true &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral4 === false
-  ) {
-    //changePos
-    astronaut.x = 150;
-    astronaut.y = 650;
-    posState = 5;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //changeDecisionState
-    decisionState = true;
-  } else if (
-    coral5.hitTest() &&
-    runGame === true &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral5 === false
-  ) {
-    //changePos
-    astronaut.x = 430;
-    astronaut.y = 320;
-    posState = 6;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //changeDecisionState
-    decisionState = true;
-  } else if (
-    coral6.hitTest() &&
-    runGame === true &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral6 === false
-  ) {
-    //changePos
-    astronaut.x = 870;
-    astronaut.y = 290;
-    posState = 7;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //changeDecisionState
-    decisionState = true;
-  } else if (
-    coral7.hitTest() &&
-    runGame === true &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral7 === false
-  ) {
-    //changePos
-    astronaut.x = 1150;
-    astronaut.y = 460;
-    posState = 8;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //changeDecisionState
-    decisionState = true;
-  } else if (
-    coral8.hitTest() &&
-    runGame === true &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral8 === false
-  ) {
-    //changePos
-    astronaut.x = 1200;
-    astronaut.y = 115;
-    posState = 9;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //changeDecisionState
-    decisionState = true;
-  } else if (
-    coral9.hitTest() &&
-    runGame === true &&
-    layerState === 2 &&
-    decisionState === false &&
-    choiceCoral9 === false
-  ) {
-    //changePos
-    astronaut.x = 650;
-    astronaut.y = 20;
-    posState = 10;
-    //decreaseOxygenCounter
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //changeDecisionState
-    decisionState = true;
-  } else if (switchLayer2.hitTest() && runGame === true && layerState === 2) {
+  if (runGame === true && layerState === 2 && decisionState === false) {
+    if (coral3.hitTest() && choiceCoral3 === false) {
+      //changePos
+      astronaut.x = 200;
+      astronaut.y = 10;
+      posState = 4;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //changeDecisionState
+      decisionState = true;
+    } else if (coral4.hitTest() && choiceCoral4 === false) {
+      //changePos
+      astronaut.x = 150;
+      astronaut.y = 650;
+      posState = 5;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //changeDecisionState
+      decisionState = true;
+    } else if (coral5.hitTest() && choiceCoral5 === false) {
+      //changePos
+      astronaut.x = 430;
+      astronaut.y = 320;
+      posState = 6;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //changeDecisionState
+      decisionState = true;
+    } else if (coral6.hitTest() && choiceCoral6 === false) {
+      //changePos
+      astronaut.x = 870;
+      astronaut.y = 290;
+      posState = 7;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //changeDecisionState
+      decisionState = true;
+    } else if (coral7.hitTest() && choiceCoral7 === false) {
+      //changePos
+      astronaut.x = 1150;
+      astronaut.y = 460;
+      posState = 8;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //changeDecisionState
+      decisionState = true;
+    } else if (coral8.hitTest() && choiceCoral8 === false) {
+      //changePos
+      astronaut.x = 1200;
+      astronaut.y = 115;
+      posState = 9;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //changeDecisionState
+      decisionState = true;
+    } else if (coral9.hitTest() && choiceCoral9 === false) {
+      //changePos
+      astronaut.x = 650;
+      astronaut.y = 20;
+      posState = 10;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      //changeDecisionState
+      decisionState = true;
+    }
+  }
+  if (switchLayer2.hitTest() && runGame === true && layerState === 2) {
     //changePos
     astronaut.x = 900;
     astronaut.y = -80;
