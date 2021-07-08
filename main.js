@@ -825,19 +825,6 @@ function mouseClicked() {
     decisionState = false;
   }
 
-  //DECISIONS
-  if (decision.hitTestRight() && decisionState === true) {
-    statusBar.oxygenCounter = 4;
-    decisionState = false;
-    //sound
-    clickSound.play();
-  }
-  if (decision.hitTestLeft() && decisionState === true && posState > 1) {
-    statusBar.sampleCounter = statusBar.sampleCounter + 1;
-    decisionState = false;
-    //sound
-    clickSound.play();
-  }
   //POS 4
   if (
     (decision.hitTestRight() && layerState === 2 && posState === 4) ||
@@ -892,14 +879,14 @@ function mouseClicked() {
     (decision.hitTestRight() && layerState === 3 && posState === 11) ||
     (decision.hitTestLeft() && layerState === 3 && posState === 11)
   ) {
-    choiceCoral10 = true;
+    // choiceCoral10 = true;
   }
   //POS12
   if (
     (decision.hitTestRight() && layerState === 3 && posState === 12) ||
     (decision.hitTestLeft() && layerState === 3 && posState === 12)
   ) {
-    choiceCoral11 = true;
+    choiceCoral10 = true;
   }
   //POS13
   if (
@@ -941,6 +928,20 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       decisionState = true;
     }
+  }
+
+  //DECISIONS
+  if (decision.hitTestRight() && decisionState === true) {
+    statusBar.oxygenCounter = 4;
+    decisionState = false;
+    //sound
+    clickSound.play();
+  }
+  if (decision.hitTestLeft() && decisionState === true && posState > 1) {
+    statusBar.sampleCounter = statusBar.sampleCounter + 1;
+    decisionState = false;
+    //sound
+    clickSound.play();
   }
 }
 
