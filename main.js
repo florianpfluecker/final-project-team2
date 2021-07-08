@@ -29,6 +29,8 @@ function preload() {
 //IMAGES
 
 let images = {
+  //cursor
+  cursor: loadImage("./assets/cursor.png"),
   //layers
   layer1: loadImage("./assets/layer1.png"),
   layer2: loadImage("./assets/layer2.png"),
@@ -244,8 +246,8 @@ let consoleLayerSwitch = new Console(
   830,
   1320,
   200,
-  "- P U C K -",
-  "Bist du dir sicher, dass du die Ebene wechseln möchtest..?",
+  "- HINWEIS -",
+  "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.",
   2.3
 );
 //otherStuff
@@ -263,12 +265,22 @@ let opac = 255;
 let opac2 = 0;
 let decisionState = false;
 
+//states dead corals layer 2
+let choiceCoral3 = false;
+let choiceCoral4 = false;
+let choiceCoral5 = false;
+let choiceCoral6 = false;
+let choiceCoral7 = false;
+let choiceCoral8 = false;
+let choiceCoral9 = false;
+
 //FUNCTIONS
 
 function cursor() {
-  fill(255, 255, 255, 160);
+  fill(255, 255, 255, 170);
   //image
-  ellipse(mouseX, mouseY, 50, 50);
+  ellipse(mouseX + 45, mouseY + 20, 25, 25);
+  image(images.cursor, mouseX - 10, mouseY - 25, 100, 100);
   noCursor();
 }
 
@@ -386,8 +398,7 @@ function screenOrder() {
 }
 
 function gameScreens() {
-  //LAYER 1 SCREEN
-
+  //LAYER 1 SCREENs
   if (runGame === true && layerState === 1) {
     image(images.layer1, 0, 0, 1920, 1080);
     statusBar.display();
@@ -413,43 +424,112 @@ function gameScreens() {
 
   //LAYER 2 SCREEN
   if (runGame === true && layerState === 2) {
+    //LAYER
     image(images.layer2, 0, 0, 1920, 1080);
+
+    //DEAD CORALS LAYER 1
+    if (posState >= 2 && layerState === 1) {
+      image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
+    }
+    if (posState >= 3 && layerState === 1) {
+      image(images.coral2, 1668, 595, 142.5, 150);
+    }
+
+    //DEAD CORALS LAYER 2
+    if (choiceCoral3 === true && layerState === 2) {
+      image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
+    }
+    if (choiceCoral4 === true && layerState === 2) {
+      image(images.coral4, 110, 635, 297 * 1.4, 189 * 1.4);
+    }
+    if (choiceCoral5 === true && layerState === 2) {
+      image(images.coral5, 670, 470, 84 * 1.4, 75 * 1.4);
+    }
+    if (choiceCoral6 === true && layerState === 2) {
+      image(images.coral6, 902, 335, 92 * 1.4, 70 * 1.4);
+    }
+    if (choiceCoral7 === true && layerState === 2) {
+      image(images.coral7, 1203, 514, 224 * 1.4, 100 * 1.4);
+    }
+    if (choiceCoral8 === true && layerState === 2) {
+      image(images.coral8, 1210, 0, 222 * 1.4, 173 * 1.4);
+    }
+    if (choiceCoral9 === true && layerState === 2) {
+      image(images.coral9, 782, 94, 36 * 1.4, 28 * 1.4);
+    }
+
+    //ASTRONAUT + STATUSBAR
     statusBar.display();
     astronaut.display();
+  }
 
-    //CORAL HOVERS
-    if (coral3.hoverTest() && layerState === 2) {
-      fill(255, 255, 255, 20);
-      ellipse(340, 260, 200, 140);
-    }
-    if (coral4.hoverTest() && layerState === 2) {
-      fill(255, 255, 255, 20);
-      circle(320, 750, 350);
-    }
-    if (coral5.hoverTest() && layerState === 2) {
-      fill(255, 255, 255, 20);
-      ellipse(740, 530, 159, 150);
-    }
-    if (coral6.hoverTest() && layerState === 2) {
-      fill(255, 255, 255, 20);
-      ellipse(970, 390, 140, 140);
-    }
-    if (coral7.hoverTest() && layerState === 2) {
-      fill(255, 255, 255, 20);
-      ellipse(1350, 600, 300, 200);
-    }
-    if (coral8.hoverTest() && layerState === 2) {
-      fill(255, 255, 255, 20);
-      ellipse(1350, 130, 280, 280);
-    }
-    if (coral9.hoverTest() && layerState === 2) {
-      fill(255, 255, 255, 20);
-      ellipse(800, 120, 150, 100);
-    }
-    if (switchLayer2.hoverTest() && layerState === 2) {
-      fill(255, 255, 255, 20);
-      ellipse(1170, 40, 80, 80);
-    }
+  //CORAL HOVERS
+  if (
+    coral3.hoverTest() &&
+    layerState === 2 &&
+    decisionState === false &&
+    choiceCoral3 === false
+  ) {
+    fill(255, 255, 255, 20);
+    ellipse(340, 260, 200, 140);
+  }
+  if (
+    coral4.hoverTest() &&
+    layerState === 2 &&
+    decisionState === false &&
+    choiceCoral4 === false
+  ) {
+    fill(255, 255, 255, 20);
+    circle(320, 750, 350);
+  }
+  if (
+    coral5.hoverTest() &&
+    layerState === 2 &&
+    decisionState === false &&
+    choiceCoral5 === false
+  ) {
+    fill(255, 255, 255, 20);
+    ellipse(740, 530, 159, 150);
+  }
+  if (
+    coral6.hoverTest() &&
+    layerState === 2 &&
+    decisionState === false &&
+    choiceCoral6 === false
+  ) {
+    fill(255, 255, 255, 20);
+    ellipse(970, 390, 140, 140);
+  }
+  if (
+    coral7.hoverTest() &&
+    layerState === 2 &&
+    decisionState === false &&
+    choiceCoral7 === false
+  ) {
+    fill(255, 255, 255, 20);
+    ellipse(1350, 600, 300, 200);
+  }
+  if (
+    coral8.hoverTest() &&
+    layerState === 2 &&
+    decisionState === false &&
+    choiceCoral8 === false
+  ) {
+    fill(255, 255, 255, 20);
+    ellipse(1350, 130, 280, 280);
+  }
+  if (
+    coral9.hoverTest() &&
+    layerState === 2 &&
+    decisionState === false &&
+    choiceCoral9 === false
+  ) {
+    fill(255, 255, 255, 20);
+    ellipse(800, 120, 150, 100);
+  }
+  if (switchLayer2.hoverTest() && layerState === 2 && decisionState === false) {
+    fill(255, 255, 255, 20);
+    ellipse(1170, 40, 80, 80);
   }
 
   //END SCREEN DEATH
@@ -457,17 +537,6 @@ function gameScreens() {
     //endScreenPNG
     // fill(255);
     // rect(0, 0, 1920.108);
-  }
-
-  //DEAD CORALS
-  if (posState >= 2 && layerState === 1) {
-    image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
-  }
-  if (posState >= 3 && layerState === 1) {
-    image(images.coral2, 1668, 595, 142.5, 150);
-  }
-  if (posState >= 5 && layerState === 2) {
-    image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
   }
 }
 
@@ -491,7 +560,7 @@ function decisions() {
   }
 
   //LAYER 2
-  if (posState >= 4 && posState <= 100 && decisionState === true) {
+  if (posState >= 4 && posState <= 10 && decisionState === true) {
     decision.display();
 
     if (posState === 4) {
@@ -646,7 +715,7 @@ function mouseClicked() {
     clickSound.play();
   }
 
-  //SWITCH LAYER BUTTON
+  //SWITCH BUTTON LAYER 1
   if (buttonSwitchLayer.hitTest() && layerState === 1 && posState === 3) {
     layerState = 2;
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
@@ -662,7 +731,8 @@ function mouseClicked() {
     coral3.hitTest() &&
     runGame === true &&
     layerState === 2 &&
-    decisionState === false
+    decisionState === false &&
+    choiceCoral3 === false
   ) {
     //changePos
     astronaut.x = 200;
@@ -676,7 +746,8 @@ function mouseClicked() {
     coral4.hitTest() &&
     runGame === true &&
     layerState === 2 &&
-    decisionState === false
+    decisionState === false &&
+    choiceCoral4 === false
   ) {
     //changePos
     astronaut.x = 150;
@@ -690,7 +761,8 @@ function mouseClicked() {
     coral5.hitTest() &&
     runGame === true &&
     layerState === 2 &&
-    decisionState === false
+    decisionState === false &&
+    choiceCoral5 === false
   ) {
     //changePos
     astronaut.x = 430;
@@ -704,7 +776,8 @@ function mouseClicked() {
     coral6.hitTest() &&
     runGame === true &&
     layerState === 2 &&
-    decisionState === false
+    decisionState === false &&
+    choiceCoral6 === false
   ) {
     //changePos
     astronaut.x = 870;
@@ -718,7 +791,8 @@ function mouseClicked() {
     coral7.hitTest() &&
     runGame === true &&
     layerState === 2 &&
-    decisionState === false
+    decisionState === false &&
+    choiceCoral7 === false
   ) {
     //changePos
     astronaut.x = 1150;
@@ -732,7 +806,8 @@ function mouseClicked() {
     coral8.hitTest() &&
     runGame === true &&
     layerState === 2 &&
-    decisionState === false
+    decisionState === false &&
+    choiceCoral8 === false
   ) {
     //changePos
     astronaut.x = 1200;
@@ -746,7 +821,8 @@ function mouseClicked() {
     coral9.hitTest() &&
     runGame === true &&
     layerState === 2 &&
-    decisionState === false
+    decisionState === false &&
+    choiceCoral9 === false
   ) {
     //changePos
     astronaut.x = 650;
@@ -776,6 +852,55 @@ function mouseClicked() {
     decisionState = false;
     //sound
     clickSound.play();
+  }
+  //POS 4
+  if (
+    (decision.hitTestRight() && layerState === 2 && posState === 4) ||
+    (decision.hitTestLeft() && layerState === 2 && posState === 4)
+  ) {
+    choiceCoral3 = true;
+  }
+  //POS 5
+  if (
+    (decision.hitTestRight() && layerState === 2 && posState === 5) ||
+    (decision.hitTestLeft() && layerState === 2 && posState === 5)
+  ) {
+    choiceCoral4 = true;
+  }
+  //POS 6
+  if (
+    (decision.hitTestRight() && layerState === 2 && posState === 6) ||
+    (decision.hitTestLeft() && layerState === 2 && posState === 6)
+  ) {
+    choiceCoral5 = true;
+  }
+  //POS 6
+  if (
+    (decision.hitTestRight() && layerState === 2 && posState === 7) ||
+    (decision.hitTestLeft() && layerState === 2 && posState === 7)
+  ) {
+    choiceCoral6 = true;
+  }
+  //POS 7
+  if (
+    (decision.hitTestRight() && layerState === 2 && posState === 8) ||
+    (decision.hitTestLeft() && layerState === 2 && posState === 8)
+  ) {
+    choiceCoral7 = true;
+  }
+  //POS 8
+  if (
+    (decision.hitTestRight() && layerState === 2 && posState === 9) ||
+    (decision.hitTestLeft() && layerState === 2 && posState === 9)
+  ) {
+    choiceCoral8 = true;
+  }
+  //POS 9
+  if (
+    (decision.hitTestRight() && layerState === 2 && posState === 10) ||
+    (decision.hitTestLeft() && layerState === 2 && posState === 10)
+  ) {
+    choiceCoral9 = true;
   }
 }
 
