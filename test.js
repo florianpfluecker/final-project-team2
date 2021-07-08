@@ -78,9 +78,9 @@ function draw() {
 
   //LAYER 2 ASSETS
   image(images.coral10, 145, 740, 286 * 1.4, 117 * 1.4);
-  // image(images.coral11, 720, 425, 197 * 1.4, 127 * 1.4);
+  image(images.coral11, 720, 425, 197 * 1.4, 127 * 1.4);
   // image(images.coral12, 540, 245, 120 * 1.4, 62 * 1.4);
-  // image(images.coral13, 790, 155, 102 * 1.4, 79 * 1.4);
+  image(images.coral13, 790, 155, 102 * 1.4, 79 * 1.4);
   // image(images.coral14, 1575, 415, 131 * 1.4, 66 * 1.4);
   // image(images.coral15, 1470, 125, 139 * 1.4, 60 * 1.4);
   // image(images.endPoint, 1738, 0, 89 * 1.4, 73 * 1.4);

@@ -14,9 +14,9 @@ let defaultFont;
 
 function preload() {
   //SOUNDS
-  morseCode = loadSound("./sounds/morseCode.mp3");
-  backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
-  clickSound = loadSound("./sounds/hoverCoral.mp3");
+  // morseCode = loadSound("./sounds/morseCode.mp3");
+  // backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
+  // clickSound = loadSound("./sounds/hoverCoral.mp3");
 
   //FONT(s)
   defaultFont = loadFont("./fonts/defaultFont.ttf");
@@ -135,8 +135,8 @@ let switchLayer2 = new Button(1140, 20, 50, 50);
 
 //layer 2 hover Objects
 let coral10 = new Button(140, 700, 250, 130);
-let coral11 = new Button(720, 440, 160, 100);
-let coral12 = new Button(540, 250, 100, 80);
+let coral11 = new Button(540, 250, 160, 100);
+let coral12 = new Button(720, 440, 100, 80);
 let coral13 = new Button(800, 160, 100, 130);
 let coral14 = new Button(1570, 420, 200, 160);
 let coral15 = new Button(1480, 130, 180, 130);
@@ -534,7 +534,7 @@ function gameScreens() {
     image(images.layer3, 0, 0, 1920, 1080);
 
     //DEAD CORALS LAYER 3
-    if (layerState === 3 && decisionState === false) {
+    if (layerState === 3) {
       if (choiceCoral10 === true) {
         image(images.coral10, 145, 740, 286 * 1.4, 117 * 1.4);
       }
@@ -545,10 +545,10 @@ function gameScreens() {
         image(images.coral12, 540, 245, 120 * 1.4, 62 * 1.4);
       }
       if (choiceCoral13 === true) {
-        image(images.coral13, 790, 155, 102 * 1.4, 79 * 1.4);
+        image(images.coral14, 1575, 415, 131 * 1.4, 66 * 1.4);
       }
       if (choiceCoral14 === true) {
-        image(images.coral14, 1575, 415, 131 * 1.4, 66 * 1.4);
+        image(images.coral13, 790, 155, 102 * 1.4, 79 * 1.4);
       }
       if (choiceCoral15 === true) {
         image(images.coral15, 1470, 125, 139 * 1.4, 60 * 1.4);
@@ -622,9 +622,22 @@ function decisions() {
       decision.x = 470;
       decision.y = 170;
     }
+
     if (posState === 12) {
-      decision.x = 100;
-      decision.y = 500;
+      decision.x = 450;
+      decision.y = 620;
+    }
+    if (posState === 13) {
+      decision.x = 550;
+      decision.y = 180;
+    }
+    if (posState === 15) {
+      decision.x = 980;
+      decision.y = 120;
+    }
+    if (posState === 16) {
+      decision.x = 1600;
+      decision.y = 100;
     }
   }
 }
@@ -873,12 +886,12 @@ function mouseClicked() {
   ) {
     choiceCoral9 = true;
   }
+
   //POS11
   if (
     (decision.hitTestRight() && layerState === 3 && posState === 11) ||
     (decision.hitTestLeft() && layerState === 3 && posState === 11)
   ) {
-    choiceCoral10 = true;
   }
   //POS12
   if (
@@ -927,6 +940,51 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       decisionState = true;
     }
+    if (coral11.hitTest() && choiceCoral11 === false) {
+      //changePos
+      astronaut.x = 420;
+      astronaut.y = 200;
+      posState = 13;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      decisionState = true;
+    }
+    if (coral12.hitTest() && choiceCoral12 === false) {
+      //changePos
+      astronaut.x = 420;
+      astronaut.y = 200;
+      posState = 14;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      decisionState = true;
+    }
+    if (coral13.hitTest() && choiceCoral13 === false) {
+      //changePos
+      astronaut.x = 720;
+      astronaut.y = 20;
+      posState = 15;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      decisionState = true;
+    }
+    if (coral14.hitTest() && choiceCoral14 === false) {
+      //changePos
+      astronaut.x = 720;
+      astronaut.y = 20;
+      posState = 15;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      decisionState = true;
+    }
+    if (coral15.hitTest() && choiceCoral15 === false) {
+      //changePos
+      astronaut.x = 1300;
+      astronaut.y = 100;
+      posState = 16;
+      //decreaseOxygenCounter
+      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+      decisionState = true;
+    }
   }
 
   //DECISIONS
@@ -956,9 +1014,13 @@ function draw() {
   //statusBar.display();
   //button1.display();
   //console.log(gameState);
+  // console.log(choiceCoral13);
+  console.log(choiceCoral14);
+  // console.log(choiceCoral15);
   // console.log(posState);
+  // console.log(coral14.hitTest());
 
-  console.log(decisionState);
-  console.log(astronaut.x);
-  console.log(astronaut.y);
+  // console.log(decisionState);
+  // console.log(astronaut.x);
+  // console.log(astronaut.y);
 }
