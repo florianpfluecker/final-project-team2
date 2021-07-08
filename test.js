@@ -27,6 +27,10 @@ let images = {
   coral8: loadImage("./assets/layer2/coral8.png"),
   coral9: loadImage("./assets/layer2/coral9.png"),
   switchLayer2: loadImage("./assets/layer2/switchLayer2.png"),
+
+  //
+  oceanBackground: loadImage("./gifs/oceanBackground.gif"),
+  helicopter: loadImage("./gifs/helicopter.gif"),
 };
 
 // import Decision from "./classes/Decision";
@@ -48,9 +52,8 @@ function draw() {
   // image(images.layer1, 0, 0, 1920, 1080);
 
   //LAYER 2 ASSETS
-  image(images.layer2, 0, 0, 1920, 1080);
+  // image(images.layer2, 0, 0, 1920, 1080);
   image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
-  s;
   image(images.coral4, 110, 635, 297 * 1.4, 189 * 1.4);
   image(images.coral5, 670, 470, 84 * 1.4, 75 * 1.4);
   image(images.coral6, 902, 335, 92 * 1.4, 70 * 1.4);
@@ -58,6 +61,9 @@ function draw() {
   image(images.coral8, 1210, 0, 222 * 1.4, 173 * 1.4);
   image(images.coral9, 782, 94, 36 * 1.4, 28 * 1.4);
   image(images.switchLayer2, 1135, 18, 52 * 1.4, 25 * 1.4);
+
+  // image(images.oceanBackground, 0, 0, 1920, 1080);
+  // image(images.helicopter, 0, 0, 1920, 1080);
 
   // image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
   // image(images.coral2, 1668, 595, 142.5, 150);

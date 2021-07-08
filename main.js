@@ -14,7 +14,6 @@ let defaultFont;
 
 function preload() {
   //SOUNDS
-
   morseCode = loadSound("./sounds/morseCode.mp3");
   backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
   clickSound = loadSound("./sounds/hoverCoral.mp3");
@@ -22,6 +21,10 @@ function preload() {
   //FONT(s)
   defaultFont = loadFont("./fonts/defaultFont.ttf");
 }
+
+// function setup() {
+//   backgroundMusic.play();
+// }
 
 //IMAGES
 
@@ -67,6 +70,10 @@ let images = {
   coral8: loadImage("./assets/layer2/coral8.png"),
   coral9: loadImage("./assets/layer2/coral9.png"),
   switchLayer2: loadImage("./assets/layer2/switchLayer2.png"),
+
+  //endScreens
+  oceanBackground: loadImage("./gifs/oceanBackground.gif"),
+  helicopter: loadImage("./gifs/helicopter.gif"),
 };
 
 //IMPORTS
@@ -89,11 +96,12 @@ let button5 = new Button(1440, 990, 100, 30, "< weiter >");
 let button6 = new Button(1440, 990, 100, 30, "< weiter >");
 let button7 = new Button(1440, 990, 100, 30, "< weiter >");
 let button8 = new Button(1440, 990, 100, 30, "< weiter >");
-let button9 = new Button(1230, 990, 295, 40, "< Notsignal senden >");
+let button9 = new Button(1230, 985, 295, 40, "< Notsignal senden >");
 let button10 = new Button(1440, 990, 100, 30, "< weiter >");
 let button11 = new Button(1440, 990, 100, 30, "< weiter >");
 let button12 = new Button(1440, 990, 100, 30, "< weiter >");
-let buttonStartMission = new Button(1000, 990, 100, 30, "< Mission beginnen >");
+let buttonStartMission = new Button(910, 990, 100, 30, "< Mission beginnen >");
+let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
 
 //decisions
 let decision = new Decision(1100, 650, 60, 60, "decision");
@@ -103,13 +111,23 @@ let coral1 = new Button(1330, 900, 200, 180);
 let coral2 = new Button(1650, 600, 200, 180);
 let switchLayer = new Button(1750, 30, 200, 180);
 
+//layer 2 hoverObjects
+let coral3 = new Button(250, 220, 200, 180);
+let coral4 = new Button(100, 600, 400, 300);
+let coral5 = new Button(680, 480, 100, 120);
+let coral6 = new Button(900, 320, 120, 120);
+let coral7 = new Button(1200, 530, 300, 150);
+let coral8 = new Button(1230, 0, 300, 250);
+let coral9 = new Button(760, 100, 70, 50);
+let switchLayer2 = new Button(1140, 20, 50, 50);
+
 //consoles
 let console1 = new Console(
   300,
   830,
   1320,
   200,
-  "ZENTRALE",
+  "- ZENTRALE -",
   "XR988 haben wir Kontakt...?",
   1.7
 );
@@ -118,7 +136,7 @@ let console2 = new Console(
   830,
   1320,
   200,
-  "ASTRONAUT (DU)",
+  "- ASTRONAUT (DU) -",
   "Positiv, es besteht Funkkontakt, ich kann sie hören.",
   1.7
 );
@@ -127,34 +145,34 @@ let console3 = new Console(
   830,
   1320,
   200,
-  "ZENTRALE",
+  "- ZENTRALE -",
   "Wir bitten um Statusbericht, XR988 ist vom Kurs abgekommen! ",
   1.7
 );
 let console4 = new Console(
   300,
-  830,
+  800,
   1320,
-  200,
-  "ASTRONAUT (DU)",
-  "Es gab beim Verlassen der Erdatmosphäre Probleme mit\nden Triebwerken.Die KI Einheit 5566 (Microscity) konnte alle\nProbleme weitesgehend beheben.\nWir sind wieder auf Kurs.\nAnkunft auf Planet B voraussichtlich in 3t 25h 06m...",
-  2.6
+  230,
+  "- ASTRONAUT (DU) -",
+  "Es gab beim Verlassen der Erdatmosphäre Probleme mit\nden Triebwerken. Die KI-Einheit 'P U C K' konnte alle\nProbleme weitestgehend beheben.\nWir sind wieder auf Kurs.\nAnkunft auf Planet B voraussichtlich in 3t 25h 06m...",
+  3
 );
 let console5 = new Console(
   300,
-  830,
+  800,
   1320,
-  200,
-  "ZENTRALE",
-  "Die Mission ... und die Bergung des Heilmittels haben weiterhin\nhöchste Priorität.\nAuf der Erde herrscht Chaos, über die Hälfte der Weltbevölkerung\nist bereits infiziert...\nWir zählen auf sie!",
-  2.6
+  230,
+  "- ZENTRALE -",
+  "Die Bergung des Heilmittels haben weiterhin\nhöchste Priorität.\nAuf der Erde herrscht Chaos, über die Hälfte der Weltbevölkerung\nist bereits infiziert...\nWir zählen auf sie!",
+  3
 );
 let console6 = new Console(
   300,
   830,
   1320,
   200,
-  "ASTRONAUT (DU)",
+  "- ASTRONAUT (DU) -",
   "Verstanden. Ich melde mich bei de - ...",
   1.7
 );
@@ -163,7 +181,7 @@ let console7 = new Console(
   830,
   1320,
   200,
-  "5566MICROSITY",
+  "- P U C K -",
   "Triebwerke erneut ausgefallen. Autopilot wird deaktiviert...",
   1.7
 );
@@ -172,8 +190,8 @@ let console8 = new Console(
   830,
   1320,
   200,
-  "ZENTRALE",
-  "XR988 — Kein signal —",
+  "- ZENTRALE -",
+  "- XR988  - Kein Signal -",
   1.7
 );
 let console9 = new Console(
@@ -181,8 +199,8 @@ let console9 = new Console(
   830,
   1320,
   200,
-  "5566MICROSITY",
-  "Funktkontakt abgebrochen!",
+  "- P U C K -",
+  "Funkkontakt abgebrochen!",
   1.7
 );
 let console10 = new Console(
@@ -190,25 +208,25 @@ let console10 = new Console(
   830,
   1320,
   200,
-  "5566MICROSITY",
-  "<	Letzten Standort erfolgreich übermittelt >\n\n<	Koordinaten berechenen fehlgechlagen. >",
+  "- P U C K -",
+  "<	Letzten Standort erfolgreich übermittelt >\n\n<	Koordinaten berechnen fehlgeschlagen. >",
   2.3
 );
 let console11 = new Console(
   300,
-  830,
+  800,
   1320,
-  200,
-  "5566MICROSITY",
-  "Analyse zeigt:\nSauerstoffsättigung der Umgebung: < 0,1%\nFremde Lebensformen: bestätigt\nSauerstoffvorrat: 36.7 %\nWeiterhin kein Funkkontakt möglich..!",
-  2.8
+  230,
+  "- P U C K -",
+  "Analyse zeigt:\n> Sauerstoffsättigung der Umgebung: < 0,1%\n> Fremde Lebensformen: bestätigt\n> Sauerstoffvorrat: 36.7 %\n> Weiterhin kein Funkkontakt möglich..!",
+  3
 );
 let console12 = new Console(
   300,
-  830,
+  860,
   1320,
-  200,
-  "5566MICROSITY",
+  180,
+  "- P U C K -",
   "Ich scanne nun die Umgebung nach Sauerstoffquellen!",
   1.7
 );
@@ -217,11 +235,19 @@ let console13 = new Console(
   830,
   1320,
   200,
-  "HINWEIS",
-  "Hovere über den Bildschirm um potenzielle\nSauetstoffquellen zu finden.",
-  2.0
+  "- HINWEIS -",
+  "Hovere über den Bildschirm um potenzielle\nSauerstoffquellen zu finden.",
+  2.3
 );
-
+let consoleLayerSwitch = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "- P U C K -",
+  "Bist du dir sicher, dass du die Ebene wechseln möchtest..?",
+  2.3
+);
 //otherStuff
 let astronaut = new Astronaut(425, 550, images);
 let statusBar = new StatusBar(50, 30, 4, 4);
@@ -235,6 +261,7 @@ let posState = 0;
 let runGame = false;
 let opac = 255;
 let opac2 = 0;
+let decisionState = false;
 
 //FUNCTIONS
 
@@ -252,7 +279,7 @@ function transition() {
 }
 
 function transitionOut() {
-  opac2 = opac2 + 1.6;
+  opac2 = opac2 + 1.8;
   fill(0, 0, 0, opac2);
   rect(0, 0, 1920, 1080);
 }
@@ -367,16 +394,16 @@ function gameScreens() {
     astronaut.display();
 
     //CORAL HOVERS
-    if (coral1.hoverTest() && posState === 0) {
-      fill(255, 255, 255, 30);
+    if (coral1.hoverTest() && posState === 0 && decisionState === false) {
+      fill(255, 255, 255, 20);
       ellipse(1420, 980, 200, 180);
     }
-    if (coral2.hoverTest() && posState === 1) {
-      fill(255, 255, 255, 30);
+    if (coral2.hoverTest() && posState === 1 && decisionState === false) {
+      fill(255, 255, 255, 20);
       ellipse(1740, 660, 200, 180);
     }
-    if (switchLayer.hoverTest() && posState === 2) {
-      fill(255, 255, 255, 30);
+    if (switchLayer.hoverTest() && posState === 2 && decisionState === false) {
+      fill(255, 255, 255, 20);
       ellipse(1830, 130, 180, 160);
       image(images.switchLayer, 1740, 10, 102 * 1.8, 101 * 1.8);
     }
@@ -389,9 +416,40 @@ function gameScreens() {
     image(images.layer2, 0, 0, 1920, 1080);
     statusBar.display();
     astronaut.display();
-    //posAstronaut
-    astronaut.x = -40;
-    astronaut.y = 140;
+
+    //CORAL HOVERS
+    if (coral3.hoverTest() && layerState === 2) {
+      fill(255, 255, 255, 20);
+      ellipse(340, 260, 200, 140);
+    }
+    if (coral4.hoverTest() && layerState === 2) {
+      fill(255, 255, 255, 20);
+      circle(320, 750, 350);
+    }
+    if (coral5.hoverTest() && layerState === 2) {
+      fill(255, 255, 255, 20);
+      ellipse(740, 530, 159, 150);
+    }
+    if (coral6.hoverTest() && layerState === 2) {
+      fill(255, 255, 255, 20);
+      ellipse(970, 390, 140, 140);
+    }
+    if (coral7.hoverTest() && layerState === 2) {
+      fill(255, 255, 255, 20);
+      ellipse(1350, 600, 300, 200);
+    }
+    if (coral8.hoverTest() && layerState === 2) {
+      fill(255, 255, 255, 20);
+      ellipse(1350, 130, 280, 280);
+    }
+    if (coral9.hoverTest() && layerState === 2) {
+      fill(255, 255, 255, 20);
+      ellipse(800, 120, 150, 100);
+    }
+    if (switchLayer2.hoverTest() && layerState === 2) {
+      fill(255, 255, 255, 20);
+      ellipse(1170, 40, 80, 80);
+    }
   }
 
   //END SCREEN DEATH
@@ -402,18 +460,22 @@ function gameScreens() {
   }
 
   //DEAD CORALS
-
   if (posState >= 2 && layerState === 1) {
     image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
   }
   if (posState >= 3 && layerState === 1) {
     image(images.coral2, 1668, 595, 142.5, 150);
   }
+  if (posState >= 5 && layerState === 2) {
+    image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
+  }
 }
 
 function decisions() {
-  if (posState >= 1 && posState <= 2) {
+  //LAYER 1
+  if (posState >= 1 && posState <= 2 && decisionState === true) {
     decision.display();
+
     if (posState === 1) {
       decision.x = 1100;
       decision.y = 650;
@@ -423,16 +485,53 @@ function decisions() {
       decision.y = 400;
     }
   }
+  if (posState === 3 && decisionState === false && layerState === 1) {
+    consoleLayerSwitch.display();
+    buttonSwitchLayer.display();
+  }
+
+  //LAYER 2
+  if (posState >= 4 && posState <= 100 && decisionState === true) {
+    decision.display();
+
+    if (posState === 4) {
+      decision.x = 400;
+      decision.y = 300;
+    }
+    if (posState === 5) {
+      decision.x = 400;
+      decision.y = 700;
+    }
+    if (posState === 6) {
+      decision.x = 800;
+      decision.y = 340;
+    }
+    if (posState === 7) {
+      decision.x = 900;
+      decision.y = 600;
+    }
+    if (posState === 8) {
+      decision.x = 1000;
+      decision.y = 500;
+    }
+    if (posState === 9) {
+      decision.x = 1050;
+      decision.y = 200;
+    }
+    if (posState === 10) {
+      decision.x = 470;
+      decision.y = 170;
+    }
+  }
 }
 
 function mouseClicked() {
-  //BUTTONS
-
+  //BUTTONS LAYER 1
   if (buttonStart.hitTest() && gameState === 0) {
     gameState = 1;
     clickSound.play();
     morseCode.play();
-    backgroundMusic.loop();
+    backgroundMusic.play();
   } else if (button1.hitTest() && gameState === 1) {
     gameState = 2;
     //sound
@@ -455,35 +554,53 @@ function mouseClicked() {
     morseCode.play();
   } else if (button5.hitTest() && gameState === 5) {
     gameState = 6;
+    //sound
+    clickSound.play();
     morseCode.pause();
   } else if (button6.hitTest() && gameState === 6) {
     gameState = 7;
+    //sound
+    clickSound.play();
     morseCode.play();
   } else if (button7.hitTest() && gameState === 7) {
     gameState = 8;
+    //sound
+    clickSound.play();
     morseCode.pause();
   } else if (button8.hitTest() && gameState === 8) {
     gameState = 9;
+    //sound
+    clickSound.play();
   } else if (button9.hitTest() && gameState === 9) {
     gameState = 10;
+    //sound
+    clickSound.play();
   } else if (button10.hitTest() && gameState === 10) {
     gameState = 11;
+    //sound
+    clickSound.play();
   } else if (button11.hitTest() && gameState === 11) {
     gameState = 12;
+    //sound
+    clickSound.play();
   } else if (button12.hitTest() && gameState === 12) {
     gameState = 13;
+    //sound
+    clickSound.play();
   } else if (buttonStartMission.hitTest() && gameState === 13) {
     runGame = true;
     layerState = 1;
+    //sound
+    clickSound.play();
   }
 
-  //CORAL BUTTONS
-
+  //CORAL BUTTONS LAYER 1
   if (
     coral1.hitTest() &&
     runGame === true &&
     layerState === 1 &&
-    posState === 0
+    posState === 0 &&
+    decisionState === false
   ) {
     //changePos
     astronaut.x = 1150;
@@ -493,11 +610,14 @@ function mouseClicked() {
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
     //sound
     clickSound.play();
+    //changeDecisionState
+    decisionState = true;
   } else if (
     coral2.hitTest() &&
     runGame === true &&
     layerState === 1 &&
-    posState === 1
+    posState === 1 &&
+    decisionState === false
   ) {
     //changePos
     astronaut.x = 1500;
@@ -507,31 +627,155 @@ function mouseClicked() {
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
     //sound
     clickSound.play();
+    //changeDecisionState
+    decisionState = true;
   } else if (
     switchLayer.hitTest() &&
     runGame === true &&
     layerState === 1 &&
-    posState === 2
+    posState === 2 &&
+    decisionState === false
   ) {
     //changePos
-    astronaut.x = 1500;
+    astronaut.x = 1600;
     astronaut.y = 20;
     posState = 3;
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
-    //changeLayer
-    layerState = 2;
     //sound
     clickSound.play();
   }
 
-  //DECISIONS
-
-  if (decision.hitTestRight()) {
-    statusBar.oxygenCounter = 4;
+  //SWITCH LAYER BUTTON
+  if (buttonSwitchLayer.hitTest() && layerState === 1 && posState === 3) {
+    layerState = 2;
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //sound
+    clickSound.play();
+    //posAstronaut
+    astronaut.x = -40;
+    astronaut.y = 140;
   }
-  if (decision.hitTestLeft()) {
+
+  //CORAL BUTTONS LAYER 2 !
+  if (
+    coral3.hitTest() &&
+    runGame === true &&
+    layerState === 2 &&
+    decisionState === false
+  ) {
+    //changePos
+    astronaut.x = 200;
+    astronaut.y = 10;
+    posState = 4;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //changeDecisionState
+    decisionState = true;
+  } else if (
+    coral4.hitTest() &&
+    runGame === true &&
+    layerState === 2 &&
+    decisionState === false
+  ) {
+    //changePos
+    astronaut.x = 150;
+    astronaut.y = 650;
+    posState = 5;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //changeDecisionState
+    decisionState = true;
+  } else if (
+    coral5.hitTest() &&
+    runGame === true &&
+    layerState === 2 &&
+    decisionState === false
+  ) {
+    //changePos
+    astronaut.x = 430;
+    astronaut.y = 320;
+    posState = 6;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //changeDecisionState
+    decisionState = true;
+  } else if (
+    coral6.hitTest() &&
+    runGame === true &&
+    layerState === 2 &&
+    decisionState === false
+  ) {
+    //changePos
+    astronaut.x = 870;
+    astronaut.y = 290;
+    posState = 7;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //changeDecisionState
+    decisionState = true;
+  } else if (
+    coral7.hitTest() &&
+    runGame === true &&
+    layerState === 2 &&
+    decisionState === false
+  ) {
+    //changePos
+    astronaut.x = 1150;
+    astronaut.y = 460;
+    posState = 8;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //changeDecisionState
+    decisionState = true;
+  } else if (
+    coral8.hitTest() &&
+    runGame === true &&
+    layerState === 2 &&
+    decisionState === false
+  ) {
+    //changePos
+    astronaut.x = 1200;
+    astronaut.y = 115;
+    posState = 9;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //changeDecisionState
+    decisionState = true;
+  } else if (
+    coral9.hitTest() &&
+    runGame === true &&
+    layerState === 2 &&
+    decisionState === false
+  ) {
+    //changePos
+    astronaut.x = 650;
+    astronaut.y = 20;
+    posState = 10;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //changeDecisionState
+    decisionState = true;
+  } else if (switchLayer2.hitTest() && runGame === true && layerState === 2) {
+    //changePos
+    astronaut.x = 900;
+    astronaut.y = -80;
+    //decreaseOxygenCounter
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+  }
+
+  //DECISIONS
+  if (decision.hitTestRight() && decisionState === true) {
+    statusBar.oxygenCounter = 4;
+    decisionState = false;
+    //sound
+    clickSound.play();
+  }
+  if (decision.hitTestLeft() && decisionState === true && posState > 1) {
     statusBar.sampleCounter = statusBar.sampleCounter + 1;
+    decisionState = false;
+    //sound
+    clickSound.play();
   }
 }
 

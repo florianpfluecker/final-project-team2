@@ -29,11 +29,11 @@ export default class Decision {
 
     if (this.hoverTestLeft() === true) {
       stroke(177, 108, 170);
-      strokeWeight(7);
+      strokeWeight(9);
       rect(this.x - 20, this.y - 15, 180, 90, 20);
     } else if (this.hoverTestRight() === true) {
       stroke(104, 138, 149);
-      strokeWeight(7);
+      strokeWeight(9);
       rect(this.x - 20, this.y - 15, 180, 90, 20);
     } else {
       stroke(255);

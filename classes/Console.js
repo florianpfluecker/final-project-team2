@@ -7,6 +7,7 @@ export default class Console {
     this.person = person;
     this.text = text;
     this.textMargin = textMargin;
+    this.n = 0;
   }
 
   drawBox() {
@@ -16,11 +17,16 @@ export default class Console {
     fill(10, 10, 10, 240);
     stroke(255);
     strokeWeight(1.5);
-    rect(this.x, this.y, this.width, this.height, 30);
-    rect(this.x, this.y, this.width, this.height / 5, 30);
+    rect(this.x, this.y, this.width, this.height, 15);
+    rect(this.x, this.y, this.width, this.height / 5, 10);
     noFill();
     noStroke();
     fill(255);
+  }
+
+  textPart() {
+    this.n += 0.6;
+    return this.text.substring(0, Math.round(this.n));
   }
 
   textField() {
@@ -30,9 +36,9 @@ export default class Console {
     noFill();
 
     //content
-
+    textLeading(34);
     fill(255);
-    text(this.text, this.x + 20, this.y + this.height / this.textMargin);
+    text(this.textPart(), this.x + 20, this.y + this.height / this.textMargin);
   }
 
   display() {
