@@ -554,14 +554,13 @@ function gameScreens() {
         image(images.coral15, 1470, 125, 139 * 1.4, 60 * 1.4);
       }
 
-      //ASTRONAUT + STATUSBAR
-      statusBar.display();
-      astronaut.display();
-
       //CORAL HOVERS LAYER 3
       if (layerState === 3 && decisionState === false) {
       }
     }
+    //ASTRONAUT + STATUSBAR
+    statusBar.display();
+    astronaut.display();
   }
 
   //END SCREEN
@@ -879,7 +878,7 @@ function mouseClicked() {
     (decision.hitTestRight() && layerState === 3 && posState === 11) ||
     (decision.hitTestLeft() && layerState === 3 && posState === 11)
   ) {
-    // choiceCoral10 = true;
+    choiceCoral10 = true;
   }
   //POS12
   if (
@@ -960,4 +959,6 @@ function draw() {
   // console.log(posState);
 
   console.log(decisionState);
+  console.log(astronaut.x);
+  console.log(astronaut.y);
 }
