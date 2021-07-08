@@ -73,6 +73,15 @@ let images = {
   coral9: loadImage("./assets/layer2/coral9.png"),
   switchLayer2: loadImage("./assets/layer2/switchLayer2.png"),
 
+  //Layer 3 dead Corals
+  coral10: loadImage("./assets/layer3/coral10.png"),
+  coral11: loadImage("./assets/layer3/coral11.png"),
+  coral12: loadImage("./assets/layer3/coral12.png"),
+  coral13: loadImage("./assets/layer3/coral13.png"),
+  coral14: loadImage("./assets/layer3/coral14.png"),
+  coral15: loadImage("./assets/layer3/coral15.png"),
+  endPoint: loadImage("./assets/layer3/endPoint.png"),
+
   //endScreens
   oceanBackground: loadImage("./gifs/oceanBackground.gif"),
   helicopter: loadImage("./gifs/helicopter.gif"),
