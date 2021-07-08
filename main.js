@@ -14,9 +14,9 @@ let defaultFont;
 
 function preload() {
   //SOUNDS
-  // morseCode = loadSound("./sounds/morseCode.mp3");
-  // backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
-  // clickSound = loadSound("./sounds/hoverCoral.mp3");
+  morseCode = loadSound("./sounds/morseCode.mp3");
+  backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
+  clickSound = loadSound("./sounds/hoverCoral.mp3");
 
   //FONT(s)
   defaultFont = loadFont("./fonts/defaultFont.ttf");
@@ -276,9 +276,9 @@ let statusBar = new StatusBar(50, 30, 4, 4);
 statusBar.oxygenCounter = 1;
 statusBar.sampleCounter = 0;
 let gameState = 0;
-let layerState = 2;
+let layerState = 1;
 let posState = 0;
-let runGame = true;
+let runGame = false;
 let opac = 255;
 let opac2 = 0;
 let decisionState = false;
@@ -386,17 +386,19 @@ function screenOrder() {
     }
     if (gameState === 9) {
       image(images.cockpitFade, 0, 0, 1920, 1080);
-
       transitionOut();
-
       console9.display();
-      button9.display();
+      if (opac2 >= 240) {
+        button9.display();
+      }
     }
     if (gameState === 10) {
       image(images.layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console10.display();
-      button10.display();
+      if (opac <= 50) {
+        button10.display();
+      }
       transition();
     }
     if (gameState === 11) {
