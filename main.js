@@ -25,7 +25,6 @@ function preload() {
 }
 
 //IMAGES
-
 let images = {
   //cursor
   cursor: loadImage("./assets/cursor.png"),
@@ -134,7 +133,7 @@ let buttonDoor = new Button(1600, 0, 2240, 450);
 let decision = new Decision(1100, 650, 60, 60, "decision");
 
 //layer 1 hoverObejcts#
-let deadCoral = new Button(700, 520, 1120, 140);
+let deadCoral = new Button(700, 520, 120, 140);
 let coral1 = new Button(1330, 900, 200, 180);
 let coral2 = new Button(1650, 600, 200, 180);
 let switchLayer = new Button(1750, 30, 200, 180);
@@ -287,12 +286,12 @@ let console13 = new Console(
 );
 let consoleLayerSwitch = new Console(
   300,
-  830,
-  1320,
+  820,
+  1330,
   200,
   "- HINWEIS -",
-  "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.",
-  2.3
+  "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.\nDu kannst aber auch noch hier weiter suchen.",
+  2.5
 );
 let consoleEndSimulation = new Console(
   300,
@@ -549,13 +548,19 @@ function gameScreens() {
     }
 
     //Console HINT Oxygen + Sample
-    if (posState === 1 && decisionState === false) {
-      image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
-      consoleHint.display();
-    }
-    if (posState === 2 && decisionState === false) {
-      image(images.coral2, 1668, 595, 142.5, 150);
-      consoleHint2.display();
+    if (decisionState === false) {
+      if (posState === 1) {
+        image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
+        consoleHint.display();
+      }
+      if (posState === 2) {
+        image(images.coral2, 1668, 595, 142.5, 150);
+        consoleHint2.display();
+      }
+      if (posState === 3) {
+        image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
+        image(images.coral2, 1668, 595, 142.5, 150);
+      }
     }
   }
 
@@ -813,8 +818,10 @@ function adoptionScreen() {
 
 function gameOverScreen() {
   if (statusBar.oxygenCounter <= -1) {
+    fill(255);
     image(images.gameOverScreen, 0, 0, 1920, 1080);
-
+    textAlign(CENTER);
+    text("DIR IST DER SAUERSTOFF AUSGEGANGEN", 960, 700);
     //restartButton
     image(images.startButton, 796.5, 830, 327, 163.5);
     buttonRestart.display();
@@ -913,7 +920,7 @@ function mouseClicked() {
     gameState = 1;
     clickSound.play();
     morseCode.play();
-    backgroundMusic.play();
+    backgroundMusic.loop();
   } else if (button1.hitTest() && gameState === 1) {
     gameState = 2;
     //sound
@@ -949,6 +956,8 @@ function mouseClicked() {
     //sound
     clickSound.play();
     morseCode.pause();
+    clickSound.play();
+    alarmSound.play();
   } else if (button8.hitTest() && gameState === 8) {
     gameState = 9;
     //sound
@@ -956,7 +965,8 @@ function mouseClicked() {
   } else if (button9.hitTest() && gameState === 9) {
     gameState = 10;
     //sound
-    clickSound.play();
+    alarmSound.play();
+    alarmSound.stop();
   } else if (button10.hitTest() && gameState === 10) {
     gameState = 11;
     //sound
@@ -1324,6 +1334,20 @@ function mouseClicked() {
     opac2 = 0;
     decisionState = false;
     frameCounter = 0;
+
+    choiceCoral3 = false;
+    choiceCoral4 = false;
+    choiceCoral5 = false;
+    choiceCoral6 = false;
+    choiceCoral7 = false;
+    choiceCoral8 = false;
+    choiceCoral9 = false;
+    choiceCoral10 = false;
+    choiceCoral11 = false;
+    choiceCoral12 = false;
+    choiceCoral13 = false;
+    choiceCoral14 = false;
+    choiceCoral15 = false;
   }
 
   //DECISIONS
@@ -1353,6 +1377,4 @@ function draw() {
   adoptionScreen();
   gameOverScreen();
   cursor();
-
-  console.log(statusBar.oxygenCounter);
 }
