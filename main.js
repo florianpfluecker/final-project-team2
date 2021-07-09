@@ -91,6 +91,9 @@ let images = {
   //laborScreen
   laborScreen: loadImage("./assets/laborScreen.png"),
 
+  //creditsScreen
+  creditsScreen: loadImage("./assets/creditsScreen.png"),
+
   //riseUp
   riseUp: loadImage("./gifs/riseUp.gif"),
 };
@@ -831,6 +834,10 @@ function gameOverScreen() {
   }
 }
 
+function creditsScreen() {
+  image(images.creditsScreen, 0, 0, 1920, 1080);
+}
+
 function decisions() {
   //LAYER 1
   if (posState >= 1 && posState <= 2 && decisionState === true) {
@@ -1380,4 +1387,5 @@ function draw() {
   adoptionScreen();
   gameOverScreen();
   cursor();
+  creditsScreen();
 }
