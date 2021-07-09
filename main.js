@@ -111,6 +111,7 @@ let button12 = new Button(1440, 990, 100, 30, "< weiter >");
 let buttonStartMission = new Button(910, 990, 100, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
+let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 
 //decisions
 let decision = new Decision(1100, 650, 60, 60, "decision");
@@ -600,9 +601,24 @@ function endScreens() {
     transition();
     fill(255);
     frameCounter = frameCounter + 1;
-  } else if (endState === true && frameCounter > 301) {
+  } else if (
+    endState === true &&
+    frameCounter > 301 &&
+    statusBar.sampleCounter >= 9
+  ) {
+    //end Screen -> too many samples collected
     image(images.oceanBackground, 0, 0, 1920, 1080);
     image(images.helicopter, 0, 0, 1920, 1080);
+    fill(10, 10, 10, 240);
+    textAlign(LEFT);
+    textSize(20);
+    stroke(255);
+    text(
+      "Deine Mission ist gescheitert.\n\nDu konntest zwar das Heilmittel für die\nMenschheit bergen,jedoch war Dein Handeln nicht\nweitsichtig genug.\nDu hast mehr Proben gesammelt als benötigt\nund damit das Korallenrif irreparabel beschädigt.\nDie für die umfangreiche Nutzung des Heilmittels\nnotwendige Rekultivierung und weitere\nErforschung der Riffe ist somit ausgeschlossen.\nSchau Dir im Labor an, was möglich gewesen wäre.",
+      840,
+      140
+    );
+    buttonShowLabor.display();
   }
 }
 
