@@ -680,21 +680,47 @@ function laborScreens() {
       //AQUARIUM
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(160, 630, 1600, 420, 10);
+      rect(160, 600, 1600, 450, 10);
       fill(255);
       textLeading(32);
       noStroke();
       text(
-        "Brustkrebs heilen?\nAn der Fakultät für Angewandte\nNaturwissenschaften der TH Köln befasst sich das Forschungsprojekt\n„Neue Wirkstoffe aus dem Meer“ mit der Korallenart\n„Antillogorgia elisabethae“, die den Naturstoff „Pseudopterosin“ als\nSchutz gegen Fressfeinde bildet.\nDieser entzündungshemmende Naturstoff, der bereits in Handcremes\nverwendet wird, könnte bei neuen Behandlungsformen von Brustkrebs\nhelfen, da z.B. das Wachstum von Krebszellen blockiert werden könnte.\nDas Forschungsteam prognostiziert jedoch noch\nlangjährige Forschungsarbeiten an den Korallen, bis es zu einem\nmarktreifen Präparat kommt.",
+        "Brustkrebs heilen?\n\nAn der Fakultät für Angewandte\nNaturwissenschaften der TH Köln befasst sich das Forschungsprojekt\n„Neue Wirkstoffe aus dem Meer“ mit der Korallenart\n„Antillogorgia elisabethae“, die den Naturstoff „Pseudopterosin“ als\nSchutz gegen Fressfeinde bildet.\nDieser entzündungshemmende Naturstoff, der bereits in Handcremes\nverwendet wird, könnte bei neuen Behandlungsformen von Brustkrebs\nhelfen, da z.B. das Wachstum von Krebszellen blockiert werden könnte.\nDas Forschungsteam prognostiziert jedoch noch\nlangjährige Forschungsarbeiten an den Korallen, bis es zu einem\nmarktreifen Präparat kommt.",
         180,
-        670
+        640
       );
+      fill(255, 255, 255, 100);
+      ellipse(700, 130, 300, 250);
     } else if (buttonTesttube.hoverTest()) {
       //TESTTUBE
-      text("Testtube works", 100, 100);
+      stroke(255);
+      fill(0, 0, 0, 220);
+      rect(160, 680, 1600, 340, 10);
+      textLeading(32);
+      fill(255);
+      noStroke();
+      text(
+        "Leuchtmarkierungen gegen Krebs?\n\nAn der University of Southampton erforscht “The Coral Reef Laboratory”\nunter der Leitung von Prof. Jörg Wiedenmann fluoreszierende\n(leuchtende) Korallen. Diese Fluoreszenzproteine könnten als\nleuchtende MarkerKrebszellen in Geweben sichtbar machen.\nMan könnte Krebszellen gezielt erkennen,\nohne gesundes Gewebe zu beschädigen.",
+        180,
+        750
+      );
+      fill(255, 255, 255, 100);
+      ellipse(1050, 150, 300, 250);
     } else if (buttonDistiller.hoverTest()) {
       //DISTILLER
-      text("Distiller works", 100, 100);
+      stroke(255);
+      fill(0, 0, 0, 220);
+      rect(160, 740, 1600, 200, 10);
+      textLeading(32);
+      fill(255);
+      noStroke();
+      text(
+        "\nDeutschland erkrankt fast jeder Zweite an Krebs,\ndas sind 492.000 Neuerkrankungen pro Jahr.",
+        180,
+        800
+      );
+      fill(255, 255, 255, 100);
+      ellipse(310, 500, 300, 250);
     }
   }
 }
