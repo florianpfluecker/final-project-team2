@@ -18,7 +18,7 @@ function preload() {
   morseCode = loadSound("./sounds/morseCode.mp3");
   backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
   clickSound = loadSound("./sounds/hoverCoral.mp3");
-  // alarmSound = loadSound("./sounds/alarmSound.mp3");
+  alarmSound = loadSound("./sounds/alarmSound.mp3");
 
   //FONT(s)
   defaultFont = loadFont("./fonts/defaultFont.ttf");
