@@ -113,6 +113,7 @@ let button11 = new Button(1440, 990, 100, 30, "< weiter >");
 let button12 = new Button(1440, 990, 100, 30, "< weiter >");
 let buttonStartMission = new Button(910, 990, 100, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
+let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 
@@ -283,6 +284,33 @@ let consoleEndSimulation = new Console(
   "- HINWEIS -",
   "Du wirst nun abgeholt!",
   1.7
+);
+let consolePuck1 = new Console(
+  300,
+  860,
+  1320,
+  180,
+  "- P U C K -",
+  "Entscheide dich für Sauerstoff, du hast nur noch\neine Einheit übrig..!",
+  1.7
+);
+let consolePuck2 = new Console(
+  300,
+  860,
+  1320,
+  180,
+  "- P U C K -",
+  "Wähle nun die Probe aus, du hast genug\nSauerstoffvorrat um dich weiter fortzubewegen.",
+  1.7
+);
+let consoleLayerSwitch2 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "- HINWEIS -",
+  "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.",
+  2.3
 );
 
 //otherStuff
@@ -548,6 +576,7 @@ function gameScreens() {
       if (switchLayer2.hitTest()) {
         fill(255, 255, 255, 20);
         ellipse(1170, 40, 80, 80);
+        consoleLayerSwitch2.display();
       }
     }
   }
@@ -733,10 +762,12 @@ function decisions() {
     if (posState === 1) {
       decision.x = 1100;
       decision.y = 650;
+      consolePuck1.display();
     }
     if (posState === 2) {
       decision.x = 1390;
       decision.y = 400;
+      consolePuck2.display();
     }
   }
   if (posState === 3 && decisionState === false && layerState === 1) {
@@ -745,6 +776,11 @@ function decisions() {
   }
 
   //LAYER 2
+  if (posState === 11 && layerState === 2) {
+    consoleLayerSwitch2.display();
+    buttonSwitchLayer2.display();
+  }
+
   if (posState >= 4 && posState <= 100 && decisionState === true) {
     decision.display();
 
@@ -989,14 +1025,24 @@ function mouseClicked() {
   }
   if (switchLayer2.hitTest() && runGame === true && layerState === 2) {
     //changePos
-    astronaut.x = 20;
-    astronaut.y = 340;
+    astronaut.x = 1000;
+    astronaut.y = -20;
     posState = 11;
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    decisionState = false;
+  }
+
+  if (buttonSwitchLayer2.hitTest() && layerState === 1 && posState === 11) {
+    layerState = 2;
+    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
+    //sound
+    clickSound.play();
+    //posAstronaut
+    astronaut.x = -40;
+    astronaut.y = 340;
     //switch layer
     layerState = 3;
-    decisionState = false;
   }
 
   //POS 4
