@@ -9,6 +9,7 @@ let morseCode;
 let backgroundMusic;
 let clickSound;
 let alarmSound;
+let collectSound;
 
 //FONT(s)
 let defaultFont;
@@ -19,6 +20,7 @@ function preload() {
   backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
   clickSound = loadSound("./sounds/hoverCoral.mp3");
   alarmSound = loadSound("./sounds/alarmSound.mp3");
+  collectSound = loadSound("./sounds/collectSound.wav");
 
   //FONT(s)
   defaultFont = loadFont("./fonts/defaultFont.ttf");
@@ -45,6 +47,7 @@ let images = {
 
   //symbols
   samples: loadImage("./assets/samples.png"),
+  oxygen: loadImage("./assets/oxygen.png"),
 
   //GIFs
   startScreenSpaceship: loadImage("./gifs/startScreenSpaceship.gif"),
@@ -116,7 +119,7 @@ let button9 = new Button(1230, 985, 295, 40, "< Notsignal senden >");
 let button10 = new Button(1440, 990, 100, 30, "< weiter >");
 let button11 = new Button(1440, 990, 100, 30, "< weiter >");
 let button12 = new Button(1440, 990, 100, 30, "< weiter >");
-let buttonStartMission = new Button(910, 990, 100, 30, "< Mission beginnen >");
+let buttonStartMission = new Button(830, 990, 260, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
@@ -130,7 +133,7 @@ let buttonDistiller = new Button(175, 390, 200, 250);
 let buttonDoor = new Button(1600, 0, 2240, 450);
 
 //decisions
-let decision = new Decision(1100, 650, 60, 60, "decision");
+let decision = new Decision(1100, 650, 60, 60, "decision", images);
 
 //layer 1 hoverObejcts#
 let deadCoral = new Button(700, 520, 120, 140);
@@ -687,13 +690,13 @@ function gameScreens() {
 }
 
 function endScreens() {
-  if (endState === true && frameCounter <= 301) {
+  if (endState === true && frameCounter <= 201) {
     //rescue screen
     image(images.riseUp, 0, 0, 1920, 1080);
     frameCounter = frameCounter + 1;
   } else if (
     endState === true &&
-    frameCounter > 301 &&
+    frameCounter > 201 &&
     statusBar.sampleCounter >= 9
   ) {
     //end Screen -> too many samples collected
@@ -1356,14 +1359,14 @@ function mouseClicked() {
     statusBar.oxygenCounter = 4;
     decisionState = false;
     //sound
-    clickSound.play();
+    collectSound.play();
   }
   //left = sample
   if (decision.hitTestLeft() && decisionState === true && posState > 1) {
     statusBar.sampleCounter = statusBar.sampleCounter + 1;
     decisionState = false;
     //sound
-    clickSound.play();
+    collectSound.play();
   }
 }
 

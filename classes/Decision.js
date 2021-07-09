@@ -1,26 +1,23 @@
 export default class Decision {
-  constructor(x, y, width, height, text) {
+  constructor(x, y, width, height, text, images) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.text = text;
-    // this.samples = images.samples;
+    this.samples = images.samples;
+    this.oxygen = images.oxygen;
   }
-
-  // sampleSymbol() {
-  //   image(this.samples, this.x, this.y, 100, 100);
-  // }
 
   drawButtonLeft(x, y, width, height) {
     noStroke();
-    fill(50, 50, 50, 170);
+    fill(100, 100, 100, 170);
     rect(this.x, this.y, this.width, this.height, 15);
   }
 
   drawButtonRight(x, y, width, height) {
     noStroke();
-    fill(50, 50, 50, 170);
+    fill(100, 100, 100, 170);
     rect(this.x + 80, this.y, this.width, this.height, 15);
   }
 
@@ -94,6 +91,11 @@ export default class Decision {
     }
   }
 
+  symbols() {
+    image(this.samples, this.x + 17, this.y + 10, 20.2 * 1.2, 33.8 * 1.2);
+    image(this.oxygen, this.x + 88, this.y + 7, 20.1 * 3, 17.7 * 3);
+  }
+
   display() {
     this.drawRect();
 
@@ -105,6 +107,8 @@ export default class Decision {
 
     this.hoverTestLeft();
     this.hoverTestRight();
+
+    this.symbols();
     // this.sampleSymbol();
   }
 }

@@ -36,6 +36,10 @@ let images = {
   coral15: loadImage("./assets/layer3/coral15.png"),
   endPoint: loadImage("./assets/layer3/endPoint.png"),
 
+  //symbols
+  samples: loadImage("./assets/samples.png"),
+  oxygen: loadImage("./assets/oxygen.png"),
+
   //end
   oceanBackground: loadImage("./gifs/oceanBackground.gif"),
   helicopter: loadImage("./gifs/helicopter.gif"),
@@ -46,10 +50,10 @@ let images = {
   gameOverScreen: loadImage("./assets/gameOverScreen.png"),
 };
 
-// import Decision from "./classes/Decision";
+import Decision from "./classes/Decision";
 // import Button from "./classes/Button.js";
 
-// decision = new Decision(300, 500, 60, 60, "decision", images);
+decision = new Decision(30, 500, 60, 60, "decision", images);
 
 // function mouseClicked() {
 //   if (decision.hitTestLeft()) {
@@ -80,7 +84,6 @@ function draw() {
   // image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
   // image(images.coral2, 1668, 595, 142.5, 150);
   // image(images.switchLayer, 1740, 10, 102 * 1.8, 101 * 1.8);"
-
   //LAYER 2 ASSETS
   // image(images.coral10, 145, 740, 286 * 1.4, 117 * 1.4);
   // image(images.coral11, 720, 425, 197 * 1.4, 127 * 1.4);
@@ -89,9 +92,11 @@ function draw() {
   // image(images.coral14, 1575, 415, 131 * 1.4, 66 * 1.4);
   // image(images.coral15, 1470, 125, 139 * 1.4, 60 * 1.4);
   // image(images.endPoint, 1738, 0, 89 * 1.4, 73 * 1.4);
-  // decision.display();
+  decision.display();
   // console.log(decision.hoverTestLeft());
   //console.log(decision.hoverTestRight());
-
-  image(images.laborScreen, 0, 0, 1920, 1080);
+  // image(images.laborScreen, 0, 0, 1920, 1080);
+  //!
+  // image(images.samples, 0, 0, 20.2 * 1.2, 33.8 * 1.2);
+  // image(images.oxygen, 20, 0, 20.1 * 3, 17.7 * 3);
 }
