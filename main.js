@@ -82,6 +82,9 @@ let images = {
   //endScreens
   oceanBackground: loadImage("./gifs/oceanBackground.gif"),
   helicopter: loadImage("./gifs/helicopter.gif"),
+
+  //laborScreen
+  laborScreen: loadImage("./assets/laborScreen.png"),
 };
 
 //IMPORTS
@@ -113,6 +116,11 @@ let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 
+//laborButtons
+let buttonAquarium = new Button(575, 40, 250, 150);
+let buttonTesttube = new Button(950, 80, 150, 100);
+let buttonDistiller = new Button(175, 390, 200, 250);
+
 //decisions
 let decision = new Decision(1100, 650, 60, 60, "decision");
 
@@ -134,7 +142,7 @@ let switchLayer2 = new Button(1140, 20, 50, 50);
 //layer 2 hover Objects
 let coral10 = new Button(140, 700, 250, 130);
 let coral11 = new Button(540, 250, 160, 100);
-let coral12 = new Button(720, 440, 100, 80);
+let coral12 = new Button(720, 440, 200, 120);
 let coral13 = new Button(800, 160, 100, 130);
 let coral14 = new Button(1570, 420, 200, 160);
 let coral15 = new Button(1480, 130, 180, 130);
@@ -290,6 +298,7 @@ let endSimulation = false;
 let endState = false;
 let posState = 0;
 let runGame = false;
+let laborState = true;
 let opac = 255;
 let opac2 = 0;
 let decisionState = false;
@@ -613,12 +622,80 @@ function endScreens() {
     textAlign(LEFT);
     textSize(20);
     stroke(255);
+    strokeWeight(0.8);
     text(
       "Deine Mission ist gescheitert.\n\nDu konntest zwar das Heilmittel für die\nMenschheit bergen,jedoch war Dein Handeln nicht\nweitsichtig genug.\nDu hast mehr Proben gesammelt als benötigt\nund damit das Korallenrif irreparabel beschädigt.\nDie für die umfangreiche Nutzung des Heilmittels\nnotwendige Rekultivierung und weitere\nErforschung der Riffe ist somit ausgeschlossen.\nSchau Dir im Labor an, was möglich gewesen wäre.",
       840,
       140
     );
     buttonShowLabor.display();
+  } else if (
+    endState === true &&
+    frameCounter > 301 &&
+    statusBar.sampleCounter <= 7
+  ) {
+    //end Screen -> not eenough samples collected
+    image(images.oceanBackground, 0, 0, 1920, 1080);
+    image(images.helicopter, 0, 0, 1920, 1080);
+    fill(10, 10, 10, 240);
+    textAlign(LEFT);
+    textSize(20);
+    stroke(255);
+    strokeWeight(1.5);
+    text(
+      "Deine Mission ist gescheitert.\n\nDu hast zu wenige Proben eingesammelt und\nsomit kann kein Heilmittel entwickelt werden.\nSchau Dir im Labor an, was möglich gewesen wäre.",
+      840,
+      180
+    );
+    buttonShowLabor.display();
+  } else if (
+    endState === true &&
+    frameCounter > 301 &&
+    statusBar.sampleCounter === 8
+  ) {
+    //end Screen -> success
+    image(images.oceanBackground, 0, 0, 1920, 1080);
+    image(images.helicopter, 0, 0, 1920, 1080);
+    fill(10, 10, 10, 240);
+    textAlign(LEFT);
+    textSize(20);
+    stroke(255);
+    strokeWeight(1.5);
+    text(
+      "Du hast die Mission erfolgreich absolviert.\n\nSchau Dir im Labor an, welches Potenzial in\ndeinen eingesammelten Proben steckt.",
+      840,
+      170
+    );
+    buttonShowLabor.display();
+  }
+}
+
+function laborScreens() {
+  if (laborState === true) {
+    image(images.laborScreen, 0, 0, 1920, 1080);
+    textAlign(LEFT);
+
+    //WHEN HOVER -> text
+    if (buttonAquarium.hoverTest()) {
+      //AQUARIUM
+      stroke(255);
+      fill(0, 0, 0, 220);
+      rect(160, 630, 1600, 420, 10);
+      fill(255);
+      textLeading(32);
+      noStroke();
+      text(
+        "Brustkrebs heilen?\nAn der Fakultät für Angewandte\nNaturwissenschaften der TH Köln befasst sich das Forschungsprojekt\n„Neue Wirkstoffe aus dem Meer“ mit der Korallenart\n„Antillogorgia elisabethae“, die den Naturstoff „Pseudopterosin“ als\nSchutz gegen Fressfeinde bildet.\nDieser entzündungshemmende Naturstoff, der bereits in Handcremes\nverwendet wird, könnte bei neuen Behandlungsformen von Brustkrebs\nhelfen, da z.B. das Wachstum von Krebszellen blockiert werden könnte.\nDas Forschungsteam prognostiziert jedoch noch\nlangjährige Forschungsarbeiten an den Korallen, bis es zu einem\nmarktreifen Präparat kommt.",
+        180,
+        670
+      );
+    } else if (buttonTesttube.hoverTest()) {
+      //TESTTUBE
+      text("Testtube works", 100, 100);
+    } else if (buttonDistiller.hoverTest()) {
+      //DISTILLER
+      text("Distiller works", 100, 100);
+    }
   }
 }
 
@@ -1071,6 +1148,7 @@ function mouseClicked() {
       //sets opacity (opac2) of transitionOut() to default !
       opac2 = 0;
     }
+
     //LEAVE BUTTON
     if (
       layerState === 3 &&
@@ -1081,6 +1159,11 @@ function mouseClicked() {
       //sets opacity (opac) of transition() to default !
       opac = 255;
     }
+  }
+
+  //go to LABOR button
+  if (buttonShowLabor.hitTest() && endState === true) {
+    laborState = true;
   }
 
   //DECISIONS
@@ -1103,6 +1186,7 @@ function draw() {
   screenOrder();
   gameScreens();
   endScreens();
+  laborScreens();
   decisions();
   cursor();
 }
