@@ -114,6 +114,7 @@ let button11 = new Button(1440, 990, 100, 30, "< weiter >");
 let button12 = new Button(1440, 990, 100, 30, "< weiter >");
 let buttonStartMission = new Button(910, 990, 100, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
+let buttonEndSimulation = new Button(910, 990, 100, 30, "< okay >");
 
 //decisions
 let decision = new Decision(1100, 650, 60, 60, "decision");
@@ -269,6 +270,16 @@ let consoleLayerSwitch = new Console(
   "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.",
   2.3
 );
+let consoleEndSimulation = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "- HINWEIS -",
+  "Du wirst nun abgeholt!",
+  1.7
+);
+
 //otherStuff
 let astronaut = new Astronaut(425, 550, images);
 let statusBar = new StatusBar(50, 30, 4, 4);
@@ -278,6 +289,7 @@ statusBar.oxygenCounter = 1;
 statusBar.sampleCounter = 0;
 let gameState = 0;
 let layerState = 3;
+let endSimulation = false;
 let endState = false;
 let posState = 0;
 let runGame = true;
@@ -568,7 +580,14 @@ function gameScreens() {
     astronaut.display();
   }
 
-  //END SCREEN
+  //END SIMULATION
+  if (layerState === 3 && endSimulation === true) {
+    transitionOut();
+    consoleEndSimulation.display();
+    buttonEndSimulation.display();
+  }
+
+  //DEATH SCREEN
   if (statusBar.oxygenCounter <= -1) {
     //endScreenPNG
     // fill(255);
@@ -578,6 +597,9 @@ function gameScreens() {
 
 function endScreens() {
   if (endState === true) {
+    fill(100);
+    rect(0, 0, 1920, 1080);
+    transition();
   }
 }
 
@@ -956,7 +978,12 @@ function mouseClicked() {
   }
 
   //CORAL BUTTONS LAYER 3
-  if (runGame === true && layerState === 3 && decisionState === false) {
+  if (
+    runGame === true &&
+    layerState === 3 &&
+    decisionState === false &&
+    endState === false
+  ) {
     if (coral10.hitTest() && choiceCoral10 === false) {
       //changePos
       astronaut.x = 350;
@@ -1020,8 +1047,17 @@ function mouseClicked() {
       //decreaseOxygenCounter
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //switch layer
-      endState = true;
       decisionState = false;
+      endSimulation = true;
+      //sets opacity (opac2) of transitionOut() to default !
+      opac2 = 0;
+    }
+    //LEAVE BUTTON
+    if (layerState === 3 && buttonEndSimulation.hitTest()) {
+      endState = true;
+      runGame = false;
+      //sets opacity (opac) of transition() to default !
+      opac = 255;
     }
   }
 
@@ -1044,6 +1080,7 @@ function draw() {
   textFont(defaultFont);
   screenOrder();
   gameScreens();
+  endScreens();
   decisions();
   cursor();
 
@@ -1059,7 +1096,7 @@ function draw() {
 
   // console.log(posState);
   // console.log(coral14.hitTest());
-  console.log(endState);
+  // console.log(endState);
 
   // console.log(decisionState);
   // console.log(astronaut.x);
