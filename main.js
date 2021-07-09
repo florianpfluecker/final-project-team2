@@ -298,7 +298,7 @@ let endSimulation = false;
 let endState = false;
 let posState = 0;
 let runGame = false;
-let laborState = true;
+let laborState = false;
 let opac = 255;
 let opac2 = 0;
 let decisionState = false;
@@ -680,7 +680,7 @@ function laborScreens() {
       //AQUARIUM
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(160, 600, 1600, 450, 10);
+      rect(140, 600, 1640, 450, 15);
       fill(255);
       textLeading(32);
       noStroke();
@@ -691,11 +691,11 @@ function laborScreens() {
       );
       fill(255, 255, 255, 100);
       ellipse(700, 130, 300, 250);
-    } else if (buttonTesttube.hoverTest()) {
+    } else if (buttonDistiller.hoverTest()) {
       //TESTTUBE
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(160, 680, 1600, 340, 10);
+      rect(140, 680, 1640, 340, 15);
       textLeading(32);
       fill(255);
       noStroke();
@@ -705,22 +705,22 @@ function laborScreens() {
         750
       );
       fill(255, 255, 255, 100);
-      ellipse(1050, 150, 300, 250);
-    } else if (buttonDistiller.hoverTest()) {
+      ellipse(310, 500, 300, 250);
+    } else if (buttonTesttube.hoverTest()) {
       //DISTILLER
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(160, 740, 1600, 200, 10);
+      rect(140, 740, 1640, 200, 15);
       textLeading(32);
       fill(255);
       noStroke();
       text(
-        "\nDeutschland erkrankt fast jeder Zweite an Krebs,\ndas sind 492.000 Neuerkrankungen pro Jahr.",
+        "In Deutschland erkrankt fast jeder Zweite an Krebs,\ndas sind 492.000 Neuerkrankungen pro Jahr.",
         180,
-        800
+        820
       );
       fill(255, 255, 255, 100);
-      ellipse(310, 500, 300, 250);
+      ellipse(1050, 150, 300, 250);
     }
   }
 }
