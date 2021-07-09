@@ -14,17 +14,13 @@ let defaultFont;
 
 function preload() {
   //SOUNDS
-  // morseCode = loadSound("./sounds/morseCode.mp3");
-  // backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
-  // clickSound = loadSound("./sounds/hoverCoral.mp3");
+  morseCode = loadSound("./sounds/morseCode.mp3");
+  backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
+  clickSound = loadSound("./sounds/hoverCoral.mp3");
 
   //FONT(s)
   defaultFont = loadFont("./fonts/defaultFont.ttf");
 }
-
-// function setup() {
-//   backgroundMusic.play();
-// }
 
 //IMAGES
 
@@ -114,7 +110,7 @@ let button11 = new Button(1440, 990, 100, 30, "< weiter >");
 let button12 = new Button(1440, 990, 100, 30, "< weiter >");
 let buttonStartMission = new Button(910, 990, 100, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
-let buttonEndSimulation = new Button(910, 990, 100, 30, "< okay >");
+let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 
 //decisions
 let decision = new Decision(1100, 650, 60, 60, "decision");
@@ -288,14 +284,15 @@ let statusBar = new StatusBar(50, 30, 4, 4);
 statusBar.oxygenCounter = 1;
 statusBar.sampleCounter = 0;
 let gameState = 0;
-let layerState = 3;
+let layerState = 1;
 let endSimulation = false;
 let endState = false;
 let posState = 0;
-let runGame = true;
+let runGame = false;
 let opac = 255;
 let opac2 = 0;
 let decisionState = false;
+let frameCounter = 0;
 
 //states dead corals layer 2
 let choiceCoral3 = false;
@@ -596,10 +593,16 @@ function gameScreens() {
 }
 
 function endScreens() {
-  if (endState === true) {
+  if (endState === true && frameCounter <= 301) {
+    //rescue screen
     fill(100);
     rect(0, 0, 1920, 1080);
     transition();
+    fill(255);
+    frameCounter = frameCounter + 1;
+  } else if (endState === true && frameCounter > 301) {
+    image(images.oceanBackground, 0, 0, 1920, 1080);
+    image(images.helicopter, 0, 0, 1920, 1080);
   }
 }
 
@@ -1053,9 +1056,12 @@ function mouseClicked() {
       opac2 = 0;
     }
     //LEAVE BUTTON
-    if (layerState === 3 && buttonEndSimulation.hitTest()) {
+    if (
+      layerState === 3 &&
+      buttonEndSimulation.hitTest() &&
+      endSimulation === true
+    ) {
       endState = true;
-      runGame = false;
       //sets opacity (opac) of transition() to default !
       opac = 255;
     }
@@ -1083,22 +1089,4 @@ function draw() {
   endScreens();
   decisions();
   cursor();
-
-  //astronaut.display();
-  //console1.display();
-  //statusBar.display();
-  //button1.display();
-  //console.log(gameState);
-  // console.log(choiceCoral13);
-  // console.log(choiceCoral14);
-  // console.log(choiceCoral15);
-  // console.log(choiceCoral12);
-
-  // console.log(posState);
-  // console.log(coral14.hitTest());
-  // console.log(endState);
-
-  // console.log(decisionState);
-  // console.log(astronaut.x);
-  // console.log(astronaut.y);
 }
