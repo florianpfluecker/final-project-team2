@@ -42,6 +42,8 @@ let images = {
 
   //laborScreen
   laborScreen: loadImage("./assets/laborScreen.png"),
+
+  gameOverScreen: loadImage("./assets/gameOverScreen.png"),
 };
 
 // import Decision from "./classes/Decision";
@@ -61,8 +63,8 @@ let images = {
 
 function draw() {
   // image(images.layer1, 0, 0, 1920, 1080);
-  image(images.layer3, 0, 0, 1920, 1080);
-  image(images.astronaut, 350, 650, 306, 396);
+  // image(images.layer3, 0, 0, 1920, 1080);
+  // image(images.gameOverScreen, 0, 0, 1920, 1080);
   //LAYER 2 ASSETS
   // image(images.layer2, 0, 0, 1920, 1080);
   // image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);

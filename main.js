@@ -8,6 +8,7 @@ angleMode(DEGREES);
 let morseCode;
 let backgroundMusic;
 let clickSound;
+let alarmSound;
 
 //FONT(s)
 let defaultFont;
@@ -17,6 +18,7 @@ function preload() {
   morseCode = loadSound("./sounds/morseCode.mp3");
   backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
   clickSound = loadSound("./sounds/hoverCoral.mp3");
+  // alarmSound = loadSound("./sounds/alarmSound.mp3");
 
   //FONT(s)
   defaultFont = loadFont("./fonts/defaultFont.ttf");
@@ -53,7 +55,6 @@ let images = {
   cockpit: loadImage("./gifs/cockpit.gif"),
   cockpitAlarm: loadImage("./gifs/cockpitAlarm.gif"),
   cockpitFade: loadImage("./gifs/cockpitFade.gif"),
-  //cockpitLight: loadImage("./gifs/cockpitLight.gif"),
 
   //Layer 1 dead Corals
   coral1: loadImage("./assets/layer1/coral1.png"),
@@ -82,9 +83,14 @@ let images = {
   //endScreens
   oceanBackground: loadImage("./gifs/oceanBackground.gif"),
   helicopter: loadImage("./gifs/helicopter.gif"),
+  //gameOverScreen
+  gameOverScreen: loadImage("./assets/gameOverScreen.png"),
 
   //laborScreen
   laborScreen: loadImage("./assets/laborScreen.png"),
+
+  //riseUp
+  riseUp: loadImage("./gifs/riseUp.gif"),
 };
 
 //IMPORTS
@@ -116,16 +122,19 @@ let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
+let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
 
 //laborButtons
 let buttonAquarium = new Button(575, 40, 250, 150);
 let buttonTesttube = new Button(950, 80, 150, 100);
 let buttonDistiller = new Button(175, 390, 200, 250);
+let buttonDoor = new Button(1600, 0, 2240, 450);
 
 //decisions
 let decision = new Decision(1100, 650, 60, 60, "decision");
 
-//layer 1 hoverObejcts
+//layer 1 hoverObejcts#
+let deadCoral = new Button(700, 520, 1120, 140);
 let coral1 = new Button(1330, 900, 200, 180);
 let coral2 = new Button(1650, 600, 200, 180);
 let switchLayer = new Button(1750, 30, 200, 180);
@@ -249,6 +258,15 @@ let console11 = new Console(
   "Analyse zeigt:\n> Sauerstoffsättigung der Umgebung: < 0,1%\n> Fremde Lebensformen: bestätigt\n> Sauerstoffvorrat: 36.7 %\n> Weiterhin kein Funkkontakt möglich..!",
   3
 );
+let consoleDeadCoral = new Console(
+  300,
+  860,
+  1320,
+  180,
+  "- P U C K -",
+  "Diese Lebensform ist bereits abgestorben und\ndamit nicht mehr von Nutzen.",
+  2.0
+);
 let console12 = new Console(
   300,
   860,
@@ -291,8 +309,8 @@ let consolePuck1 = new Console(
   1320,
   180,
   "- P U C K -",
-  "Entscheide dich für Sauerstoff, du hast nur noch\neine Einheit übrig..!",
-  1.7
+  "Sieht aus als hättest du etwas Brauchbares gefunden,\ndiese Lebensform produziert Sauerstoff.\nFülle deinen Tank auf!",
+  2.3
 );
 let consolePuck2 = new Console(
   300,
@@ -301,7 +319,7 @@ let consolePuck2 = new Console(
   180,
   "- P U C K -",
   "Wähle nun die Probe aus, du hast genug\nSauerstoffvorrat um dich weiter fortzubewegen.",
-  1.7
+  2.0
 );
 let consoleLayerSwitch2 = new Console(
   300,
@@ -310,6 +328,24 @@ let consoleLayerSwitch2 = new Console(
   200,
   "- HINWEIS -",
   "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.",
+  2.3
+);
+let consoleHint = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "- HINWEIS -",
+  "Achte auf deinen Sauerstoffvorrat.\nBei der Fortbewegung verlierst du immer eine Sauerstoffeinheit.",
+  2.0
+);
+let consoleHint2 = new Console(
+  300,
+  830,
+  1320,
+  200,
+  "- HINWEIS -",
+  "Sammle 8 Proben um das Heilmittel herzustellen.\nDu entscheidest selbst welche Ressource du einsammelst.\nDeine Wahl hat Auswirkungen auf den Ausgang der Mission.",
   2.3
 );
 
@@ -327,6 +363,7 @@ let endState = false;
 let posState = 0;
 let runGame = false;
 let laborState = false;
+let adoptionState = false;
 let opac = 255;
 let opac2 = 0;
 let decisionState = false;
@@ -473,7 +510,9 @@ function screenOrder() {
 }
 
 function gameScreens() {
-  //LAYER 1 SCREENs
+  //test
+
+  //LAYER 1 SCREEN
   if (runGame === true && layerState === 1) {
     image(images.layer1, 0, 0, 1920, 1080);
     statusBar.display();
@@ -482,15 +521,18 @@ function gameScreens() {
     //DEAD CORALS LAYER 1
     if (layerState === 1) {
       if (posState >= 2) {
-        image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
       }
       if (posState >= 3) {
-        image(images.coral2, 1668, 595, 142.5, 150);
       }
     }
 
     //CORAL HOVERS
     if (decisionState === false) {
+      if (deadCoral.hoverTest()) {
+        consoleDeadCoral.display();
+        fill(255, 255, 255, 20);
+        ellipse(780, 570, 200, 180);
+      }
       if (coral1.hoverTest() && posState === 0) {
         fill(255, 255, 255, 20);
         ellipse(1420, 980, 200, 180);
@@ -506,7 +548,15 @@ function gameScreens() {
       }
     }
 
-    //DECISION FIELDS
+    //Console HINT Oxygen + Sample
+    if (posState === 1 && decisionState === false) {
+      image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
+      consoleHint.display();
+    }
+    if (posState === 2 && decisionState === false) {
+      image(images.coral2, 1668, 595, 142.5, 150);
+      consoleHint2.display();
+    }
   }
 
   //LAYER 2 SCREEN
@@ -634,10 +684,7 @@ function gameScreens() {
 function endScreens() {
   if (endState === true && frameCounter <= 301) {
     //rescue screen
-    fill(100);
-    rect(0, 0, 1920, 1080);
-    transition();
-    fill(255);
+    image(images.riseUp, 0, 0, 1920, 1080);
     frameCounter = frameCounter + 1;
   } else if (
     endState === true &&
@@ -709,14 +756,14 @@ function laborScreens() {
       //AQUARIUM
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(140, 600, 1640, 450, 15);
+      rect(140, 570, 1640, 450, 15);
       fill(255);
       textLeading(32);
       noStroke();
       text(
         "Brustkrebs heilen?\n\nAn der Fakultät für Angewandte\nNaturwissenschaften der TH Köln befasst sich das Forschungsprojekt\n„Neue Wirkstoffe aus dem Meer“ mit der Korallenart\n„Antillogorgia elisabethae“, die den Naturstoff „Pseudopterosin“ als\nSchutz gegen Fressfeinde bildet.\nDieser entzündungshemmende Naturstoff, der bereits in Handcremes\nverwendet wird, könnte bei neuen Behandlungsformen von Brustkrebs\nhelfen, da z.B. das Wachstum von Krebszellen blockiert werden könnte.\nDas Forschungsteam prognostiziert jedoch noch\nlangjährige Forschungsarbeiten an den Korallen, bis es zu einem\nmarktreifen Präparat kommt.",
         180,
-        640
+        610
       );
       fill(255, 255, 255, 100);
       ellipse(700, 130, 300, 250);
@@ -739,18 +786,38 @@ function laborScreens() {
       //DISTILLER
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(140, 740, 1640, 200, 15);
+      rect(140, 860, 1640, 160, 15);
       textLeading(32);
       fill(255);
       noStroke();
       text(
         "In Deutschland erkrankt fast jeder Zweite an Krebs,\ndas sind 492.000 Neuerkrankungen pro Jahr.",
         180,
-        820
+        940
       );
       fill(255, 255, 255, 100);
       ellipse(1050, 150, 300, 250);
+    } else if (buttonDoor.hoverTest()) {
+      fill(255, 255, 255, 100);
+      ellipse(1700, 225, 300, 450);
     }
+  }
+}
+
+function adoptionScreen() {
+  if (adoptionState === true) {
+    fill(0);
+    rect(0, 0, 1920, 1080);
+  }
+}
+
+function gameOverScreen() {
+  if (statusBar.oxygenCounter <= -1) {
+    image(images.gameOverScreen, 0, 0, 1920, 1080);
+
+    //restartButton
+    image(images.startButton, 796.5, 830, 327, 163.5);
+    buttonRestart.display();
   }
 }
 
@@ -1237,14 +1304,37 @@ function mouseClicked() {
   if (buttonShowLabor.hitTest() && endState === true) {
     laborState = true;
   }
+  //  -> in Labor
+  if (buttonDoor.hitTest() && laborState === true) {
+    adoptionState = true;
+  }
+
+  //RESTART BUTTON
+  if (buttonRestart.hitTest() && statusBar.oxygenCounter <= -1) {
+    statusBar.oxygenCounter = 1;
+    statusBar.sampleCounter = 0;
+    gameState = 0;
+    layerState = 1;
+    endSimulation = false;
+    endState = false;
+    posState = 0;
+    runGame = false;
+    laborState = false;
+    opac = 255;
+    opac2 = 0;
+    decisionState = false;
+    frameCounter = 0;
+  }
 
   //DECISIONS
+  //right = oxygen
   if (decision.hitTestRight() && decisionState === true) {
     statusBar.oxygenCounter = 4;
     decisionState = false;
     //sound
     clickSound.play();
   }
+  //left = sample
   if (decision.hitTestLeft() && decisionState === true && posState > 1) {
     statusBar.sampleCounter = statusBar.sampleCounter + 1;
     decisionState = false;
@@ -1260,5 +1350,9 @@ function draw() {
   endScreens();
   laborScreens();
   decisions();
+  adoptionScreen();
+  gameOverScreen();
   cursor();
+
+  console.log(statusBar.oxygenCounter);
 }
