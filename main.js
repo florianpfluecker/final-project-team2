@@ -91,6 +91,9 @@ let images = {
   //laborScreen
   laborScreen: loadImage("./assets/laborScreen.png"),
 
+  //adoptScreen
+  adoptScreen: loadImage("./assets/adoptScreen.png"),
+
   //creditsScreen
   creditsScreen: loadImage("./assets/creditsScreen.png"),
 
@@ -128,6 +131,9 @@ let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
+let buttonRestartEnd = new Button(130, 500, 100, 30, "< RESTART >");
+let buttonCredits = new Button(130, 450, 100, 30, "< CREDITS >");
+let buttonBack = new Button(130, 1000, 100, 30, "< ZURÜCK >");
 
 //laborButtons
 let buttonAquarium = new Button(575, 40, 250, 150);
@@ -367,8 +373,9 @@ let endSimulation = false;
 let endState = false;
 let posState = 0;
 let runGame = false;
-let laborState = false;
+let laborState = true;
 let adoptionState = false;
+let creditState = false;
 let opac = 255;
 let opac2 = 0;
 let decisionState = false;
@@ -693,13 +700,13 @@ function gameScreens() {
 }
 
 function endScreens() {
-  if (endState === true && frameCounter <= 201) {
+  if (endState === true && frameCounter <= 301) {
     //rescue screen
     image(images.riseUp, 0, 0, 1920, 1080);
     frameCounter = frameCounter + 1;
   } else if (
     endState === true &&
-    frameCounter > 201 &&
+    frameCounter > 301 &&
     statusBar.sampleCounter >= 9
   ) {
     //end Screen -> too many samples collected
@@ -815,10 +822,11 @@ function laborScreens() {
   }
 }
 
-function adoptionScreen() {
+function adoptScreen() {
   if (adoptionState === true) {
-    fill(0);
-    rect(0, 0, 1920, 1080);
+    image(images.adoptScreen, 0, 0, 1920, 1080);
+    buttonRestartEnd.display();
+    buttonCredits.display();
   }
 }
 
@@ -828,6 +836,9 @@ function gameOverScreen() {
     image(images.gameOverScreen, 0, 0, 1920, 1080);
     textAlign(CENTER);
     text("DIR IST DER SAUERSTOFF AUSGEGANGEN", 960, 700);
+
+    runGame = false;
+
     //restartButton
     image(images.startButton, 796.5, 830, 327, 163.5);
     buttonRestart.display();
@@ -835,7 +846,12 @@ function gameOverScreen() {
 }
 
 function creditsScreen() {
-  image(images.creditsScreen, 0, 0, 1920, 1080);
+  if (creditState === true) {
+    image(images.creditsScreen, 0, 0, 1920, 1080);
+    buttonBack.display();
+
+    runGame = false;
+  }
 }
 
 function decisions() {
@@ -1329,8 +1345,17 @@ function mouseClicked() {
     adoptionState = true;
   }
 
-  //RESTART BUTTON
+  //CREDITS BUTTON
+  if (buttonCredits.hitTest() && adoptionState === true) {
+    creditState = true;
+  }
+  //ButtonBack
+  if (buttonBack.hitTest() && creditState === true) {
+    creditState = false;
+  }
+  //RESTARTs
   if (buttonRestart.hitTest() && statusBar.oxygenCounter <= -1) {
+    //RESTART BUTTONs
     statusBar.oxygenCounter = 1;
     statusBar.sampleCounter = 0;
     gameState = 0;
@@ -1340,6 +1365,8 @@ function mouseClicked() {
     posState = 0;
     runGame = false;
     laborState = false;
+    adoptionState = false;
+    creditState = false;
     opac = 255;
     opac2 = 0;
     decisionState = false;
@@ -1359,7 +1386,37 @@ function mouseClicked() {
     choiceCoral14 = false;
     choiceCoral15 = false;
   }
+  if (buttonRestartEnd.hitTest() && adoptionState === true) {
+    statusBar.oxygenCounter = 1;
+    statusBar.sampleCounter = 0;
+    gameState = 0;
+    layerState = 1;
+    endSimulation = false;
+    endState = false;
+    posState = 0;
+    runGame = false;
+    laborState = false;
+    adoptionState = false;
+    creditState = false;
+    opac = 255;
+    opac2 = 0;
+    decisionState = false;
+    frameCounter = 0;
 
+    choiceCoral3 = false;
+    choiceCoral4 = false;
+    choiceCoral5 = false;
+    choiceCoral6 = false;
+    choiceCoral7 = false;
+    choiceCoral8 = false;
+    choiceCoral9 = false;
+    choiceCoral10 = false;
+    choiceCoral11 = false;
+    choiceCoral12 = false;
+    choiceCoral13 = false;
+    choiceCoral14 = false;
+    choiceCoral15 = false;
+  }
   //DECISIONS
   //right = oxygen
   if (decision.hitTestRight() && decisionState === true) {
@@ -1384,8 +1441,8 @@ function draw() {
   endScreens();
   laborScreens();
   decisions();
-  adoptionScreen();
   gameOverScreen();
-  cursor();
+  adoptScreen();
   creditsScreen();
+  cursor();
 }
