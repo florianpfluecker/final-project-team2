@@ -212,7 +212,7 @@ let console5 = new Console(
   1320,
   230,
   "- ZENTRALE -",
-  "Die Bergung des Heilmittels haben weiterhin\nhöchste Priorität.\nAuf der Erde herrscht Chaos, über die Hälfte der Weltbevölkerung\nist bereits infiziert...\nWir zählen auf sie!",
+  "Die Bergung des Heilmittels hat weiterhin\nhöchste Priorität.\nAuf der Erde herrscht Chaos, über die Hälfte der Weltbevölkerung\nist bereits infiziert...\nWir zählen auf sie!",
   3
 );
 let console6 = new Console(
@@ -271,9 +271,9 @@ let console11 = new Console(
 );
 let consoleDeadCoral = new Console(
   300,
-  860,
+  830,
   1320,
-  180,
+  200,
   "- P U C K -",
   "Diese Lebensform ist bereits abgestorben und\ndamit nicht mehr von Nutzen.",
   2.0
@@ -302,7 +302,7 @@ let consoleLayerSwitch = new Console(
   1330,
   200,
   "- HINWEIS -",
-  "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.\nDu kannst aber auch noch hier weiter suchen.",
+  "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.",
   2.5
 );
 let consoleEndSimulation = new Console(
@@ -334,12 +334,12 @@ let consolePuck2 = new Console(
 );
 let consoleLayerSwitch2 = new Console(
   300,
-  830,
+  850,
   1320,
   200,
   "- HINWEIS -",
-  "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.",
-  2.3
+  "Es steht ein Ebenenwechsel bevor.\nEine Rückkehr ist danach nicht mehr möglich.\nDu kannst aber auch noch hier weiter suchen.",
+  2.5
 );
 let consoleHint = new Console(
   300,
@@ -347,8 +347,8 @@ let consoleHint = new Console(
   1320,
   200,
   "- HINWEIS -",
-  "Achte auf deinen Sauerstoffvorrat.\nBei der Fortbewegung verlierst du immer eine Sauerstoffeinheit.",
-  2.0
+  "Achte auf deinen Sauerstoffvorrat.\nBei der Fortbewegung verlierst du immer eine Sauerstoffeinheit.\nSieh dich nun weiter um.",
+  2.3
 );
 let consoleHint2 = new Console(
   300,
@@ -1413,7 +1413,8 @@ function mouseClicked() {
     opac2 = 0;
     decisionState = false;
     frameCounter = 0;
-
+    astronaut.x = 425;
+    astronaut.y = 550;
     choiceCoral3 = false;
     choiceCoral4 = false;
     choiceCoral5 = false;
@@ -1446,7 +1447,8 @@ function mouseClicked() {
     opac2 = 0;
     decisionState = false;
     frameCounter = 0;
-
+    astronaut.x = 425;
+    astronaut.y = 550;
     choiceCoral3 = false;
     choiceCoral4 = false;
     choiceCoral5 = false;
