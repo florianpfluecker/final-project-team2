@@ -532,7 +532,7 @@ function cursor() {
 }
 
 function transition() {
-  opac = opac - 1;
+  opac = opac - 0.3;
   fill(0, 0, 0, opac);
   rect(0, 0, 1920, 1080);
 }
