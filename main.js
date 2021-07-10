@@ -654,14 +654,6 @@ function gameScreens() {
     statusBar.display();
     astronaut.display();
 
-    //DEAD CORALS LAYER 1
-    if (layerState === 1) {
-      if (posState >= 2) {
-      }
-      if (posState >= 3) {
-      }
-    }
-
     //CORAL HOVERS
     if (decisionState === false) {
       if (deadCoral.hoverTest()) {
@@ -693,10 +685,20 @@ function gameScreens() {
       if (posState === 2) {
         image(coral2PNG, 1668, 595, 142.5, 150);
         consoleHint2.display();
+        image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
       }
       if (posState === 3) {
         image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
         image(coral2PNG, 1668, 595, 142.5, 150);
+      }
+    }
+
+    //DEAD CORALS LAYER 1
+    if (layerState === 1) {
+      if (posState >= 2) {
+        image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
+      }
+      if (posState >= 3) {
       }
     }
   }
