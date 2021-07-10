@@ -250,14 +250,14 @@ let button10 = new Button(1440, 990, 100, 30, "< weiter >");
 let button11 = new Button(1440, 990, 100, 30, "< weiter >");
 let button12 = new Button(1440, 990, 100, 30, "< weiter >");
 let buttonStartMission = new Button(830, 990, 260, 30, "< Mission beginnen >");
-let buttonSwitchLayer = new Button(910, 990, 100, 30, "< wechseln >");
+let buttonSwitchLayer = new Button(910, 990, 100, 30, "wechseln >");
 let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "< wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
 let buttonRestartEnd = new Button(130, 500, 100, 30, "< RESTART >");
 let buttonCredits = new Button(130, 450, 100, 30, "< CREDITS >");
-let buttonBack = new Button(130, 1000, 100, 30, "< ZURÜCK >");
+let buttonBack = new Button(130, 1000, 100, 30, "< ZURÜCK");
 
 //laborButtons
 let buttonAquarium = new Button(575, 40, 250, 150);
