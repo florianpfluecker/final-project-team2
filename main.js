@@ -373,7 +373,7 @@ let endSimulation = false;
 let endState = false;
 let posState = 0;
 let runGame = false;
-let laborState = true;
+let laborState = false;
 let adoptionState = false;
 let creditState = false;
 let opac = 255;
@@ -1070,6 +1070,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //changeDecisionState
       decisionState = true;
+      //sound
+      clickSound.play();
     } else if (coral4.hitTest() && choiceCoral4 === false) {
       //changePos
       astronaut.x = 150;
@@ -1079,6 +1081,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //changeDecisionState
       decisionState = true;
+      //sound
+      clickSound.play();
     } else if (coral5.hitTest() && choiceCoral5 === false) {
       //changePos
       astronaut.x = 430;
@@ -1088,6 +1092,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //changeDecisionState
       decisionState = true;
+      //sound
+      clickSound.play();
     } else if (coral6.hitTest() && choiceCoral6 === false) {
       //changePos
       astronaut.x = 870;
@@ -1097,6 +1103,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //changeDecisionState
       decisionState = true;
+      //sound
+      clickSound.play();
     } else if (coral7.hitTest() && choiceCoral7 === false) {
       //changePos
       astronaut.x = 1150;
@@ -1106,6 +1114,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //changeDecisionState
       decisionState = true;
+      //sound
+      clickSound.play();
     } else if (coral8.hitTest() && choiceCoral8 === false) {
       //changePos
       astronaut.x = 1200;
@@ -1115,6 +1125,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //changeDecisionState
       decisionState = true;
+      //sound
+      clickSound.play();
     } else if (coral9.hitTest() && choiceCoral9 === false) {
       //changePos
       astronaut.x = 650;
@@ -1124,6 +1136,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //changeDecisionState
       decisionState = true;
+      //sound
+      clickSound.play();
     }
   }
   if (switchLayer2.hitTest() && runGame === true && layerState === 2) {
@@ -1134,6 +1148,8 @@ function mouseClicked() {
     //decreaseOxygenCounter
     statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
     decisionState = false;
+    //sound
+    clickSound.play();
   }
 
   if (buttonSwitchLayer2.hitTest() && layerState === 1 && posState === 11) {
@@ -1146,6 +1162,8 @@ function mouseClicked() {
     astronaut.y = 340;
     //switch layer
     layerState = 3;
+    //sound
+    clickSound.play();
   }
 
   //POS 4
@@ -1263,6 +1281,8 @@ function mouseClicked() {
       //decreaseOxygenCounter
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       decisionState = true;
+      //sound
+      clickSound.play();
     }
     if (coral11.hitTest() && choiceCoral12 === false) {
       //changePos
@@ -1273,6 +1293,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       decisionState = true;
       console.log("wokrs");
+      //sound
+      clickSound.play();
     }
     if (coral12.hitTest() && choiceCoral11 === false) {
       //changePos
@@ -1282,6 +1304,8 @@ function mouseClicked() {
       //decreaseOxygenCounter
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       decisionState = true;
+      //sound
+      clickSound.play();
     }
     if (coral13.hitTest() && choiceCoral14 === false) {
       //changePos
@@ -1291,6 +1315,8 @@ function mouseClicked() {
       //decreaseOxygenCounter
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       decisionState = true;
+      //sound
+      clickSound.play();
     }
     if (coral14.hitTest() && choiceCoral13 === false) {
       //changePos
@@ -1300,6 +1326,8 @@ function mouseClicked() {
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       decisionState = true;
       posState = 17;
+      //sound
+      clickSound.play();
     }
     if (coral15.hitTest() && choiceCoral15 === false) {
       //changePos
@@ -1309,6 +1337,8 @@ function mouseClicked() {
       //decreaseOxygenCounter
       statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       decisionState = true;
+      //sound
+      clickSound.play();
     }
     if (switchLayer3.hitTest() && runGame === true && layerState === 3) {
       //changePos
@@ -1322,6 +1352,8 @@ function mouseClicked() {
       endSimulation = true;
       //sets opacity (opac2) of transitionOut() to default !
       opac2 = 0;
+      //sound
+      clickSound.play();
     }
 
     //LEAVE BUTTON
@@ -1333,25 +1365,35 @@ function mouseClicked() {
       endState = true;
       //sets opacity (opac) of transition() to default !
       opac = 255;
+      //sound
+      clickSound.play();
     }
   }
 
   //go to LABOR button
   if (buttonShowLabor.hitTest() && endState === true) {
     laborState = true;
+    //sound
+    clickSound.play();
   }
   //  -> in Labor
   if (buttonDoor.hitTest() && laborState === true) {
     adoptionState = true;
+    //sound
+    clickSound.play();
   }
 
   //CREDITS BUTTON
   if (buttonCredits.hitTest() && adoptionState === true) {
     creditState = true;
+    //sound
+    clickSound.play();
   }
   //ButtonBack
   if (buttonBack.hitTest() && creditState === true) {
     creditState = false;
+    //sound
+    clickSound.play();
   }
   //RESTARTs
   if (buttonRestart.hitTest() && statusBar.oxygenCounter <= -1) {
@@ -1385,6 +1427,8 @@ function mouseClicked() {
     choiceCoral13 = false;
     choiceCoral14 = false;
     choiceCoral15 = false;
+    //sound
+    clickSound.play();
   }
   if (buttonRestartEnd.hitTest() && adoptionState === true) {
     statusBar.oxygenCounter = 1;
@@ -1416,6 +1460,8 @@ function mouseClicked() {
     choiceCoral13 = false;
     choiceCoral14 = false;
     choiceCoral15 = false;
+    //sound
+    clickSound.play();
   }
   //DECISIONS
   //right = oxygen
