@@ -237,21 +237,21 @@ import Decision from "./classes/Decision.js";
 
 //buttons
 let buttonStart = new Button(858, 905, 200, 60, "START");
-let button1 = new Button(1440, 990, 100, 30, "< weiter >");
-let button2 = new Button(1440, 990, 100, 30, "< weiter >");
-let button3 = new Button(1440, 990, 100, 30, "< weiter >");
-let button4 = new Button(1440, 990, 100, 30, "< weiter >");
-let button5 = new Button(1440, 990, 100, 30, "< weiter >");
-let button6 = new Button(1440, 990, 100, 30, "< weiter >");
-let button7 = new Button(1440, 990, 100, 30, "< weiter >");
-let button8 = new Button(1440, 990, 100, 30, "< weiter >");
+let button1 = new Button(1440, 990, 100, 30, "weiter >");
+let button2 = new Button(1440, 990, 100, 30, "weiter >");
+let button3 = new Button(1440, 990, 100, 30, "weiter >");
+let button4 = new Button(1440, 990, 100, 30, "weiter >");
+let button5 = new Button(1440, 990, 100, 30, "weiter >");
+let button6 = new Button(1440, 990, 100, 30, "weiter >");
+let button7 = new Button(1440, 990, 100, 30, "weiter >");
+let button8 = new Button(1440, 990, 100, 30, "weiter >");
 let button9 = new Button(1230, 985, 295, 40, "< Notsignal senden >");
-let button10 = new Button(1440, 990, 100, 30, "< weiter >");
-let button11 = new Button(1440, 990, 100, 30, "< weiter >");
-let button12 = new Button(1440, 990, 100, 30, "< weiter >");
+let button10 = new Button(1440, 990, 100, 30, "weiter >");
+let button11 = new Button(1440, 990, 100, 30, "weiter >");
+let button12 = new Button(1440, 990, 100, 30, "weiter >");
 let buttonStartMission = new Button(830, 990, 260, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "wechseln >");
-let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "< wechseln >");
+let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
@@ -327,7 +327,7 @@ let console4 = new Console(
   1320,
   230,
   "- ASTRONAUT (DU) -",
-  "Es gab beim Verlassen der Erdatmosphäre Probleme mit\nden Triebwerken. Die KI-Einheit 'P U C K' konnte alle\nProbleme weitestgehend beheben.\nWir sind wieder auf Kurs.\nAnkunft auf Planet B voraussichtlich in 3t 25h 06m...",
+  "Es gab beim Verlassen der Erdatmosphäre Probleme mit\nden Triebwerken. Die KI-Einheit 'P U C K' konnte alle\nProbleme weitestgehend beheben.\nWir sind wieder auf Kurs.\nAnkunft auf Planet B voraussichtlich in 3t 23h 06m...",
   3
 );
 let console5 = new Console(
@@ -381,7 +381,7 @@ let console10 = new Console(
   1320,
   200,
   "- P U C K -",
-  "<	Letzten Standort erfolgreich übermittelt >\n\n<	Koordinaten berechnen fehlgeschlagen. >",
+  "<	Letzten Standort erfolgreich übermittelt >\nUm zum Abholpunkt zu gelangen müssen wir an Höhe gewinnen!",
   2.3
 );
 let console11 = new Console(
@@ -390,7 +390,7 @@ let console11 = new Console(
   1320,
   230,
   "- P U C K -",
-  "Analyse zeigt:\n> Sauerstoffsättigung der Umgebung: < 0,1%\n> Fremde Lebensformen: bestätigt\n> Sauerstoffvorrat: 36.7 %\n> Weiterhin kein Funkkontakt möglich..!",
+  "Analyse zeigt:\n> Sauerstoffsättigung der Umgebung: < 0,1%\n> Fremde Lebensformen: bestätigt\n> Sauerstoffvorrat: 36.7 %\n> Weiterhin kein Funkkontakt möglich...",
   3
 );
 let consoleDeadCoral = new Console(
@@ -680,7 +680,6 @@ function gameScreens() {
     if (decisionState === false) {
       if (posState === 1) {
         image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
-        consoleHint.display();
       }
       if (posState === 2) {
         image(coral2PNG, 1668, 595, 142.5, 150);

@@ -93,7 +93,7 @@ export default class Decision {
 
   symbols() {
     image(this.samples, this.x + 17, this.y + 10, 20.2 * 1.2, 33.8 * 1.2);
-    image(this.oxygen, this.x + 88, this.y + 7, 20.1 * 3, 17.7 * 3);
+    image(this.oxygen, this.x + 90, this.y + 9, 20.1 * 3, 17.7 * 3);
   }
 
   display() {
