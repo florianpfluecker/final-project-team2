@@ -13,6 +13,8 @@ let backgroundMusic;
 let clickSound;
 let alarmSound;
 let collectSound;
+let explosion;
+let helicopterFlyBy;
 
 //IMAGES
 //layers
@@ -86,6 +88,9 @@ function preload() {
   clickSound = loadSound("./sounds/hoverCoral.mp3");
   alarmSound = loadSound("./sounds/alarmSound.mp3");
   collectSound = loadSound("./sounds/collectSound.wav");
+  explosion = loadSound("./sounds/explosion.mp3");
+  helicopterFlyBy = loadSound("./sounds/helicopterFlyBy.mp3");
+
   //CURSOR
   cursorPNG = loadImage("./assets/cursor.png");
 
@@ -453,7 +458,7 @@ let consolePuck2 = new Console(
 );
 let consoleLayerSwitch2 = new Console(
   300,
-  850,
+  820,
   1320,
   200,
   "- HINWEIS -",
@@ -1112,6 +1117,7 @@ function mouseClicked() {
     //sound
     alarmSound.play();
     alarmSound.stop();
+    explosion.play();
   } else if (button10.hitTest() && gameState === 10) {
     gameState = 11;
     //sound
