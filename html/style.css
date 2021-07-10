@@ -1,22 +1,27 @@
 body {
   padding: 0;
   margin: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  width: 100vw;
-  height: 100vh;
+}
+canvas {
+  width: auto !important;
+  height: 100% !important;
 }
 html {
   text-align: center;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(10, 10, 10);
 }
 #p5_loading {
   background: url("./loadingScreen.png");
   background-size: cover;
   position: absolute;
+  top: 0px;
   width: 100% !important;
   height: 100% !important;
+}
+#myCanvas {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
 }

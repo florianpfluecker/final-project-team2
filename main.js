@@ -4,6 +4,9 @@ window.mouseClicked = mouseClicked;
 window.preload = preload;
 angleMode(DEGREES);
 
+//FONT(s)
+let defaultFont;
+
 //SOUNDS
 let morseCode;
 let backgroundMusic;
@@ -11,94 +14,210 @@ let clickSound;
 let alarmSound;
 let collectSound;
 
-//FONT(s)
-let defaultFont;
+//IMAGES
+//layers
+let layer1;
+let layer2;
+let layer3;
+//cursor
+let cursorPNG;
+//Slogan Odyssee
+let sloganOdyssee;
+//startButtons
+let startButton;
+let startButtonHover;
+//GIFs
+let startScreenSpaceship;
+let startScreenBackground;
+let cockpitScreen;
+let cockpitBackground;
+let cockpit;
+let cockpitAlarm;
+let cockpitFade;
+//Layer 1 dead Corals
+let coral1PNG;
+let coral2PNG;
+let switchLayerPNG;
+//Layer 2 dead Corals
+let coral3PNG;
+let coral4PNG;
+let coral5PNG;
+let coral6PNG;
+let coral7PNG;
+let coral8PNG;
+let coral9PNG;
+let switchLayer2PNG;
+//Layer 3 dead Corals
+let coral10PNG;
+let coral11PNG;
+let coral12PNG;
+let coral13PNG;
+let coral14PNG;
+let coral15PNG;
+let endPointPNG;
+//endScreens
+let oceanBackground;
+let helicopter;
+//gameOverScreen
+let gameOverScreenPNG;
+//laborScreen
+let laborScreenPNG;
+//adopScreen
+let adoptScreenPNG;
+//creditScreen
+let creditsScreenPNG;
+//riseUp
+let riseUp;
 
 function preload() {
+  //LAYERS
+  layer1 = loadImage("./assets/layer1.png");
+  layer2 = loadImage("./assets/layer2.png");
+  layer3 = loadImage("./assets/layer3.png");
+  //Slogan Odyssee
+  sloganOdyssee = loadImage("./assets/sloganOdyssee.png");
+  //Buttons
+  startButton = loadImage("./assets/startButton.png");
+  startButtonHover = loadImage("./assets/startButtonHover.png");
+
   //SOUNDS
   morseCode = loadSound("./sounds/morseCode.mp3");
   backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
   clickSound = loadSound("./sounds/hoverCoral.mp3");
   alarmSound = loadSound("./sounds/alarmSound.mp3");
   collectSound = loadSound("./sounds/collectSound.wav");
+  //CURSOR
+  cursorPNG = loadImage("./assets/cursor.png");
 
   //FONT(s)
   defaultFont = loadFont("./fonts/defaultFont.ttf");
+
+  //GIFS
+  startScreenSpaceship = loadImage("./gifs/startScreenSpaceship.gif");
+  startScreenBackground = loadImage("./gifs/startScreenBackground.gif");
+  cockpitScreen = loadImage("./assets/cockpitScreen.jpg");
+  cockpitBackground = loadImage("./gifs/cockpitBackground.gif");
+  cockpit = loadImage("./gifs/cockpit.gif");
+  cockpitAlarm = loadImage("./gifs/cockpitAlarm.gif");
+  cockpitFade = loadImage("./gifs/cockpitFade.gif");
+
+  //Layer 1 dead Corals
+  coral1PNG = loadImage("./assets/layer1/coral1.png");
+  coral2PNG = loadImage("./assets/layer1/coral2.png");
+  switchLayerPNG = loadImage("./assets/layer1/switchLayer.png");
+
+  //Layer 2 dead Corals
+  coral3PNG = loadImage("./assets/layer2/coral3.png");
+  coral4PNG = loadImage("./assets/layer2/coral4.png");
+  coral5PNG = loadImage("./assets/layer2/coral5.png");
+  coral6PNG = loadImage("./assets/layer2/coral6.png");
+  coral7PNG = loadImage("./assets/layer2/coral7.png");
+  coral8PNG = loadImage("./assets/layer2/coral8.png");
+  coral9PNG = loadImage("./assets/layer2/coral9.png");
+  switchLayer2PNG = loadImage("./assets/layer2/switchLayer2.png");
+
+  //Layer 3 dead Corals
+  coral10PNG = loadImage("./assets/layer3/coral10.png");
+  coral11PNG = loadImage("./assets/layer3/coral11.png");
+  coral12PNG = loadImage("./assets/layer3/coral12.png");
+  coral13PNG = loadImage("./assets/layer3/coral13.png");
+  coral14PNG = loadImage("./assets/layer3/coral14.png");
+  coral15PNG = loadImage("./assets/layer3/coral15.png");
+  endPointPNG = loadImage("./assets/layer3/endPoint.png");
+
+  //endScreens
+  oceanBackground = loadImage("./gifs/oceanBackground.gif");
+  helicopter = loadImage("./gifs/helicopter.gif");
+
+  //gameOverScreen
+  gameOverScreenPNG = loadImage("./assets/gameOverScreen.png");
+
+  //laborScreen
+  laborScreenPNG = loadImage("./assets/laborScreen.png");
+
+  //adoptScreen
+  adoptScreenPNG = loadImage("./assets/adoptScreen.png");
+
+  //creditsScreen
+  creditsScreenPNG = loadImage("./assets/creditsScreen.png");
+
+  //riseUp
+  riseUp = loadImage("./gifs/riseUp.gif");
 }
 
 //IMAGES
 let images = {
-  //cursor
-  cursor: loadImage("./assets/cursor.png"),
-  //layers
-  layer1: loadImage("./assets/layer1.png"),
-  layer2: loadImage("./assets/layer2.png"),
-  layer3: loadImage("./assets/layer3.png"),
-
-  //sloganOdyssee
-  sloganOdyssee: loadImage("./assets/sloganOdyssee.png"),
-
   //astronaut
   astronaut: loadImage("./assets/astronaut.png"),
-
-  //buttons
-  startButton: loadImage("./assets/startButton.png"),
-  startButtonHover: loadImage("./assets/startButtonHover.png"),
-
   //symbols
   samples: loadImage("./assets/samples.png"),
   oxygen: loadImage("./assets/oxygen.png"),
 
-  //GIFs
-  startScreenSpaceship: loadImage("./gifs/startScreenSpaceship.gif"),
-  startScreenBackground: loadImage("./gifs/startScreenBackground.gif"),
-  cockpitScreen: loadImage("./assets/cockpitScreen.jpg"),
-  cockpitBackground: loadImage("./gifs/cockpitBackground.gif"),
-  cockpit: loadImage("./gifs/cockpit.gif"),
-  cockpitAlarm: loadImage("./gifs/cockpitAlarm.gif"),
-  cockpitFade: loadImage("./gifs/cockpitFade.gif"),
-
   //Layer 1 dead Corals
-  coral1: loadImage("./assets/layer1/coral1.png"),
-  coral2: loadImage("./assets/layer1/coral2.png"),
-  switchLayer: loadImage("./assets/layer1/switchLayer.png"),
+  // coral1: loadImage("./assets/layer1/coral1.png"),
+  // coral2: loadImage("./assets/layer1/coral2.png"),
+  // switchLayer: loadImage("./assets/layer1/switchLayer.png"),
 
-  //Layer 2 dead Corals
-  coral3: loadImage("./assets/layer2/coral3.png"),
-  coral4: loadImage("./assets/layer2/coral4.png"),
-  coral5: loadImage("./assets/layer2/coral5.png"),
-  coral6: loadImage("./assets/layer2/coral6.png"),
-  coral7: loadImage("./assets/layer2/coral7.png"),
-  coral8: loadImage("./assets/layer2/coral8.png"),
-  coral9: loadImage("./assets/layer2/coral9.png"),
-  switchLayer2: loadImage("./assets/layer2/switchLayer2.png"),
+  // //Layer 2 dead Corals
+  // coral3: loadImage("./assets/layer2/coral3.png"),
+  // coral4: loadImage("./assets/layer2/coral4.png"),
+  // coral5: loadImage("./assets/layer2/coral5.png"),
+  // coral6: loadImage("./assets/layer2/coral6.png"),
+  // coral7: loadImage("./assets/layer2/coral7.png"),
+  // coral8: loadImage("./assets/layer2/coral8.png"),
+  // coral9: loadImage("./assets/layer2/coral9.png"),
+  // switchLayer2: loadImage("./assets/layer2/switchLayer2.png"),
 
-  //Layer 3 dead Corals
-  coral10: loadImage("./assets/layer3/coral10.png"),
-  coral11: loadImage("./assets/layer3/coral11.png"),
-  coral12: loadImage("./assets/layer3/coral12.png"),
-  coral13: loadImage("./assets/layer3/coral13.png"),
-  coral14: loadImage("./assets/layer3/coral14.png"),
-  coral15: loadImage("./assets/layer3/coral15.png"),
-  endPoint: loadImage("./assets/layer3/endPoint.png"),
+  // //Layer 3 dead Corals
+  // coral10: loadImage("./assets/layer3/coral10.png"),
+  // coral11: loadImage("./assets/layer3/coral11.png"),
+  // coral12: loadImage("./assets/layer3/coral12.png"),
+  // coral13: loadImage("./assets/layer3/coral13.png"),
+  // coral14: loadImage("./assets/layer3/coral14.png"),
+  // coral15: loadImage("./assets/layer3/coral15.png"),
+  // endPoint: loadImage("./assets/layer3/endPoint.png"),
 
-  //endScreens
-  oceanBackground: loadImage("./gifs/oceanBackground.gif"),
-  helicopter: loadImage("./gifs/helicopter.gif"),
-  //gameOverScreen
-  gameOverScreen: loadImage("./assets/gameOverScreen.png"),
+  // //endScreens
+  // oceanBackground: loadImage("./gifs/oceanBackground.gif"),
+  // helicopter: loadImage("./gifs/helicopter.gif"),
 
-  //laborScreen
-  laborScreen: loadImage("./assets/laborScreen.png"),
+  // //gameOverScreen
+  // gameOverScreen: loadImage("./assets/gameOverScreen.png"),
 
-  //adoptScreen
-  adoptScreen: loadImage("./assets/adoptScreen.png"),
+  // //laborScreen
+  // laborScreen: loadImage("./assets/laborScreen.png"),
 
-  //creditsScreen
-  creditsScreen: loadImage("./assets/creditsScreen.png"),
+  // //adoptScreen
+  // adoptScreen: loadImage("./assets/adoptScreen.png"),
+
+  // //creditsScreen
+  // creditsScreen: loadImage("./assets/creditsScreen.png"),
 
   //riseUp
-  riseUp: loadImage("./gifs/riseUp.gif"),
+  // riseUp: loadImage("./gifs/riseUp.gif"),
+
+  //cursor
+  // cursor: loadImage("./assets/cursor.png"),
+  //layers
+  // layer1: loadImage("./assets/layer1.png"),
+  // layer2: loadImage("./assets/layer2.png"),
+  // layer3: loadImage("./assets/layer3.png"),
+
+  //sloganOdyssee
+  // sloganOdyssee: loadImage("./assets/sloganOdyssee.png"),
+
+  //buttons
+  // startButton: loadImage("./assets/startButton.png"),
+  // startButtonHover: loadImage("./assets/startButtonHover.png"),
+
+  //GIFs
+  // startScreenSpaceship: loadImage("./gifs/startScreenSpaceship.gif"),
+  // startScreenBackground: loadImage("./gifs/startScreenBackground.gif"),
+  // cockpitScreen: loadImage("./assets/cockpitScreen.jpg"),
+  // cockpitBackground: loadImage("./gifs/cockpitBackground.gif"),
+  // cockpit: loadImage("./gifs/cockpit.gif"),
+  // cockpitAlarm: loadImage("./gifs/cockpitAlarm.gif"),
+  // cockpitFade: loadImage("./gifs/cockpitFade.gif"),
 };
 
 //IMPORTS
@@ -160,7 +279,7 @@ let coral8 = new Button(1230, 0, 300, 250);
 let coral9 = new Button(760, 100, 70, 50);
 let switchLayer2 = new Button(1140, 20, 50, 50);
 
-//layer 2 hover Objects
+//layer 3 hover Objects
 let coral10 = new Button(140, 700, 250, 130);
 let coral11 = new Button(540, 250, 160, 100);
 let coral12 = new Button(720, 440, 200, 120);
@@ -403,7 +522,7 @@ function cursor() {
 
   //image
   ellipse(mouseX + 45, mouseY + 20, 25, 25);
-  image(images.cursor, mouseX - 10, mouseY - 25, 100, 100);
+  image(cursorPNG, mouseX - 10, mouseY - 25, 100, 100);
   noCursor();
 }
 
@@ -423,17 +542,17 @@ function screenOrder() {
   //SCREEN 1
   if (gameState >= 0 && gameState <= 4) {
     //screen1 animated GIF!
-    image(images.startScreenBackground, 0, 0, 1920, 1080);
-    image(images.startScreenSpaceship, 0, 0, 1920, 1080);
+    image(startScreenBackground, 0, 0, 1920, 1080);
+    image(startScreenSpaceship, 0, 0, 1920, 1080);
 
     if (buttonStart.hoverTest() && gameState === 0) {
       //startButtonImage
-      image(images.startButtonHover, 726, 845, 468, 163.5);
+      image(startButtonHover, 726, 845, 468, 163.5);
     }
     if (gameState === 0) {
-      image(images.startButton, 796.5, 845, 327, 163.5);
+      image(startButton, 796.5, 845, 327, 163.5);
       buttonStart.display();
-      image(images.sloganOdyssee, 570, 60, 751, 450);
+      image(sloganOdyssee, 570, 60, 751, 450);
     }
     if (gameState === 1) {
       console1.display();
@@ -452,8 +571,8 @@ function screenOrder() {
   //SCREEN 2
   if (gameState >= 4 && gameState <= 7) {
     //POV cockpit!
-    image(images.cockpitBackground, 0, 0, 1920, 1080);
-    image(images.cockpit, 0, 0, 1920, 1080);
+    image(cockpitBackground, 0, 0, 1920, 1080);
+    image(cockpit, 0, 0, 1920, 1080);
 
     if (gameState === 4) {
       console4.display();
@@ -475,8 +594,8 @@ function screenOrder() {
 
   //SCREEN 3
   if (gameState >= 8 && gameState <= 13) {
-    image(images.cockpitBackground, 0, 0, 1920, 1080);
-    image(images.cockpitAlarm, 0, 0, 1920, 1080);
+    image(cockpitBackground, 0, 0, 1920, 1080);
+    image(cockpitAlarm, 0, 0, 1920, 1080);
 
     //BLACKSCREEN ALARM GIF
     if (gameState === 8) {
@@ -484,7 +603,7 @@ function screenOrder() {
       button8.display();
     }
     if (gameState === 9) {
-      image(images.cockpitFade, 0, 0, 1920, 1080);
+      image(cockpitFade, 0, 0, 1920, 1080);
       transitionOut();
       console9.display();
       if (opac2 >= 240) {
@@ -492,7 +611,7 @@ function screenOrder() {
       }
     }
     if (gameState === 10) {
-      image(images.layer1, 0, 0, 1920, 1080);
+      image(layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console10.display();
       if (opac <= 50) {
@@ -501,19 +620,19 @@ function screenOrder() {
       transition();
     }
     if (gameState === 11) {
-      image(images.layer1, 0, 0, 1920, 1080);
+      image(layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console11.display();
       button11.display();
     }
     if (gameState === 12) {
-      image(images.layer1, 0, 0, 1920, 1080);
+      image(layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console12.display();
       button12.display();
     }
     if (gameState === 13) {
-      image(images.layer1, 0, 0, 1920, 1080);
+      image(layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console13.display();
       buttonStartMission.display();
@@ -526,7 +645,7 @@ function gameScreens() {
 
   //LAYER 1 SCREEN
   if (runGame === true && layerState === 1) {
-    image(images.layer1, 0, 0, 1920, 1080);
+    image(layer1, 0, 0, 1920, 1080);
     statusBar.display();
     astronaut.display();
 
@@ -556,23 +675,23 @@ function gameScreens() {
       if (switchLayer.hoverTest() && posState === 2) {
         fill(255, 255, 255, 20);
         ellipse(1830, 130, 180, 160);
-        image(images.switchLayer, 1740, 10, 102 * 1.8, 101 * 1.8);
+        image(switchLayerPNG, 1740, 10, 102 * 1.8, 101 * 1.8);
       }
     }
 
     //Console HINT Oxygen + Sample
     if (decisionState === false) {
       if (posState === 1) {
-        image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
+        image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
         consoleHint.display();
       }
       if (posState === 2) {
-        image(images.coral2, 1668, 595, 142.5, 150);
+        image(coral2PNG, 1668, 595, 142.5, 150);
         consoleHint2.display();
       }
       if (posState === 3) {
-        image(images.coral1, 1340, 925, 118 * 1.4, 100 * 1.4);
-        image(images.coral2, 1668, 595, 142.5, 150);
+        image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
+        image(coral2PNG, 1668, 595, 142.5, 150);
       }
     }
   }
@@ -580,30 +699,30 @@ function gameScreens() {
   //LAYER 2 SCREEN
   if (runGame === true && layerState === 2) {
     //LAYER
-    image(images.layer2, 0, 0, 1920, 1080);
+    image(layer2, 0, 0, 1920, 1080);
 
     //DEAD CORALS LAYER 2
     if (layerState === 2) {
       if (choiceCoral3 === true) {
-        image(images.coral3, 252, 230, 119 * 1.4, 49 * 1.4);
+        image(coral3PNG, 252, 230, 119 * 1.4, 49 * 1.4);
       }
       if (choiceCoral4 === true) {
-        image(images.coral4, 110, 635, 297 * 1.4, 189 * 1.4);
+        image(coral4PNG, 110, 635, 297 * 1.4, 189 * 1.4);
       }
       if (choiceCoral5 === true) {
-        image(images.coral5, 670, 470, 84 * 1.4, 75 * 1.4);
+        image(coral5PNG, 670, 470, 84 * 1.4, 75 * 1.4);
       }
       if (choiceCoral6 === true) {
-        image(images.coral6, 902, 335, 92 * 1.4, 70 * 1.4);
+        image(coral6PNG, 902, 335, 92 * 1.4, 70 * 1.4);
       }
       if (choiceCoral7 === true) {
-        image(images.coral7, 1203, 514, 224 * 1.4, 100 * 1.4);
+        image(coral7PNG, 1203, 514, 224 * 1.4, 100 * 1.4);
       }
       if (choiceCoral8 === true) {
-        image(images.coral8, 1210, 0, 222 * 1.4, 173 * 1.4);
+        image(coral8PNG, 1210, 0, 222 * 1.4, 173 * 1.4);
       }
       if (choiceCoral9 === true) {
-        image(images.coral9, 782, 94, 36 * 1.4, 28 * 1.4);
+        image(coral9PNG, 782, 94, 36 * 1.4, 28 * 1.4);
       }
     }
 
@@ -652,27 +771,27 @@ function gameScreens() {
   //LAYER 3 SCREEN
   if (runGame === true && layerState === 3) {
     //LAYER
-    image(images.layer3, 0, 0, 1920, 1080);
+    image(layer3, 0, 0, 1920, 1080);
 
     //DEAD CORALS LAYER 3
     if (layerState === 3) {
       if (choiceCoral10 === true) {
-        image(images.coral10, 145, 740, 286 * 1.4, 117 * 1.4);
+        image(coral10PNG, 145, 740, 286 * 1.4, 117 * 1.4);
       }
       if (choiceCoral11 === true) {
-        image(images.coral11, 720, 425, 197 * 1.4, 127 * 1.4);
+        image(coral11PNG, 720, 425, 197 * 1.4, 127 * 1.4);
       }
       if (choiceCoral12 === true) {
-        image(images.coral12, 540, 245, 120 * 1.4, 62 * 1.4);
+        image(coral12PNG, 540, 245, 120 * 1.4, 62 * 1.4);
       }
       if (choiceCoral13 === true) {
-        image(images.coral14, 1575, 415, 131 * 1.4, 66 * 1.4);
+        image(coral14PNG, 1575, 415, 131 * 1.4, 66 * 1.4);
       }
       if (choiceCoral14 === true) {
-        image(images.coral13, 790, 155, 102 * 1.4, 79 * 1.4);
+        image(coral13PNG, 790, 155, 102 * 1.4, 79 * 1.4);
       }
       if (choiceCoral15 === true) {
-        image(images.coral15, 1470, 125, 139 * 1.4, 60 * 1.4);
+        image(coral15PNG, 1470, 125, 139 * 1.4, 60 * 1.4);
       }
 
       //CORAL HOVERS LAYER 3
@@ -702,7 +821,7 @@ function gameScreens() {
 function endScreens() {
   if (endState === true && frameCounter <= 301) {
     //rescue screen
-    image(images.riseUp, 0, 0, 1920, 1080);
+    image(riseUp, 0, 0, 1920, 1080);
     frameCounter = frameCounter + 1;
   } else if (
     endState === true &&
@@ -710,8 +829,8 @@ function endScreens() {
     statusBar.sampleCounter >= 9
   ) {
     //end Screen -> too many samples collected
-    image(images.oceanBackground, 0, 0, 1920, 1080);
-    image(images.helicopter, 0, 0, 1920, 1080);
+    image(oceanBackground, 0, 0, 1920, 1080);
+    image(helicopter, 0, 0, 1920, 1080);
     fill(10, 10, 10, 240);
     textAlign(LEFT);
     textSize(20);
@@ -729,8 +848,8 @@ function endScreens() {
     statusBar.sampleCounter <= 7
   ) {
     //end Screen -> not eenough samples collected
-    image(images.oceanBackground, 0, 0, 1920, 1080);
-    image(images.helicopter, 0, 0, 1920, 1080);
+    image(oceanBackground, 0, 0, 1920, 1080);
+    image(helicopter, 0, 0, 1920, 1080);
     fill(10, 10, 10, 240);
     textAlign(LEFT);
     textSize(20);
@@ -748,8 +867,8 @@ function endScreens() {
     statusBar.sampleCounter === 8
   ) {
     //end Screen -> success
-    image(images.oceanBackground, 0, 0, 1920, 1080);
-    image(images.helicopter, 0, 0, 1920, 1080);
+    image(oceanBackground, 0, 0, 1920, 1080);
+    image(helicopter, 0, 0, 1920, 1080);
     fill(10, 10, 10, 240);
     textAlign(LEFT);
     textSize(20);
@@ -766,7 +885,7 @@ function endScreens() {
 
 function laborScreens() {
   if (laborState === true) {
-    image(images.laborScreen, 0, 0, 1920, 1080);
+    image(laborScreenPNG, 0, 0, 1920, 1080);
     textAlign(LEFT);
 
     //WHEN HOVER -> text
@@ -824,7 +943,7 @@ function laborScreens() {
 
 function adoptScreen() {
   if (adoptionState === true) {
-    image(images.adoptScreen, 0, 0, 1920, 1080);
+    image(adoptScreenPNG, 0, 0, 1920, 1080);
     buttonRestartEnd.display();
     buttonCredits.display();
   }
@@ -833,21 +952,21 @@ function adoptScreen() {
 function gameOverScreen() {
   if (statusBar.oxygenCounter <= -1) {
     fill(255);
-    image(images.gameOverScreen, 0, 0, 1920, 1080);
+    image(gameOverScreenPNG, 0, 0, 1920, 1080);
     textAlign(CENTER);
     text("DIR IST DER SAUERSTOFF AUSGEGANGEN", 960, 700);
 
     runGame = false;
 
     //restartButton
-    image(images.startButton, 796.5, 830, 327, 163.5);
+    image(startButton, 796.5, 830, 327, 163.5);
     buttonRestart.display();
   }
 }
 
 function creditsScreen() {
   if (creditState === true) {
-    image(images.creditsScreen, 0, 0, 1920, 1080);
+    image(creditsScreenPNG, 0, 0, 1920, 1080);
     buttonBack.display();
 
     runGame = false;

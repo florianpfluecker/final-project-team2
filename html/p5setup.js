@@ -1,8 +1,8 @@
 function setup() {
-  createCanvas(1920, 1080);
   frameRate(30);
+  let myCanvas = createCanvas(1920, 1080);
+  myCanvas.parent("myCanvas");
 }
-
 // window.addEventListener("resize", function () {
 //   resizeCanvas(windowWidth, windowHeight);
 //   clear();
