@@ -1,13 +1,20 @@
 body {
   padding: 0;
   margin: 0;
+  width: auto !important;
+  height: auto !important;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 html {
   text-align: center;
   background-color: rgb(34, 34, 34);
 }
-
-canvas {
-  margin: 0 auto;
-  display: block;
+#p5_loading {
+  background: url("./loadingScreen.png");
+  background-size: cover;
+  position: absolute;
+  width: 70%;
+  height: 100%;
 }
