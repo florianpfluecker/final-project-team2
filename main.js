@@ -21,13 +21,17 @@ let helicopterFlyBy;
 let layer1;
 let layer2;
 let layer3;
+
 //cursor
 let cursorPNG;
+
 //Slogan Odyssee
 let sloganOdyssee;
-//startButtons
+
+//startButton
 let startButton;
 let startButtonHover;
+
 //GIFs
 let startScreenSpaceship;
 let startScreenBackground;
@@ -36,10 +40,12 @@ let cockpitBackground;
 let cockpit;
 let cockpitAlarm;
 let cockpitFade;
+
 //Layer 1 dead Corals
 let coral1PNG;
 let coral2PNG;
 let switchLayerPNG;
+
 //Layer 2 dead Corals
 let coral3PNG;
 let coral4PNG;
@@ -49,6 +55,7 @@ let coral7PNG;
 let coral8PNG;
 let coral9PNG;
 let switchLayer2PNG;
+
 //Layer 3 dead Corals
 let coral10PNG;
 let coral11PNG;
@@ -57,17 +64,23 @@ let coral13PNG;
 let coral14PNG;
 let coral15PNG;
 let endPointPNG;
+
 //endScreens
 let oceanBackground;
 let helicopter;
+
 //gameOverScreen
 let gameOverScreenPNG;
+
 //laborScreen
 let laborScreenPNG;
+
 //adopScreen
 let adoptScreenPNG;
+
 //creditScreen
 let creditsScreenPNG;
+
 //riseUp
 let riseUp;
 
