@@ -1,3 +1,27 @@
+//SOUNDS
+let morseCode;
+let backgroundMusic;
+let clickSound;
+let alarmSound;
+let collectSound;
+
+let astronautPNG;
+
+function preload() {
+  //astronautPNG
+  astronautPNG = loadImage("./assets/astronaut.png");
+
+  //SOUNDS
+  // morseCode = loadSound("./sounds/morseCode.mp3");
+  // backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
+  // clickSound = loadSound("./sounds/hoverCoral.mp3");
+  // alarmSound = loadSound("./sounds/alarmSound.mp3");
+  // collectSound = loadSound("./sounds/collectSound.wav");
+
+  //FONT(s)
+  defaultFont = loadFont("./fonts/defaultFont.ttf");
+}
+
 let images = {
   //layers
   layer1: loadImage("./assets/layer1.png"),
@@ -99,4 +123,6 @@ function draw() {
   //!
   // image(images.samples, 0, 0, 20.2 * 1.2, 33.8 * 1.2);
   // image(images.oxygen, 20, 0, 20.1 * 3, 17.7 * 3);
+
+  image(astronautPNG, 100, 100, 100, 100);
 }
