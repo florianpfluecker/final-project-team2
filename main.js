@@ -307,7 +307,7 @@ let coral15 = new Button(1480, 130, 180, 130);
 let switchLayer3 = new Button(1750, 0, 100, 100);
 
 //adopt a coral linking
-let adoptCoralButton = createA("https://www.coralgardeners.org", "ADOPT");
+let adoptCoralButton = createA("https://www.coralgardeners.org", "< ADOPT >");
 
 //consoles
 let console1 = new Console(
@@ -514,7 +514,7 @@ let endState = false;
 let posState = 0;
 let runGame = false;
 let laborState = false;
-let adoptionState = false;
+let adoptionState = true;
 let creditState = false;
 let opac = 255;
 let opac2 = 0;
@@ -980,7 +980,7 @@ function adoptScreen() {
     image(adoptScreenPNG, 0, 0, 1920, 1080);
     buttonRestartEnd.display();
     buttonCredits.display();
-    adoptCoralButton.position(1100, 900);
+    adoptCoralButton.position(950, 550);
   }
 }
 
