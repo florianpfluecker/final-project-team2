@@ -264,7 +264,7 @@ let button11 = new Button(1440, 990, 100, 30, "weiter >");
 let button12 = new Button(1440, 990, 100, 30, "weiter >");
 let buttonStartMission = new Button(830, 990, 260, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "wechseln >");
-let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "wechseln >");
+let buttonSwitchLayer2 = new Button(890, 990, 140, 80, "wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
@@ -775,7 +775,7 @@ function gameScreens() {
       }
       if (switchLayer2.hitTest()) {
         fill(255, 255, 255, 20);
-        ellipse(1170, 40, 120, 120);
+        ellipse(1170, 40, 150, 150);
         consoleLayerSwitch2.display();
       }
     }
