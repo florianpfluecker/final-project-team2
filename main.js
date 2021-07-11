@@ -517,7 +517,7 @@ let endState = false;
 let posState = 0;
 let runGame = false;
 let laborState = false;
-let adoptionState = true;
+let adoptionState = false;
 let creditState = false;
 let opac = 255;
 let opac2 = 0;
@@ -638,7 +638,7 @@ function screenOrder() {
       image(layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console10.display();
-      if (opac <= 50) {
+      if (opac <= 100) {
         button10.display();
       }
       transition();
