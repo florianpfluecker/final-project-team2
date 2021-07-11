@@ -306,6 +306,9 @@ let coral14 = new Button(1570, 420, 200, 160);
 let coral15 = new Button(1480, 130, 180, 130);
 let switchLayer3 = new Button(1750, 0, 100, 100);
 
+//adopt a coral linking
+let adoptCoralButton = createA("https://www.coralgardeners.org", "ADOPT");
+
 //consoles
 let console1 = new Console(
   300,
@@ -659,8 +662,6 @@ function screenOrder() {
 }
 
 function gameScreens() {
-  //test
-
   //LAYER 1 SCREEN
   if (runGame === true && layerState === 1) {
     image(layer1, 0, 0, 1920, 1080);
@@ -979,6 +980,7 @@ function adoptScreen() {
     image(adoptScreenPNG, 0, 0, 1920, 1080);
     buttonRestartEnd.display();
     buttonCredits.display();
+    adoptCoralButton.position(1100, 900);
   }
 }
 
@@ -1204,7 +1206,6 @@ function mouseClicked() {
   //SWITCH BUTTON LAYER 1
   if (buttonSwitchLayer.hitTest() && layerState === 1 && posState === 3) {
     layerState = 2;
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
     //sound
     clickSound.play();
     //posAstronaut
@@ -1307,7 +1308,6 @@ function mouseClicked() {
 
   if (buttonSwitchLayer2.hitTest() && layerState === 1 && posState === 11) {
     layerState = 2;
-    statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
     //sound
     clickSound.play();
     //posAstronaut
@@ -1456,7 +1456,6 @@ function mouseClicked() {
       astronaut.y = -20;
       posState = 11;
       //decreaseOxygenCounter
-      statusBar.oxygenCounter = statusBar.oxygenCounter - 1;
       //switch layer
       decisionState = false;
       endSimulation = true;
