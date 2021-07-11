@@ -775,7 +775,7 @@ function gameScreens() {
       }
       if (switchLayer2.hitTest()) {
         fill(255, 255, 255, 20);
-        ellipse(1170, 40, 80, 80);
+        ellipse(1170, 40, 120, 120);
         consoleLayerSwitch2.display();
       }
     }
