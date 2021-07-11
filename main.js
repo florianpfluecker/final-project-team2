@@ -394,7 +394,7 @@ let console10 = new Console(
   1320,
   200,
   "- P U C K -",
-  "<	Letzten Standort erfolgreich übermittelt >\nUm zum Abholpunkt zu gelangen müssen wir an Höhe gewinnen!",
+  "<	Letzten Standort erfolgreich übermittelt >\n\nUm zum Abholpunkt zu gelangen müssen wir an Höhe gewinnen!",
   2.3
 );
 let console11 = new Console(
@@ -696,21 +696,11 @@ function gameScreens() {
       }
       if (posState === 2) {
         image(coral2PNG, 1668, 595, 142.5, 150);
-        consoleHint2.display();
         image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
+        consoleHint2.display();
       }
       if (posState === 3) {
-        image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
         image(coral2PNG, 1668, 595, 142.5, 150);
-      }
-    }
-
-    //DEAD CORALS LAYER 1
-    if (layerState === 1) {
-      if (posState >= 2) {
-        image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
-      }
-      if (posState >= 3) {
       }
     }
   }
@@ -815,6 +805,30 @@ function gameScreens() {
 
       //CORAL HOVERS LAYER 3
       if (layerState === 3 && decisionState === false) {
+        if (coral10.hoverTest() && choiceCoral10 === false) {
+          fill(255, 255, 255, 20);
+          ellipse(330, 814, 400, 200);
+        }
+        if (coral11.hoverTest() && choiceCoral11 === false) {
+          fill(255, 255, 255, 20);
+          ellipse(620, 290, 180, 120);
+        }
+        if (coral12.hoverTest() && choiceCoral12 === false) {
+          fill(255, 255, 255, 20);
+          ellipse(850, 520, 300, 250);
+        }
+        if (coral13.hoverTest() && choiceCoral13 === false) {
+          fill(255, 255, 255, 20);
+          ellipse(850, 220, 180, 120);
+        }
+        if (coral14.hoverTest() && choiceCoral14 === false) {
+          fill(255, 255, 255, 20);
+          ellipse(1670, 460, 180, 120);
+        }
+        if (coral15.hoverTest() && choiceCoral15 === false) {
+          fill(255, 255, 255, 20);
+          ellipse(1570, 170, 220, 120);
+        }
       }
     }
     //ASTRONAUT + STATUSBAR
@@ -1305,104 +1319,61 @@ function mouseClicked() {
     clickSound.play();
   }
 
-  //POS 4
+  //Remembers which Corals have been exploited
+  //Pos 4 - 10
   if (
-    (decision.hitTestRight() && layerState === 2 && posState === 4) ||
-    (decision.hitTestLeft() && layerState === 2 && posState === 4)
+    (decision.hitTestRight() && layerState === 2) ||
+    (decision.hitTestLeft() && layerState === 2)
   ) {
-    choiceCoral3 = true;
+    if (posState === 4) {
+      choiceCoral3 = true;
+    }
+    if (posState === 5) {
+      choiceCoral4 = true;
+    }
+    if (posState === 6) {
+      choiceCoral5 = true;
+    }
+    if (posState === 7) {
+      choiceCoral6 = true;
+    }
+    if (posState === 8) {
+      choiceCoral7 = true;
+    }
+    if (posState === 9) {
+      choiceCoral8 = true;
+    }
+    if (posState === 10) {
+      choiceCoral9 = true;
+    }
   }
-  //POS 5
+  //Remembers which Corals have been exploited
+  //Pos 11 - 17
   if (
-    (decision.hitTestRight() && layerState === 2 && posState === 5) ||
-    (decision.hitTestLeft() && layerState === 2 && posState === 5)
+    (decision.hitTestRight() && layerState === 3) ||
+    (decision.hitTestLeft() && layerState === 3)
   ) {
-    choiceCoral4 = true;
-  }
-  //POS 6
-  if (
-    (decision.hitTestRight() && layerState === 2 && posState === 6) ||
-    (decision.hitTestLeft() && layerState === 2 && posState === 6)
-  ) {
-    choiceCoral5 = true;
-  }
-  //POS 7
-  if (
-    (decision.hitTestRight() && layerState === 2 && posState === 7) ||
-    (decision.hitTestLeft() && layerState === 2 && posState === 7)
-  ) {
-    choiceCoral6 = true;
-  }
-  //POS 8
-  if (
-    (decision.hitTestRight() && layerState === 2 && posState === 8) ||
-    (decision.hitTestLeft() && layerState === 2 && posState === 8)
-  ) {
-    choiceCoral7 = true;
-  }
-  //POS 9
-  if (
-    (decision.hitTestRight() && layerState === 2 && posState === 9) ||
-    (decision.hitTestLeft() && layerState === 2 && posState === 9)
-  ) {
-    choiceCoral8 = true;
-  }
-  //POS 10
-  if (
-    (decision.hitTestRight() && layerState === 2 && posState === 10) ||
-    (decision.hitTestLeft() && layerState === 2 && posState === 10)
-  ) {
-    choiceCoral9 = true;
-  }
-
-  //POS11
-  if (
-    (decision.hitTestRight() && layerState === 3 && posState === 11) ||
-    (decision.hitTestLeft() && layerState === 3 && posState === 11)
-  ) {
-    choiceCoral11 = true;
-  }
-  //POS12
-  if (
-    (decision.hitTestRight() && layerState === 3 && posState === 12) ||
-    (decision.hitTestLeft() && layerState === 3 && posState === 12)
-  ) {
-    choiceCoral10 = true;
-  }
-  //POS13
-  if (
-    (decision.hitTestRight() && layerState === 3 && posState === 13) ||
-    (decision.hitTestLeft() && layerState === 3 && posState === 13)
-  ) {
-    choiceCoral12 = true;
-  }
-  //POS14
-  if (
-    (decision.hitTestRight() && layerState === 3 && posState === 14) ||
-    (decision.hitTestLeft() && layerState === 3 && posState === 14)
-  ) {
-    choiceCoral11 = true;
-  }
-  //POS15
-  if (
-    (decision.hitTestRight() && layerState === 3 && posState === 15) ||
-    (decision.hitTestLeft() && layerState === 3 && posState === 15)
-  ) {
-    choiceCoral14 = true;
-  }
-  //POS16
-  if (
-    (decision.hitTestRight() && layerState === 3 && posState === 16) ||
-    (decision.hitTestLeft() && layerState === 3 && posState === 16)
-  ) {
-    choiceCoral15 = true;
-  }
-  //POS17
-  if (
-    (decision.hitTestRight() && layerState === 3 && posState === 17) ||
-    (decision.hitTestLeft() && layerState === 3 && posState === 17)
-  ) {
-    choiceCoral13 = true;
+    if (posState === 11) {
+      choiceCoral11 = true;
+    }
+    if (posState === 12) {
+      choiceCoral10 = true;
+    }
+    if (posState === 13) {
+      choiceCoral12 = true;
+    }
+    if (posState === 14) {
+      choiceCoral11 = true;
+    }
+    if (posState === 15) {
+      choiceCoral14 = true;
+    }
+    if (posState === 16) {
+      choiceCoral15 = true;
+    }
+    if (posState === 17) {
+      choiceCoral13 = true;
+    }
   }
 
   //CORAL BUTTONS LAYER 3

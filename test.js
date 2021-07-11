@@ -91,7 +91,7 @@ decision = new Decision(30, 500, 60, 60, "decision", images);
 
 function draw() {
   // image(images.layer1, 0, 0, 1920, 1080);
-  // image(images.layer3, 0, 0, 1920, 1080);
+  image(images.layer3, 0, 0, 1920, 1080);
   // image(images.gameOverScreen, 0, 0, 1920, 1080);
   //LAYER 2 ASSETS
   // image(images.layer2, 0, 0, 1920, 1080);
