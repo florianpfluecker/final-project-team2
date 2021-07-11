@@ -264,7 +264,7 @@ let button11 = new Button(1440, 990, 100, 30, "weiter >");
 let button12 = new Button(1440, 990, 100, 30, "weiter >");
 let buttonStartMission = new Button(830, 990, 260, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "wechseln >");
-let buttonSwitchLayer2 = new Button(890, 990, 140, 80, "wechseln >");
+let buttonSwitchLayer2 = new Button(890, 990, 100, 30, "wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
@@ -295,7 +295,7 @@ let coral6 = new Button(900, 320, 120, 120);
 let coral7 = new Button(1200, 530, 300, 150);
 let coral8 = new Button(1230, 0, 300, 250);
 let coral9 = new Button(760, 100, 70, 50);
-let switchLayer2 = new Button(1140, 20, 50, 50);
+let switchLayer2 = new Button(1140, 20, 100, 100);
 
 //layer 3 hover Objects
 let coral10 = new Button(140, 700, 250, 130);
