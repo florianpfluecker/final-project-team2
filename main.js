@@ -225,7 +225,7 @@ let images = {
   // sloganOdyssee: loadImage("./assets/sloganOdyssee.png"),
 
   //buttons
-  // startButton: loadImage("./assets/startButton.png"),
+  statusBarPNG: loadImage("./assets/oxygenBar.png"),
   // startButtonHover: loadImage("./assets/startButtonHover.png"),
 
   //GIFs
@@ -505,7 +505,7 @@ let consoleHint2 = new Console(
 
 //otherStuff
 let astronaut = new Astronaut(425, 550, images);
-let statusBar = new StatusBar(50, 30, 4, 4);
+let statusBar = new StatusBar(70, 30, 4, 4, images);
 
 //VARIABLES
 statusBar.oxygenCounter = 1;
