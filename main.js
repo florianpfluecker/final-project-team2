@@ -268,8 +268,8 @@ let buttonSwitchLayer2 = new Button(910, 990, 100, 30, "wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
-let buttonRestartEnd = new Button(130, 500, 100, 30, "< RESTART >");
-let buttonCredits = new Button(130, 450, 100, 30, "< CREDITS >");
+let buttonRestartEnd = new Button(910, 860, 100, 30, "< RESTART >");
+let buttonCredits = new Button(910, 700, 100, 30, "< CREDITS >");
 let buttonBack = new Button(130, 1000, 100, 30, "< ZURÜCK");
 
 //laborButtons
@@ -307,7 +307,10 @@ let coral15 = new Button(1480, 130, 180, 130);
 let switchLayer3 = new Button(1750, 0, 100, 100);
 
 //adopt a coral linking
-let adoptCoralButton = createA("https://www.coralgardeners.org", "< ADOPT >");
+let adoptCoralButton = createA(
+  "https://www.coralgardeners.org",
+  "< KORALLENWAISE ADOPTIEREN >"
+);
 
 //consoles
 let console1 = new Console(
@@ -980,7 +983,7 @@ function adoptScreen() {
     image(adoptScreenPNG, 0, 0, 1920, 1080);
     buttonRestartEnd.display();
     buttonCredits.display();
-    adoptCoralButton.position(950, 549);
+    adoptCoralButton.position(windowWidth / 2.9, windowHeight / 1.7);
   }
 }
 
