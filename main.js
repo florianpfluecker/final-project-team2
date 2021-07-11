@@ -980,7 +980,7 @@ function adoptScreen() {
     image(adoptScreenPNG, 0, 0, 1920, 1080);
     buttonRestartEnd.display();
     buttonCredits.display();
-    adoptCoralButton.position(950, 550);
+    adoptCoralButton.position(950, 549);
   }
 }
 
