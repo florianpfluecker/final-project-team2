@@ -96,13 +96,13 @@ function preload() {
   startButtonHover = loadImage("./assets/startButtonHover.png");
 
   //SOUNDS
-  morseCode = loadSound("./sounds/morseCode.mp3");
-  backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
-  clickSound = loadSound("./sounds/hoverCoral.mp3");
-  alarmSound = loadSound("./sounds/alarmSound.mp3");
-  collectSound = loadSound("./sounds/collectSound.wav");
-  explosion = loadSound("./sounds/explosion.mp3");
-  helicopterFlyBy = loadSound("./sounds/helicopterFlyBy.mp3");
+  // morseCode = loadSound("./sounds/morseCode.mp3");
+  // backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
+  // clickSound = loadSound("./sounds/hoverCoral.mp3");
+  // alarmSound = loadSound("./sounds/alarmSound.mp3");
+  // collectSound = loadSound("./sounds/collectSound.wav");
+  // explosion = loadSound("./sounds/explosion.mp3");
+  // helicopterFlyBy = loadSound("./sounds/helicopterFlyBy.mp3");
 
   //CURSOR
   cursorPNG = loadImage("./assets/cursor.png");
@@ -313,7 +313,7 @@ let console1 = new Console(
   1320,
   200,
   "- ZENTRALE -",
-  "XR988 haben wir Kontakt...?",
+  "XR988, haben wir Kontakt...?",
   1.7
 );
 let console2 = new Console(
@@ -322,7 +322,7 @@ let console2 = new Console(
   1320,
   200,
   "- ASTRONAUT (DU) -",
-  "Positiv, es besteht Funkkontakt, ich kann sie hören.",
+  "Positiv, es besteht Funkkontakt. Ich kann sie hören.",
   1.7
 );
 let console3 = new Console(
@@ -394,8 +394,8 @@ let console10 = new Console(
   1320,
   200,
   "- P U C K -",
-  "<	Letzten Standort erfolgreich übermittelt >\n\nUm zum Abholpunkt zu gelangen müssen wir an Höhe gewinnen!",
-  2.3
+  "<	Letzten Standort erfolgreich übermittelt >\nUm zum Abholpunkt zu gelangen müssen wir an Höhe gewinnen!",
+  2.0
 );
 let console11 = new Console(
   300,
@@ -462,12 +462,12 @@ let consolePuck1 = new Console(
 );
 let consolePuck2 = new Console(
   300,
-  860,
+  830,
   1320,
-  180,
+  220,
   "- P U C K -",
-  "Wähle nun die Probe aus, du hast genug\nSauerstoffvorrat um dich weiter fortzubewegen.",
-  2.0
+  "Interessant, diese Lebensform scheint heilende Eigenschaften\nzu besitzen.\nWähle nun die Probe aus, du hast genug\nSauerstoffvorrat um dich weiter fortzubewegen.",
+  2.4
 );
 let consoleLayerSwitch2 = new Console(
   300,
@@ -505,11 +505,11 @@ let statusBar = new StatusBar(70, 30, 4, 4, images);
 statusBar.oxygenCounter = 1;
 statusBar.sampleCounter = 0;
 let gameState = 0;
-let layerState = 1;
+let layerState = 3;
 let endSimulation = false;
 let endState = false;
 let posState = 0;
-let runGame = false;
+let runGame = true;
 let laborState = false;
 let adoptionState = false;
 let creditState = false;
@@ -632,7 +632,7 @@ function screenOrder() {
       image(layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console10.display();
-      if (opac <= 100) {
+      if (opac <= 140) {
         button10.display();
       }
       transition();
@@ -687,6 +687,10 @@ function gameScreens() {
       }
     }
 
+    if (posState === 2) {
+      image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
+    }
+
     //Console HINT Oxygen + Sample
     if (decisionState === false) {
       if (posState === 1) {
@@ -698,6 +702,8 @@ function gameScreens() {
         consoleHint2.display();
       }
       if (posState === 3) {
+        image(coral1PNG, 1340, 925, 118 * 1.4, 100 * 1.4);
+
         image(coral2PNG, 1668, 595, 142.5, 150);
       }
     }
@@ -803,29 +809,33 @@ function gameScreens() {
 
       //CORAL HOVERS LAYER 3
       if (layerState === 3 && decisionState === false) {
-        if (coral10.hoverTest() && choiceCoral10 === false) {
+        if (coral10.hoverTest()) {
           fill(255, 255, 255, 20);
           ellipse(330, 814, 400, 200);
         }
-        if (coral11.hoverTest() && choiceCoral11 === false) {
+        if (coral11.hoverTest()) {
           fill(255, 255, 255, 20);
           ellipse(620, 290, 180, 120);
         }
-        if (coral12.hoverTest() && choiceCoral12 === false) {
+        if (coral12.hoverTest()) {
           fill(255, 255, 255, 20);
           ellipse(850, 520, 300, 250);
         }
-        if (coral13.hoverTest() && choiceCoral13 === false) {
+        if (coral13.hoverTest()) {
           fill(255, 255, 255, 20);
           ellipse(850, 220, 180, 120);
         }
-        if (coral14.hoverTest() && choiceCoral14 === false) {
+        if (coral14.hoverTest()) {
           fill(255, 255, 255, 20);
           ellipse(1670, 460, 180, 120);
         }
-        if (coral15.hoverTest() && choiceCoral15 === false) {
+        if (coral15.hoverTest()) {
           fill(255, 255, 255, 20);
           ellipse(1570, 170, 220, 120);
+        }
+        if (switchLayer3.hoverTest()) {
+          fill(255, 255, 255, 20);
+          ellipse(1800, 58, 200, 200);
         }
       }
     }
@@ -1006,7 +1016,6 @@ function creditsScreen() {
   if (creditState === true) {
     image(creditsScreenPNG, 0, 0, 1920, 1080);
     buttonBack.display();
-
     runGame = false;
   }
 }
@@ -1605,4 +1614,8 @@ function draw() {
   adoptScreen();
   creditsScreen();
   cursor();
+
+  console.log(decisionState);
+  console.log(choiceCoral12);
+  console.log(posState);
 }
