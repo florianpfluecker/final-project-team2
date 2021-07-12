@@ -268,8 +268,8 @@ let buttonSwitchLayer2 = new Button(890, 990, 100, 30, "wechseln >");
 let buttonEndSimulation = new Button(1440, 990, 100, 30, "< okay >");
 let buttonShowLabor = new Button(910, 900, 100, 30, "< zum Labor >");
 let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
-let buttonRestartEnd = new Button(910, 860, 100, 30, "< RESTART >");
-let buttonCredits = new Button(910, 700, 100, 30, "< CREDITS >");
+let buttonRestartEnd = new Button(1400, 50, 100, 30, "< RESTART >");
+let buttonCredits = new Button(1700, 50, 100, 30, "< CREDITS >");
 let buttonBack = new Button(130, 1000, 100, 30, "< ZURÜCK");
 
 //laborButtons
@@ -505,13 +505,13 @@ let statusBar = new StatusBar(70, 30, 4, 4, images);
 statusBar.oxygenCounter = 1;
 statusBar.sampleCounter = 0;
 let gameState = 0;
-let layerState = 3;
+let layerState = 1;
 let endSimulation = false;
-let endState = false;
+let endState = true;
 let posState = 0;
-let runGame = true;
+let runGame = false;
 let laborState = false;
-let adoptionState = false;
+let adoptionState = true;
 let creditState = false;
 let opac = 255;
 let opac2 = 0;
@@ -993,7 +993,7 @@ function adoptScreen() {
     buttonRestartEnd.display();
     buttonCredits.display();
 
-    adoptCoralButton.position(windowWidth / 2.9, windowHeight / 1.7);
+    adoptCoralButton.position(windowWidth / 7.5, windowHeight / 2.2);
   }
 }
 
