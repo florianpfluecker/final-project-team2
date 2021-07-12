@@ -306,12 +306,6 @@ let coral14 = new Button(1570, 420, 200, 160);
 let coral15 = new Button(1480, 130, 180, 130);
 let switchLayer3 = new Button(1750, 0, 100, 100);
 
-//adopt a coral linking
-let adoptCoralButton = createA(
-  "https://www.coralgardeners.org",
-  "< KORALLENWAISE ADOPTIEREN >"
-);
-
 //consoles
 let console1 = new Console(
   300,
@@ -980,9 +974,15 @@ function laborScreens() {
 
 function adoptScreen() {
   if (adoptionState === true) {
+    //adopt a coral linking
+    let adoptCoralButton = createA(
+      "https://www.coralgardeners.org",
+      "< KORALLENWAISE ADOPTIEREN >"
+    );
     image(adoptScreenPNG, 0, 0, 1920, 1080);
     buttonRestartEnd.display();
     buttonCredits.display();
+
     adoptCoralButton.position(windowWidth / 2.9, windowHeight / 1.7);
   }
 }
