@@ -167,6 +167,7 @@ function preload() {
 let images = {
   //astronaut
   astronaut: loadImage("./assets/astronaut.png"),
+
   //symbols
   samples: loadImage("./assets/samples.png"),
   oxygen: loadImage("./assets/oxygen.png"),
