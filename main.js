@@ -96,13 +96,13 @@ function preload() {
   startButtonHover = loadImage("./assets/startButtonHover.png");
 
   //SOUNDS
-  // morseCode = loadSound("./sounds/morseCode.mp3");
-  // backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
-  // clickSound = loadSound("./sounds/hoverCoral.mp3");
-  // alarmSound = loadSound("./sounds/alarmSound.mp3");
-  // collectSound = loadSound("./sounds/collectSound.wav");
-  // explosion = loadSound("./sounds/explosion.mp3");
-  // helicopterFlyBy = loadSound("./sounds/helicopterFlyBy.mp3");
+  morseCode = loadSound("./sounds/morseCode.mp3");
+  backgroundMusic = loadSound("./sounds/backgroundMusic.mp3");
+  clickSound = loadSound("./sounds/hoverCoral.mp3");
+  alarmSound = loadSound("./sounds/alarmSound.mp3");
+  collectSound = loadSound("./sounds/collectSound.wav");
+  explosion = loadSound("./sounds/explosion.mp3");
+  helicopterFlyBy = loadSound("./sounds/helicopterFlyBy.mp3");
 
   //CURSOR
   cursorPNG = loadImage("./assets/cursor.png");
@@ -507,11 +507,11 @@ statusBar.sampleCounter = 0;
 let gameState = 0;
 let layerState = 1;
 let endSimulation = false;
-let endState = true;
+let endState = false;
 let posState = 0;
 let runGame = false;
 let laborState = false;
-let adoptionState = true;
+let adoptionState = false;
 let creditState = false;
 let opac = 255;
 let opac2 = 0;
