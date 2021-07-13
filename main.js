@@ -457,7 +457,7 @@ let consolePuck1 = new Console(
   1320,
   180,
   "- P U C K -",
-  "Sieht aus als hättest du etwas Brauchbares gefunden,\ndiese Lebensform produziert Sauerstoff.\nFülle deinen Tank auf!",
+  "Sieht aus als hättest du etwas Brauchbares gefunden,\ndiese Lebensform produziert Sauerstoff (O2).\nFülle deinen Tank auf!",
   2.3
 );
 let consolePuck2 = new Console(
@@ -510,7 +510,7 @@ let endSimulation = false;
 let endState = false;
 let posState = 0;
 let runGame = false;
-let laborState = false;
+let laborState = true;
 let adoptionState = false;
 let creditState = false;
 let opac = 255;
@@ -934,12 +934,12 @@ function laborScreens() {
       //AQUARIUM
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(140, 570, 1640, 450, 15);
+      rect(140, 550, 1640, 490, 20);
       fill(255);
       textLeading(32);
       noStroke();
       text(
-        "Brustkrebs heilen?\n\nAn der Fakultät für Angewandte\nNaturwissenschaften der TH Köln befasst sich das Forschungsprojekt\n„Neue Wirkstoffe aus dem Meer“ mit der Korallenart\n„Antillogorgia elisabethae“, die den Naturstoff „Pseudopterosin“ als\nSchutz gegen Fressfeinde bildet.\nDieser entzündungshemmende Naturstoff, der bereits in Handcremes\nverwendet wird, könnte bei neuen Behandlungsformen von Brustkrebs\nhelfen, da z.B. das Wachstum von Krebszellen blockiert werden könnte.\nDas Forschungsteam prognostiziert jedoch noch\nlangjährige Forschungsarbeiten an den Korallen, bis es zu einem\nmarktreifen Präparat kommt.",
+        "Brustkrebs heilen?\n\nAn der Fakultät für AngewandteNaturwissenschaften der TH Köln\nbefasst sich das Forschungsprojekt\n„Neue Wirkstoffe aus dem Meer“ mit der Korallenart\n„Antillogorgia elisabethae“, die den Naturstoff „Pseudopterosin“ als\nSchutz gegen Fressfeinde bildet.\nDieser entzündungshemmende Naturstoff, der bereits in Handcremes\nverwendet wird, könnte bei neuen Behandlungsformen von Brustkrebs\nhelfen, da z.B. das Wachstum von Krebszellen blockiert werden könnte.\nDas Forschungsteam prognostiziert jedoch noch\nlangjährige Forschungsarbeiten an den Korallen, bis es zu einem\nmarktreifen Präparat kommt.",
         180,
         610
       );
@@ -949,7 +949,7 @@ function laborScreens() {
       //TESTTUBE
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(140, 680, 1640, 340, 15);
+      rect(140, 680, 1640, 340, 20);
       textLeading(32);
       fill(255);
       noStroke();
@@ -964,7 +964,7 @@ function laborScreens() {
       //DISTILLER
       stroke(255);
       fill(0, 0, 0, 220);
-      rect(140, 860, 1640, 160, 15);
+      rect(140, 860, 1640, 160, 20);
       textLeading(32);
       fill(255);
       noStroke();
