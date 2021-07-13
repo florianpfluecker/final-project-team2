@@ -272,6 +272,7 @@ let buttonRestart = new Button(910, 905, 100, 30, "RESTART");
 let buttonRestartEnd = new Button(1400, 50, 100, 30, "< RESTART >");
 let buttonCredits = new Button(1700, 50, 100, 30, "< CREDITS >");
 let buttonBack = new Button(130, 1000, 100, 30, "< ZURÜCK");
+let linkButton = new Button(330, 500, 100, 30, "< KORALLENWAISE ADOPTIEREN >");
 
 //laborButtons
 let buttonAquarium = new Button(575, 40, 250, 150);
@@ -512,7 +513,7 @@ let endState = false;
 let posState = 0;
 let runGame = false;
 let laborState = false;
-let adoptionState = false;
+let adoptionState = true;
 let creditState = false;
 let opac = 255;
 let opac2 = 0;
@@ -985,16 +986,10 @@ function laborScreens() {
 
 function adoptScreen() {
   if (adoptionState === true) {
-    //adopt a coral linking
-    let adoptCoralButton = createA(
-      "https://www.coralgardeners.org",
-      "< KORALLENWAISE ADOPTIEREN >"
-    );
     image(adoptScreenPNG, 0, 0, 1920, 1080);
     buttonRestartEnd.display();
     buttonCredits.display();
-
-    adoptCoralButton.position(windowWidth / 7.5, windowHeight / 2.2);
+    linkButton.display();
   }
 }
 
@@ -1601,6 +1596,10 @@ function mouseClicked() {
     decisionState = false;
     //sound
     collectSound.play();
+  }
+
+  if (adoptionState === true && linkButton.hitTest()) {
+    window.open("https://www.coralgardeners.org"), "_blank";
   }
 }
 
