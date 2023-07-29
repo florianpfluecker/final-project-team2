@@ -251,18 +251,18 @@ import Decision from "./classes/Decision.js";
 
 //buttons
 let buttonStart = new Button(858, 905, 200, 60, "START");
-let button1 = new Button(1440, 990, 100, 30, "weiter >");
-let button2 = new Button(1440, 990, 100, 30, "weiter >");
-let button3 = new Button(1440, 990, 100, 30, "weiter >");
-let button4 = new Button(1440, 990, 100, 30, "weiter >");
-let button5 = new Button(1440, 990, 100, 30, "weiter >");
-let button6 = new Button(1440, 990, 100, 30, "weiter >");
-let button7 = new Button(1440, 990, 100, 30, "weiter >");
-let button8 = new Button(1440, 990, 100, 30, "weiter >");
+let button1 = new Button(1440, 990, 100, 30, "weiter >");   ////now replaces button2-8 and button10-12
+// let button2 = new Button(1440, 990, 100, 30, "weiter >");
+// let button3 = new Button(1440, 990, 100, 30, "weiter >");
+// let button4 = new Button(1440, 990, 100, 30, "weiter >");
+// let button5 = new Button(1440, 990, 100, 30, "weiter >");
+// let button6 = new Button(1440, 990, 100, 30, "weiter >");
+// let button7 = new Button(1440, 990, 100, 30, "weiter >");
+// let button8 = new Button(1440, 990, 100, 30, "weiter >");     ////are now all button1
 let button9 = new Button(1230, 985, 295, 40, "< Notsignal senden >");
-let button10 = new Button(1440, 990, 100, 30, "weiter >");
-let button11 = new Button(1440, 990, 100, 30, "weiter >");
-let button12 = new Button(1440, 990, 100, 30, "weiter >");
+// let button10 = new Button(1440, 990, 100, 30, "weiter >");
+// let button11 = new Button(1440, 990, 100, 30, "weiter >");
+// let button12 = new Button(1440, 990, 100, 30, "weiter >");    ////are now all button1
 let buttonStartMission = new Button(830, 990, 260, 30, "< Mission beginnen >");
 let buttonSwitchLayer = new Button(910, 990, 100, 30, "wechseln >");
 let buttonSwitchLayer2 = new Button(890, 990, 100, 30, "wechseln >");
@@ -580,11 +580,11 @@ function screenOrder() {
     }
     if (gameState === 2) {
       console2.display();
-      button2.display();
+      button1.display();
     }
     if (gameState === 3) {
       console3.display();
-      button3.display();
+      button1.display();
     }
   }
 
@@ -596,19 +596,19 @@ function screenOrder() {
 
     if (gameState === 4) {
       console4.display();
-      button4.display();
+      button1.display();
     }
     if (gameState === 5) {
       console5.display();
-      button5.display();
+      button1.display();
     }
     if (gameState === 6) {
       console6.display();
-      button6.display();
+      button1.display();
     }
     if (gameState === 7) {
       console7.display();
-      button7.display();
+      button1.display();
     }
   }
 
@@ -620,7 +620,7 @@ function screenOrder() {
     //BLACKSCREEN ALARM GIF
     if (gameState === 8) {
       console8.display();
-      button8.display();
+      button1.display();
     }
     if (gameState === 9) {
       image(cockpitFade, 0, 0, 1920, 1080);
@@ -635,7 +635,7 @@ function screenOrder() {
       astronaut.display();
       console10.display();
       if (opac <= 140) {
-        button10.display();
+        button1.display();
       }
       transition();
     }
@@ -643,13 +643,13 @@ function screenOrder() {
       image(layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console11.display();
-      button11.display();
+      button1.display();
     }
     if (gameState === 12) {
       image(layer1, 0, 0, 1920, 1080);
       astronaut.display();
       console12.display();
-      button12.display();
+      button1.display();
     }
     if (gameState === 13) {
       image(layer1, 0, 0, 1920, 1080);
